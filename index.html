@@ -259,12 +259,12 @@
                     <div class="method-card" id="m-bkash" onclick="selectMethod('Bkash', this)">
                         <img src="https://freelogopng.com/images/all_img/1656234745bkash-app-logo-png.png" alt="Bkash">
                         <p>Bkash</p>
-                        <span id="bkash-limit" class="limit-tag">Min: 10 TK</span>
+                        <span id="bkash-limit" class="limit-tag">Min: 25 TK</span>
                     </div>
                     <div class="method-card" id="m-nagad" onclick="selectMethod('Nagad', this)">
                         <img src="https://freelogopng.com/images/all_img/1679248787Nagad-Logo.png" alt="Nagad">
                         <p>Nagad</p>
-                        <span id="nagad-limit" class="limit-tag">Min: 10 TK</span>
+                        <span id="nagad-limit" class="limit-tag">Min: 1000 TK</span>
                     </div>
                 </div>
 
@@ -312,8 +312,8 @@
         let appState = { 
             user: { balance: 0, totalEarned: 0, referrals: 0, dailyAds: {}, taskHistory: {} },
             config: { 
-                minWithdrawBkash: 10, 
-                minWithdrawNagad: 10, 
+                minWithdrawBkash: 25, 
+                minWithdrawNagad: 1000, 
                 withdrawFee: 3, 
                 currencySymbol: "TK" 
             }, 
