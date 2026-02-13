@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Earn Wallet - bKash Nagad Rocket</title>
+    <title>Earn Wallet - bKash Nagad</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <style>
-        /* ðŸŽ¨ MFS THEME - bKash, Nagad, Rocket Combined */
+        /* 🎨 MFS THEME - bKash & Nagad */
         :root { 
             --bkash: #E2136E;           /* bKash Red */
             --bkash-light: #FF4D9E;
@@ -16,10 +16,6 @@
             --nagad: #ED1C24;            /* Nagad Red */
             --nagad-light: #FF4D4D;
             --nagad-gradient: linear-gradient(135deg, #ED1C24, #FF4D4D);
-            
-            --rocket: #F5821F;            /* Rocket Orange */
-            --rocket-light: #FFA64D;
-            --rocket-gradient: linear-gradient(135deg, #F5821F, #FFA64D);
             
             --primary: var(--bkash);
             --primary-gradient: var(--bkash-gradient);
@@ -138,7 +134,7 @@
         }
         
         .voltage-ring::after {
-            content: 'âš¡';
+            content: '⚡';
             position: absolute;
             top: 50%;
             left: 50%;
@@ -168,9 +164,9 @@
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.8); 
         }
         
-        /* HEADER & BALANCE - Gradient Mix */
+        /* HEADER & BALANCE - bKash & Nagad Gradient */
         .header { 
-            background: linear-gradient(135deg, #E2136E 0%, #ED1C24 50%, #F5821F 100%);
+            background: linear-gradient(135deg, #E2136E 0%, #ED1C24 100%);
             padding: 85px 25px 90px; 
             border-radius: 0 0 40px 40px; 
             color: white; 
@@ -273,7 +269,7 @@
         .bal-amt { 
             font-size: 2.8rem; 
             font-weight: 800; 
-            background: linear-gradient(135deg, #E2136E, #ED1C24, #F5821F);
+            background: linear-gradient(135deg, #E2136E, #ED1C24);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 8px 0; 
@@ -312,12 +308,12 @@
             font-weight: 500; 
         }
 
-        /* MFS Logos Section */
+        /* MFS Logos Section - bKash & Nagad Only */
         .mfs-logos {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 25px;
+            gap: 40px;
             margin: 25px 0 15px;
             padding: 15px;
             background: white;
@@ -329,47 +325,46 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
         }
         
         .mfs-icon {
-            width: 40px;
-            height: 40px;
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            font-size: 1.5rem;
+            font-size: 2rem;
             transition: 0.3s;
         }
         
         .mfs-item.bkash .mfs-icon {
             background: #E2136E;
             color: white;
-            box-shadow: 0 4px 12px rgba(226, 19, 110, 0.3);
+            box-shadow: 0 8px 20px rgba(226, 19, 110, 0.4);
         }
         
         .mfs-item.nagad .mfs-icon {
             background: #ED1C24;
             color: white;
-            box-shadow: 0 4px 12px rgba(237, 28, 36, 0.3);
-        }
-        
-        .mfs-item.rocket .mfs-icon {
-            background: #F5821F;
-            color: white;
-            box-shadow: 0 4px 12px rgba(245, 130, 31, 0.3);
+            box-shadow: 0 8px 20px rgba(237, 28, 36, 0.4);
         }
         
         .mfs-label {
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
         
-        .mfs-item.bkash .mfs-label { color: #E2136E; }
-        .mfs-item.nagad .mfs-label { color: #ED1C24; }
-        .mfs-item.rocket .mfs-label { color: #F5821F; }
+        .mfs-item.bkash .mfs-label { 
+            color: #E2136E;
+            text-shadow: 0 2px 4px rgba(226, 19, 110, 0.2);
+        }
+        .mfs-item.nagad .mfs-label { 
+            color: #ED1C24;
+            text-shadow: 0 2px 4px rgba(237, 28, 36, 0.2);
+        }
 
         /* SECTIONS */
         .page { display: none; padding: 0 20px; animation: slideUp 0.4s; }
@@ -398,12 +393,12 @@
             left: 0;
             width: 50px;
             height: 3px;
-            background: linear-gradient(90deg, #E2136E, #ED1C24, #F5821F);
+            background: linear-gradient(90deg, #E2136E, #ED1C24);
             border-radius: 3px;
         }
         
         .sec-head i { 
-            background: linear-gradient(135deg, #E2136E, #ED1C24, #F5821F);
+            background: linear-gradient(135deg, #E2136E, #ED1C24);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-size: 1.3rem; 
@@ -453,7 +448,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #E2136E, #ED1C24, #F5821F);
+            background: linear-gradient(90deg, #E2136E, #ED1C24);
         }
         
         .ad-card:active { 
@@ -469,7 +464,7 @@
         
         .ad-card i { 
             font-size: 2.2rem; 
-            background: linear-gradient(135deg, #E2136E, #ED1C24, #F5821F);
+            background: linear-gradient(135deg, #E2136E, #ED1C24);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 10px; 
@@ -528,7 +523,7 @@
             border-radius: 15px; 
             object-fit: cover; 
             border: 2px solid transparent;
-            background: linear-gradient(135deg, #E2136E, #ED1C24, #F5821F);
+            background: linear-gradient(135deg, #E2136E, #ED1C24);
             padding: 2px;
         }
         
@@ -568,7 +563,7 @@
         }
         
         .btn-start { 
-            background: linear-gradient(135deg, #E2136E, #ED1C24, #F5821F);
+            background: linear-gradient(135deg, #E2136E, #ED1C24);
             color: white; 
             box-shadow: 0 4px 12px rgba(226, 19, 110, 0.3);
         }
@@ -596,14 +591,14 @@
         .gift-container { 
             text-align: center; 
             margin: 20px 0; 
-            background: linear-gradient(135deg, #FEF2F6, #FFF3E0, #FFF0F0);
+            background: linear-gradient(135deg, #FEF2F6, #FFF0F0);
             padding: 30px;
             border-radius: 40px;
         }
         
         .gift-box { 
             font-size: 4.5rem; 
-            background: linear-gradient(135deg, #E2136E, #ED1C24, #F5821F);
+            background: linear-gradient(135deg, #E2136E, #ED1C24);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: bounce 2s infinite; 
@@ -698,7 +693,7 @@
             font-size: 0.75rem; 
             color: white; 
             font-weight: 600; 
-            background: linear-gradient(135deg, #E2136E, #ED1C24, #F5821F);
+            background: linear-gradient(135deg, #E2136E, #ED1C24);
             padding: 4px 12px; 
             border-radius: 30px; 
             display: inline-block; 
@@ -736,7 +731,7 @@
             object-fit: cover; 
             background: #F3F4F6; 
             border: 2px solid transparent;
-            background: linear-gradient(135deg, #E2136E, #ED1C24, #F5821F);
+            background: linear-gradient(135deg, #E2136E, #ED1C24);
             padding: 2px;
         }
         
@@ -809,7 +804,7 @@
         .btn-main { 
             width: 100%; 
             padding: 18px; 
-            background: linear-gradient(135deg, #E2136E, #ED1C24, #F5821F);
+            background: linear-gradient(135deg, #E2136E, #ED1C24);
             color: white; 
             border: none; 
             border-radius: 25px; 
@@ -820,6 +815,87 @@
             transition: 0.3s;
         }
         .btn-main:active { transform: scale(0.97); }
+        
+        /* Withdraw Section - bKash & Nagad Logos */
+        .method-select-wrapper {
+            position: relative;
+        }
+        
+        .method-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            background: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 20px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .method-option:hover {
+            border-color: var(--bkash);
+            background: white;
+        }
+        
+        .method-option.selected {
+            border-color: var(--bkash);
+            background: #FEF2F6;
+        }
+        
+        .method-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .method-logo.bkash {
+            background: #E2136E;
+            color: white;
+            box-shadow: 0 4px 10px rgba(226, 19, 110, 0.3);
+        }
+        
+        .method-logo.nagad {
+            background: #ED1C24;
+            color: white;
+            box-shadow: 0 4px 10px rgba(237, 28, 36, 0.3);
+        }
+        
+        .method-info {
+            flex: 1;
+        }
+        
+        .method-name {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+        
+        .method-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        
+        .method-radio {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--input-border);
+            border-radius: 50%;
+            margin-right: 5px;
+            transition: 0.2s;
+        }
+        
+        .method-option.selected .method-radio {
+            border-color: var(--bkash);
+            background: var(--bkash);
+            box-shadow: inset 0 0 0 4px white;
+        }
         
         .hist-item { 
             display: flex; 
@@ -999,7 +1075,7 @@
         }
         
         .nav i.active { 
-            background: linear-gradient(135deg, #E2136E, #ED1C24, #F5821F);
+            background: linear-gradient(135deg, #E2136E, #ED1C24);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             transform: translateY(-5px); 
@@ -1030,29 +1106,6 @@
         .toast.error { 
             background: var(--danger); 
         }
-        
-        /* Select Styles */
-        select.inp {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23E2136E'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 18px center;
-            background-size: 18px;
-            padding-right: 50px;
-        }
-        
-        /* Withdraw Method Icons */
-        .method-icon {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 8px;
-        }
-        
-        .method-bkash { background: #E2136E; }
-        .method-nagad { background: #ED1C24; }
-        .method-rocket { background: #F5821F; }
     </style>
     
     <link rel="me" href="https://www.blogger.com/profile/11551086564924548821" />
@@ -1081,9 +1134,9 @@
 
     <div id="join-modal" class="loader-overlay" style="display:none; background:rgba(255,255,255,0.98); z-index:99999;">
         <div id="verify-box">
-            <i class="fas fa-shield-alt" style="font-size: 3.5rem; background: linear-gradient(135deg, #E2136E, #ED1C24, #F5821F); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px;"></i>
+            <i class="fas fa-shield-alt" style="font-size: 3.5rem; background: linear-gradient(135deg, #E2136E, #ED1C24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px;"></i>
             <h3 style="margin-bottom: 10px; color: var(--text); font-weight: 700;">Verification Required</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 25px; font-weight: 500;">à¦¬à¦Ÿ à¦¬à§à¦¯à¦¬à¦¹à¦¾à¦° à¦•à¦°à¦¤à§‡ à¦¹à¦²à§‡ à¦†à¦ªà¦¨à¦¾à¦•à§‡ à¦†à¦—à§‡ à¦šà§à¦¯à¦¾à¦¨à§‡à¦²à§‡ à¦œà¦¯à¦¼à§‡à¦¨ à¦•à¦°à¦¤à§‡ à¦¹à¦¬à§‡</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 25px; font-weight: 500;">বট ব্যবহার করতে হলে আপনাকে আগে চ্যানেলে জয়েন করতে হবে</p>
             <button onclick="tg.openTelegramLink('https://t.me/My_Earning_Zone_In')" class="join-btn"><i class="fab fa-telegram-plane"></i> Join Promotion Channel</button>
             <button onclick="tg.openTelegramLink('https://t.me/shiyam744')" class="join-btn"><i class="fab fa-telegram-plane"></i> Join Payment Channel</button>
             <button id="v-btn" onclick="verifyJoin()" class="verify-btn"><i class="fas fa-check-circle"></i> I Have Joined</button>
@@ -1112,7 +1165,7 @@
             </div>
         </div>
 
-        <!-- MFS Logos Section -->
+        <!-- MFS Logos Section - bKash & Nagad Only -->
         <div class="mfs-logos">
             <div class="mfs-item bkash">
                 <div class="mfs-icon"><i class="fas fa-mobile-alt"></i></div>
@@ -1121,10 +1174,6 @@
             <div class="mfs-item nagad">
                 <div class="mfs-icon"><i class="fas fa-wallet"></i></div>
                 <span class="mfs-label">Nagad</span>
-            </div>
-            <div class="mfs-item rocket">
-                <div class="mfs-icon"><i class="fas fa-rocket"></i></div>
-                <span class="mfs-label">Rocket</span>
             </div>
         </div>
 
@@ -1163,9 +1212,31 @@
             <div class="sec-head"><i class="fas fa-wallet"></i> Withdraw</div>
             <div class="box">
                 <p id="w-msg" style="color:var(--danger); font-size:0.85rem; display:none; margin-bottom:10px; font-weight:600;"></p>
-                <div class="input-wrap"><i class="fas fa-university"></i><select id="w-method" class="inp" onchange="updateMinMsg()"></select></div>
-                <p id="min-msg" style="font-size:0.8rem; color:var(--bkash); margin:-15px 0 20px 15px; font-weight:600;">Min: ...</p>
-                <div class="input-wrap"><i class="fas fa-id-card"></i><input id="w-acc" class="inp" placeholder="Account Number"></div>
+                
+                <!-- bKash Option -->
+                <div class="method-option" id="method-bkash" onclick="selectMethod('bkash')">
+                    <div class="method-logo bkash"><i class="fas fa-mobile-alt"></i></div>
+                    <div class="method-info">
+                        <div class="method-name">bKash</div>
+                        <div class="method-desc">Send money to bKash number</div>
+                    </div>
+                    <div class="method-radio" id="radio-bkash"></div>
+                </div>
+                
+                <!-- Nagad Option -->
+                <div class="method-option" id="method-nagad" onclick="selectMethod('nagad')">
+                    <div class="method-logo nagad"><i class="fas fa-wallet"></i></div>
+                    <div class="method-info">
+                        <div class="method-name">Nagad</div>
+                        <div class="method-desc">Send money to Nagad number</div>
+                    </div>
+                    <div class="method-radio" id="radio-nagad"></div>
+                </div>
+                
+                <input type="hidden" id="w-method" value="bKash">
+                <p id="min-msg" style="font-size:0.8rem; color:var(--bkash); margin:20px 0 20px 15px; font-weight:600;">Min Withdraw: 10 TK</p>
+                
+                <div class="input-wrap"><i class="fas fa-id-card"></i><input id="w-acc" class="inp" placeholder="Account Number (01XXXXXXXXX)"></div>
                 <div class="input-wrap"><i class="fas fa-coins"></i><input id="w-amt" class="inp" type="number" placeholder="Amount"></div>
                 <button onclick="withdraw()" class="btn-main">Request Withdraw</button>
             </div>
@@ -1183,7 +1254,7 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <script>
-        // CONFIG - All your original JavaScript remains exactly the same
+        // CONFIG
         const API_URL = "https://cold-dewm.mdashrafaliakib.workers.dev"; 
         const BOT_TOKEN = "8471826069:AAFve1yjguXFIaBYfzlkds-gebQbKR6t3MI";
         const CHANNELS = [
@@ -1197,10 +1268,11 @@
 
         let appState = { user: { balance: 0, totalEarned: 0, referrals: 0, dailyAds: {}, taskHistory: {} }, config: {}, leaderboard: [], history: [] };
         let countdownInterval = null;
+        let selectedMethod = 'bkash';
 
         const tgUser = tg.initDataUnsafe.user || { id: "test_user", first_name: "Test" };
         
-        // 1. HARD ANTI-CHEAT CHECK
+        // HARD ANTI-CHEAT CHECK
         const storedDevice = localStorage.getItem('unique_device_id');
         if(storedDevice && storedDevice != tgUser.id) {
             document.getElementById('banned-screen').style.display = 'flex';
@@ -1210,7 +1282,7 @@
             localStorage.setItem('unique_device_id', tgUser.id);
         }
 
-        // 2. STARTUP: CHECK JOIN STATUS FIRST
+        // STARTUP: CHECK JOIN STATUS
         window.onload = async () => {
             const loader = document.getElementById('loader');
             const txt = document.getElementById('prog-txt');
@@ -1230,7 +1302,7 @@
             }
         }
 
-        // 3. VERIFICATION LOGIC
+        // VERIFICATION LOGIC
         async function checkChannels() {
             try {
                 for (const ch of CHANNELS) {
@@ -1247,7 +1319,7 @@
             }
         }
 
-        // 4. VERIFY JOIN BUTTON
+        // VERIFY JOIN BUTTON
         async function verifyJoin() {
             const btn = document.getElementById('v-btn');
             const originalText = btn.innerHTML;
@@ -1277,7 +1349,7 @@
             }
         }
 
-        // 5. APP LOADING
+        // APP LOADING
         function startLoadingBar() {
             const loader = document.getElementById('loader');
             loader.style.display = 'flex'; 
@@ -1352,7 +1424,7 @@
             const refAmt = appState.config.referralBonus || 0;
             if(refAmt > 0) document.getElementById('invite-txt').innerText = `Refer & Earn ${refAmt} ${sym} per Friend!`;
 
-            renderAds(); renderTasks(); renderLeaderboard(); renderHistory(); renderMethods(); loadAdScripts();
+            renderAds(); renderTasks(); renderLeaderboard(); renderHistory(); updateMinMsg(); loadAdScripts();
         }
 
         function loadAdScripts() {
@@ -1489,34 +1561,79 @@
             await api('updateBalance', 'POST', { id: appState.user.id, amount: t.reward });
         }
 
+        // Select Withdraw Method
+        function selectMethod(method) {
+            selectedMethod = method;
+            
+            // Update UI
+            document.getElementById('method-bkash').classList.remove('selected');
+            document.getElementById('method-nagad').classList.remove('selected');
+            document.getElementById('radio-bkash').style.background = '';
+            document.getElementById('radio-nagad').style.background = '';
+            
+            if (method === 'bkash') {
+                document.getElementById('method-bkash').classList.add('selected');
+                document.getElementById('radio-bkash').style.background = '#E2136E';
+                document.getElementById('radio-bkash').style.boxShadow = 'inset 0 0 0 4px white';
+                document.getElementById('w-method').value = 'bKash';
+                document.getElementById('min-msg').innerHTML = 'Min Withdraw: 10 TK';
+            } else {
+                document.getElementById('method-nagad').classList.add('selected');
+                document.getElementById('radio-nagad').style.background = '#ED1C24';
+                document.getElementById('radio-nagad').style.boxShadow = 'inset 0 0 0 4px white';
+                document.getElementById('w-method').value = 'Nagad';
+                document.getElementById('min-msg').innerHTML = 'Min Withdraw: 20 TK';
+            }
+        }
+
         function updateMinMsg() {
-            const mName = document.getElementById('w-method').value;
-            const methods = appState.config.withdrawMethods || [];
-            const method = methods.find(m => m.name === mName);
-            if(method) document.getElementById('min-msg').innerText = `Min Withdraw: ${method.min} ${appState.config.currencySymbol}`;
+            // Already handled in selectMethod
         }
 
         async function withdraw() {
             const minRef = appState.config.minWithdrawReferrals || 0;
-            if(appState.user.referrals < minRef) { document.getElementById('w-msg').style.display='block'; document.getElementById('w-msg').innerText=`Need ${minRef} Referrals!`; return; }
+            if(appState.user.referrals < minRef) { 
+                document.getElementById('w-msg').style.display='block'; 
+                document.getElementById('w-msg').innerText=`Need ${minRef} Referrals!`; 
+                return; 
+            }
             
             const amt = parseFloat(document.getElementById('w-amt').value);
             const mName = document.getElementById('w-method').value;
-            const methods = appState.config.withdrawMethods || [];
-            const method = methods.find(m => m.name === mName);
-            const minLimit = method ? method.min : 10;
+            
+            let minLimit = 10;
+            if (mName === 'bKash') minLimit = 10;
+            else if (mName === 'Nagad') minLimit = 20;
 
-            if(!amt || amt < minLimit) { toast(`Minimum ${minLimit} TK`); return; }
-            if(amt > appState.user.balance) { toast("Insufficient Balance"); return; }
+            if(!amt || amt < minLimit) { 
+                toast(`Minimum ${minLimit} TK for ${mName}`); 
+                return; 
+            }
+            if(amt > appState.user.balance) { 
+                toast("Insufficient Balance"); 
+                return; 
+            }
             
             toast("Connecting...");
-            const res = await api('withdraw', 'POST', { userId: appState.user.id, userName: appState.user.firstName, amount: amt, method: mName, account: document.getElementById('w-acc').value });
+            const res = await api('withdraw', 'POST', { 
+                userId: appState.user.id, 
+                userName: appState.user.firstName, 
+                amount: amt, 
+                method: mName, 
+                account: document.getElementById('w-acc').value 
+            });
+            
             if(res && res.success) {
-                appState.user.balance -= amt; saveLocal(); 
+                appState.user.balance -= amt; 
+                saveLocal(); 
                 const hist = await api('getHistory', 'GET', { id: appState.user.id });
                 if(hist) appState.history = hist;
-                renderAll(); toast("Submitted!"); tg.HapticFeedback.notificationOccurred('success');
-            } else { toast(res.message || "Network Error"); }
+                renderAll(); 
+                toast("Submitted!"); 
+                tg.HapticFeedback.notificationOccurred('success');
+            } else { 
+                toast(res.message || "Network Error"); 
+            }
         }
 
         function renderLeaderboard() {
@@ -1537,22 +1654,20 @@
             appState.history.forEach(x => el.innerHTML += `<div class="hist-item ${x.status}"><div class="hist-info"><h4>${x.method} - ${x.amount} ${sym}</h4><small>${new Date(x.timestamp).toLocaleDateString()}</small></div><span class="status-badge">${x.status}</span></div>`);
         }
         
-        function renderMethods() {
-            const s = document.getElementById('w-method'); if(s.children.length > 0) return;
-            (appState.config.withdrawMethods||[]).forEach(m => {
-                let icon = '';
-                if(m.name.toLowerCase().includes('bkash')) icon = '<span class="method-icon method-bkash"></span>';
-                else if(m.name.toLowerCase().includes('nagad')) icon = '<span class="method-icon method-nagad"></span>';
-                else if(m.name.toLowerCase().includes('rocket')) icon = '<span class="method-icon method-rocket"></span>';
-                s.innerHTML += `<option value="${m.name}">${icon} ${m.name}</option>`;
-            });
-            updateMinMsg();
-        }
-        
         function nav(p, e) {
             document.querySelectorAll('.page').forEach(x => x.classList.remove('active')); document.getElementById(p).classList.add('active');
             document.querySelectorAll('.nav i').forEach(x => x.classList.remove('active')); e.classList.add('active');
-            if(p==='p-profile') { api('getHistory', 'GET', { id: appState.user.id }).then(hist => { if(hist) { appState.history = hist; saveLocal(); renderAll(); } }); }
+            if(p==='p-profile') { 
+                api('getHistory', 'GET', { id: appState.user.id }).then(hist => { 
+                    if(hist) { 
+                        appState.history = hist; 
+                        saveLocal(); 
+                        renderAll(); 
+                    } 
+                }); 
+                // Select bKash by default when opening profile
+                selectMethod('bkash');
+            }
             tg.HapticFeedback.impactOccurred('light');
         }
         
@@ -1595,8 +1710,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', function(event) {
             window.cookieChoices && cookieChoices.showCookieConsentBar && cookieChoices.showCookieConsentBar(
-                (window.cookieOptions && cookieOptions.msg) || 'Ce site utilise des cookies provenant de Google pour fournir ses services et analyser le trafic. Votre adresseÂ IP et votre user-agent, ainsi que des statistiques relatives aux performances et Ã  la sÃ©curitÃ©, sont transmis Ã  Google afin d\x27assurer un service de qualitÃ©, de gÃ©nÃ©rer des statistiques d\x27utilisation, et de dÃ©tecter et de rÃ©soudre les problÃ¨mes d\x27abus.',
-                (window.cookieOptions && cookieOptions.close) || 'OKÂ !',
+                (window.cookieOptions && cookieOptions.msg) || 'Ce site utilise des cookies provenant de Google pour fournir ses services et analyser le trafic. Votre adresse IP et votre user-agent, ainsi que des statistiques relatives aux performances et à la sécurité, sont transmis à Google afin d\x27assurer un service de qualité, de générer des statistiques d\x27utilisation, et de détecter et de résoudre les problèmes d\x27abus.',
+                (window.cookieOptions && cookieOptions.close) || 'OK !',
                 (window.cookieOptions && cookieOptions.learn) || 'En savoir plus',
                 (window.cookieOptions && cookieOptions.link) || 'https://www.blogger.com/go/blogspot-cookies'
             );
