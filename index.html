@@ -1,209 +1,214 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Earn Wallet</title>
+    <title>Earn Wallet Dark</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <style>
-        /* CSS (No Changes - Gaming Theme) */
-        :root { --primary: #ff0000; --secondary: #A29BFE; --bg: #e8e8e8; --surface: #FFFFFF; --text: #2D3436; --gold: #FFD700; --silver: #b2bec3; --bronze: #e17055; --danger: #ff4757; --success: #00b894; }
+        /* CSS (Dark Smooth & Bold Theme - UNCHANGED) */
+        :root { 
+            --primary: #8c7ae6; 
+            --secondary: #9c88ff; 
+            --bg: #121212; 
+            --surface: #1e1e1e; 
+            --text: #f5f6fa; 
+            --text-muted: #dcdde1;
+            --gold: #f1c40f; 
+            --silver: #bdc3c7; 
+            --bronze: #e67e22; 
+            --danger: #e84118; 
+            --success: #4cd137; 
+            --input-bg: #2f3640;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background-color: var(--bg); color: var(--text); padding-bottom: 100px; -webkit-tap-highlight-color: transparent; }
         #app { max-width: 480px; margin: 0 auto; min-height: 100vh; position: relative; display: none; }
 
-        /* --- UPDATED PREMIUM LIQUID GLOW LOADER WITH IMAGE --- */
-        .loader-overlay { 
-            position: fixed; inset: 0; background: #05080a; z-index: 9999; 
-            display: flex; justify-content: center; align-items: center; flex-direction: column; 
-        }
+        /* BANNED SCREEN */
+        #banned-screen { position: fixed; inset: 0; background: #000; z-index: 999999; display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--danger); }
+        #banned-screen i { font-size: 4rem; margin-bottom: 20px; animation: shake 0.5s infinite; }
+
+        /* UPDATED VOLTAGE LOADER STYLE */
+        .loader-overlay { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; justify-content: center; align-items: center; flex-direction: column; }
         
-        .liquid-container {
-            position: relative;
-            width: 120px;
-            height: 120px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .liquid-loader {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: linear-gradient(45deg, transparent, transparent 40%, #ff0000);
-            animation: rotate-liquid 1.5s linear infinite;
-        }
-
-        .liquid-loader::before {
-            content: '';
-            position: absolute;
-            inset: 4px;
-            background: #05080a;
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        .loader-blur {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: linear-gradient(45deg, transparent, transparent 40%, #ff0000);
-            filter: blur(20px);
-            opacity: 0.8;
-            animation: rotate-liquid 1.5s linear infinite;
-        }
-
-        /* Center Image Style */
-        .loader-img {
+        /* New Voltage Ring */
+        .voltage-ring {
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            z-index: 10;
-            object-fit: cover;
-            border: 2px solid rgba(255, 0, 0, 0.3);
-            animation: pulse-img 2s infinite ease-in-out;
+            border: 4px solid transparent;
+            border-top-color: #ff0033; /* Red Neon */
+            border-bottom-color: #00ccff; /* Blue Neon */
+            box-shadow: 0 0 25px rgba(255, 0, 51, 0.6), 0 0 25px rgba(0, 204, 255, 0.6);
+            animation: voltageSpin 1s linear infinite;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        /* Inner dot for extra effect */
+        .voltage-ring::before {
+            content: ''; position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px;
+            border-radius: 50%; border: 2px solid transparent;
+            border-left-color: #fff; border-right-color: #fff;
+            opacity: 0.5; animation: voltageSpin 2s linear infinite reverse;
         }
 
-        @keyframes rotate-liquid {
-            to { transform: rotate(360deg); }
+        @keyframes voltageSpin {
+            0% { transform: rotate(0deg); filter: hue-rotate(0deg); }
+            100% { transform: rotate(360deg); filter: hue-rotate(360deg); }
         }
 
-        @keyframes pulse-img {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.05); opacity: 1; }
-        }
-
-        .loader-text { 
-            color: white; margin-top: 35px; font-weight: 700; letter-spacing: 4px; 
-            text-transform: uppercase; font-size: 0.8rem; animation: pulse-text 1.5s infinite;
-        }
-        @keyframes pulse-text { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+        .loader-text { color: var(--text); font-weight: 800; letter-spacing: 2px; font-size: 1.1rem; text-transform: uppercase; text-shadow: 0 0 10px var(--primary); }
         
-        /* HEADER */
-        .header { background: linear-gradient(160deg, var(--primary), #4834d4); padding: 85px 25px 90px; border-radius: 0 0 45px 45px; color: white; box-shadow: 0 15px 30px rgba(108, 92, 231, 0.4); position: relative; }
+        /* HEADER & BALANCE */
+        .header { background: linear-gradient(160deg, #192a56, #273c75); padding: 85px 25px 90px; border-radius: 0 0 45px 45px; color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; }
         .top-bar { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; }
-        .user-pill { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.15); padding: 6px 15px 6px 6px; border-radius: 50px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); }
-        .user-pill img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid white; object-fit: cover; }
-        .user-info h3 { font-size: 0.95rem; font-weight: 700; line-height: 1.1; }
-        .user-info p { font-size: 0.7rem; opacity: 0.8; }
-        .support-btn { background: rgba(255,255,255,0.2); color: white; width: 42px; height: 42px; border-radius: 50%; border: none; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        .user-pill { display: flex; align-items: center; gap: 12px; background: rgba(0,0,0,0.4); padding: 8px 15px 8px 8px; border-radius: 50px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+        .user-pill img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--primary); object-fit: cover; }
+        .user-info h3 { font-size: 1rem; font-weight: 800; line-height: 1.1; color: #fff; }
+        .user-info p { font-size: 0.75rem; opacity: 0.8; font-weight: 600; }
+        .support-btn { background: rgba(255,255,255,0.1); color: white; width: 42px; height: 42px; border-radius: 50%; border: none; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
 
-        /* BALANCE */
-        .balance-card { background: var(--surface); width: 88%; margin: -75px auto 25px; padding: 25px; border-radius: 25px; box-shadow: 0 20px 40px rgba(0,0,0,0.06); text-align: center; position: relative; z-index: 10; }
-        .bal-title { font-size: 0.75rem; text-transform: uppercase; color: #b2bec3; letter-spacing: 1.5px; font-weight: 700; }
-        .bal-amt { font-size: 2.6rem; font-weight: 800; color: var(--text); margin: 5px 0; }
+        .balance-card { background: var(--surface); width: 88%; margin: -75px auto 25px; padding: 25px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: center; position: relative; z-index: 10; border: 1px solid rgba(255,255,255,0.05); }
+        .bal-title { font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 2px; font-weight: 800; }
+        .bal-amt { font-size: 2.8rem; font-weight: 800; color: var(--text); margin: 5px 0; text-shadow: 0 0 20px rgba(140, 122, 230, 0.3); }
         .currency { color: var(--primary); font-size: 1.2rem; }
-        .stats { display: flex; justify-content: space-between; margin-top: 20px; padding-top: 20px; border-top: 2px dashed #f1f2f6; }
-        .stat-box h4 { font-size: 1.1rem; color: var(--text); margin-bottom: 2px; } .stat-box p { font-size: 0.75rem; color: #636e72; font-weight: 600; }
+        .stats { display: flex; justify-content: space-between; margin-top: 20px; padding-top: 20px; border-top: 2px dashed rgba(255,255,255,0.1); }
+        .stat-box h4 { font-size: 1.2rem; color: var(--text); margin-bottom: 2px; font-weight: 800; } .stat-box p { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; }
 
         /* SECTIONS */
         .page { display: none; padding: 0 20px; animation: slideUp 0.4s; }
         .page.active { display: block; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .sec-head { font-size: 1.1rem; font-weight: 800; margin: 30px 0 15px; color: var(--text); display: flex; align-items: center; gap: 10px; }
-        .sec-head i { color: var(--primary); font-size: 1.2rem; }
-
-        /* TELEGRAM BUTTON */
-        .tg-container { position: fixed; bottom: 100px; right: 20px; z-index: 1000; }
-        @keyframes tg-float { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-10px) scale(1.02); } }
-        @keyframes tg-pulse { 0% { box-shadow: 0 0 0 0 rgba(0, 136, 204, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(0, 136, 204, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 136, 204, 0); } }
-        .telegram-btn { position: relative; width: 60px; height: 60px; background: #24A1DE; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; text-decoration: none; animation: tg-float 3s ease-in-out infinite, tg-pulse 2s infinite; border: 3px solid rgba(255, 255, 255, 0.2); }
-        .telegram-btn img { width: 60%; height: auto; }
-        .reward-tag { position: absolute; top: -10px; background: #FFD700; color: #000; padding: 2px 8px; border-radius: 10px; font-size: 8px; font-weight: bold; border: 1px solid #fff; white-space: nowrap; }
-        .join-text { position: absolute; bottom: -20px; color: #24A1DE; font-size: 9px; text-transform: uppercase; font-weight: bold; white-space: nowrap; }
+        .sec-head { font-size: 1.2rem; font-weight: 800; margin: 30px 0 15px; color: var(--text); display: flex; align-items: center; gap: 10px; text-transform: capitalize; }
+        .sec-head i { color: var(--primary); font-size: 1.3rem; }
+        .sub-head { font-size: 0.9rem; color: var(--text-muted); font-weight: 700; margin: 15px 0 10px; text-transform: uppercase; letter-spacing: 1px; }
 
         /* ADS & TASKS */
         .ad-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .ad-card { background: var(--surface); padding: 20px; border-radius: 20px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.03); cursor: pointer; transition: 0.2s; border: 2px solid transparent; }
-        .ad-card:active { transform: scale(0.96); } .ad-card.disabled { opacity: 0.6; filter: grayscale(1); pointer-events: none; }
-        .ad-card i { font-size: 2rem; color: var(--secondary); margin-bottom: 10px; display: block; }
-        .ad-card h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 4px; }
-        .ad-card span { font-size: 0.75rem; color: #636e72; background: #f1f2f6; padding: 3px 8px; border-radius: 5px; }
+        .ad-card { background: var(--surface); padding: 20px; border-radius: 20px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.2); cursor: pointer; transition: 0.2s; border: 1px solid rgba(255,255,255,0.05); }
+        .ad-card:active { transform: scale(0.96); background: #252525; } .ad-card.disabled { opacity: 0.4; filter: grayscale(1); pointer-events: none; }
+        .ad-card i { font-size: 2.2rem; color: var(--secondary); margin-bottom: 12px; display: block; filter: drop-shadow(0 0 10px rgba(156, 136, 255, 0.4)); }
+        .ad-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; color: var(--text); }
+        .ad-card span { font-size: 0.8rem; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 6px; font-weight: 600; }
 
         .task-list { display: flex; flex-direction: column; gap: 12px; }
-        .task-item { background: var(--surface); padding: 15px; border-radius: 18px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+        .task-item { background: var(--surface); padding: 15px; border-radius: 18px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.05); }
         .task-left { display: flex; align-items: center; gap: 15px; }
-        .task-icon { width: 45px; height: 45px; border-radius: 12px; object-fit: cover; }
-        .task-info h4 { font-size: 0.95rem; font-weight: 700; line-height: 1.2; }
-        .task-info small { color: #00b894; font-weight: 600; font-size: 0.8rem; }
-        .btn-act { padding: 8px 20px; border-radius: 50px; border: none; font-weight: 700; font-size: 0.8rem; cursor: pointer; min-width: 90px; }
-        .btn-start { background: var(--text); color: white; }
-        .btn-wait { background: #ffeaa7; color: #d63031; cursor: not-allowed; }
-        .btn-claim { background: var(--primary); color: white; animation: pulse 1s infinite; }
-        @keyframes pulse { 50% { transform: scale(1.05); } }
+        .task-icon { width: 45px; height: 45px; border-radius: 12px; object-fit: cover; border: 1px solid rgba(255,255,255,0.1); }
+        .task-info h4 { font-size: 1rem; font-weight: 700; line-height: 1.2; color: var(--text); }
+        .task-info small { color: var(--success); font-weight: 700; font-size: 0.85rem; }
+        .btn-act { padding: 8px 16px; border-radius: 50px; border: none; font-weight: 700; font-size: 0.8rem; cursor: pointer; min-width: 90px; transition: 0.2s; }
+        .btn-start { background: var(--text); color: var(--bg); }
+        .btn-start:hover { background: var(--primary); color: white; }
+        .btn-wait { background: #353b48; color: #e84118; cursor: not-allowed; font-family: monospace; letter-spacing: -0.5px; border: 1px solid #e84118; }
+        .btn-claim { background: var(--primary); color: white; animation: pulse 1s infinite; box-shadow: 0 0 10px var(--primary); }
+        @keyframes pulse { 50% { transform: scale(1.05); box-shadow: 0 0 20px var(--primary); } }
 
-        /* LEADERBOARD */
+        /* GIFT BOX ANIMATION */
+        .gift-container { text-align: center; margin: 20px 0; }
+        .gift-box { font-size: 4.5rem; color: var(--primary); animation: bounce 2s infinite; filter: drop-shadow(0 0 20px rgba(140, 122, 230, 0.6)); }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px) rotate(5deg); } }
+        
+        /* LEADERBOARD (2-1-3) */
         .podium { display: flex; justify-content: center; align-items: flex-end; gap: 10px; margin: 30px 0 40px; padding: 0 10px; }
         .podium-item { text-align: center; position: relative; width: 33%; }
-        .rank-1 { order: 2; transform: scale(1.1); z-index: 2; margin-bottom: 10px; }
-        .rank-1 img { border-color: var(--gold); box-shadow: 0 0 20px rgba(255, 215, 0, 0.4); } .rank-1 .crown { color: var(--gold); top: -35px; font-size: 2rem; }
+        .rank-1 { order: 2; transform: scale(1.15); z-index: 2; margin-bottom: 10px; }
+        .rank-1 img { border-color: var(--gold); box-shadow: 0 0 25px rgba(255, 215, 0, 0.4); } .rank-1 .crown { color: var(--gold); top: -40px; font-size: 2.2rem; }
         .rank-2 { order: 1; } .rank-2 img { border-color: var(--silver); } .rank-2 .crown { color: var(--silver); }
         .rank-3 { order: 3; } .rank-3 img { border-color: var(--bronze); } .rank-3 .crown { color: var(--bronze); }
-        .podium-img { width: 60px; height: 60px; border-radius: 50%; border: 3px solid white; object-fit: cover; background: #fff; }
-        .crown { position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-size: 1.4rem; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); }
-        .podium-name { font-size: 0.75rem; font-weight: 700; margin-top: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; display: block; }
-        .podium-score { font-size: 0.7rem; color: var(--primary); font-weight: 800; background: white; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-top: 2px; }
-        .lb-list { background: var(--surface); border-radius: 20px; padding: 5px 15px; }
-        .lb-item { display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid #f1f2f6; }
+        .podium-img { width: 60px; height: 60px; border-radius: 50%; border: 3px solid var(--surface); object-fit: cover; background: #2f3640; }
+        .crown { position: absolute; top: -30px; left: 50%; transform: translateX(-50%); font-size: 1.5rem; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+        .podium-name { font-size: 0.8rem; font-weight: 700; margin-top: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; display: block; color: var(--text); }
+        .podium-score { font-size: 0.75rem; color: var(--bg); font-weight: 800; background: var(--text); padding: 3px 10px; border-radius: 10px; display: inline-block; margin-top: 4px; }
+        
+        .lb-list { background: var(--surface); border-radius: 20px; padding: 10px 20px; border: 1px solid rgba(255,255,255,0.05); }
+        .lb-item { display: flex; align-items: center; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .lb-item:last-child { border-bottom: none; }
-        .lb-rank { font-weight: 800; width: 30px; color: #b2bec3; font-size: 0.9rem; }
-        .lb-img { width: 38px; height: 38px; border-radius: 50%; margin-right: 15px; object-fit: cover; background: #eee; }
-        .lb-name { font-weight: 600; font-size: 0.9rem; flex: 1; }
+        .lb-rank { font-weight: 800; width: 35px; color: var(--text-muted); font-size: 1rem; }
+        .lb-img { width: 40px; height: 40px; border-radius: 50%; margin-right: 15px; object-fit: cover; background: #2f3640; border: 1px solid rgba(255,255,255,0.1); }
+        .lb-name { font-weight: 600; font-size: 0.95rem; flex: 1; color: var(--text); }
         .lb-val { font-weight: 700; color: var(--primary); }
 
-        /* PROFILE & WITHDRAW */
-        .box { background: var(--surface); padding: 20px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        /* PROFILE & INPUTS */
+        .box { background: var(--surface); padding: 25px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.05); }
+        .input-wrap { position: relative; margin-bottom: 18px; }
+        .input-wrap i { position: absolute; top: 50%; transform: translateY(-50%); left: 15px; color: var(--text-muted); }
+        .inp { width: 100%; padding: 16px 16px 16px 45px; border: 2px solid transparent; border-radius: 14px; outline: none; font-weight: 600; background: var(--input-bg); color: white; transition: 0.3s; }
+        .inp:focus { border-color: var(--primary); background: #383e4a; }
+        .btn-main { width: 100%; padding: 16px; background: var(--primary); color: white; border: none; border-radius: 14px; font-weight: 800; cursor: pointer; font-size: 1rem; box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4); }
+        .btn-main:active { transform: scale(0.98); }
         
-        .method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
-        .method-card { background: #f8f9fa; border: 2px solid #f1f2f6; padding: 15px; border-radius: 18px; text-align: center; cursor: pointer; transition: 0.3s; position: relative; }
-        .method-card.selected { border-color: #d63031; background: #fff1f1; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(214, 48, 49, 0.1); }
-        .method-card img { width: 50px; height: 50px; margin-bottom: 8px; border-radius: 12px; }
-        .method-card p { font-size: 0.85rem; font-weight: 800; color: #2d3436; margin-bottom: 2px; }
-        .limit-tag { font-size: 9px; color: #636e72; font-weight: 600; display: block; }
-
-        .fee-preview { background: #f1f2f6; border-radius: 12px; padding: 12px; margin-bottom: 15px; display: none; animation: fadeIn 0.3s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .fee-preview div { display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 600; margin-bottom: 4px; }
-        .fee-preview .net-amt { color: var(--primary); font-weight: 800; border-top: 1px dashed #ccc; margin-top: 5px; padding-top: 5px; font-size: 0.9rem; }
-
-        .input-wrap { position: relative; margin-bottom: 15px; }
-        .input-wrap i { position: absolute; top: 50%; transform: translateY(-50%); left: 15px; color: #a4b0be; }
-        .inp { width: 100%; padding: 14px 14px 14px 45px; border: 2px solid #f1f2f6; border-radius: 12px; outline: none; font-weight: 600; background: #f8f9fa; }
-        .btn-main { width: 100%; padding: 15px; background: var(--text); color: white; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 1rem; }
-        
-        .hist-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; background: var(--surface); border-radius: 15px; margin-bottom: 10px; border-left: 5px solid #eee; }
+        .hist-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; background: var(--surface); border-radius: 15px; margin-bottom: 12px; border-left: 5px solid #444; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .hist-info h4 { font-weight: 700; color: var(--text); font-size: 0.95rem; }
+        .hist-info small { color: var(--text-muted); }
         .hist-item.pending { border-color: var(--gold); } .hist-item.completed { border-color: var(--success); } .hist-item.rejected { border-color: var(--danger); }
-        .status-badge { font-size:0.7rem; padding:4px 8px; border-radius:5px; font-weight:700; text-transform:uppercase; }
-        .pending .status-badge { color:var(--gold); background:rgba(255,215,0,0.1); }
-        .completed .status-badge { color:var(--success); background:rgba(0,184,148,0.1); }
-        .rejected .status-badge { color:var(--danger); background:rgba(255,71,87,0.1); }
+        .status-badge { font-size:0.75rem; padding:5px 10px; border-radius:6px; font-weight:800; text-transform:uppercase; }
+        .pending .status-badge { color:var(--gold); background:rgba(241, 196, 15, 0.15); }
+        .completed .status-badge { color:var(--success); background:rgba(76, 209, 55, 0.15); }
+        .rejected .status-badge { color:var(--danger); background:rgba(232, 65, 24, 0.15); }
         
         .invite-box { display: flex; gap: 10px; margin-top: 10px; }
-        .btn-share { background: #0088cc; color: white; flex: 1; border: none; padding: 12px; border-radius: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
-        .btn-copy { background: var(--text); color: white; width: 50px; border: none; border-radius: 12px; cursor: pointer; font-size: 1.2rem; }
+        .btn-share { background: #0088cc; color: white; flex: 1; border: none; padding: 14px; border-radius: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 10px rgba(0, 136, 204, 0.4); }
+        .btn-copy { background: var(--input-bg); color: white; width: 55px; border: none; border-radius: 12px; cursor: pointer; font-size: 1.2rem; transition: 0.2s; }
+        .btn-copy:active { background: var(--primary); }
+
+        /* JOIN MODAL STYLE - UPDATED BEHAVIOR */
+        #verify-box { width: 90%; max-width: 360px; text-align: center; border: 2px solid var(--primary); transition: 0.3s; background: var(--surface); padding: 30px 20px; border-radius: 25px; box-shadow: 0 0 30px rgba(108, 92, 231, 0.2); }
+        .join-btn { width: 100%; padding: 14px; background: #2f3640; color: white; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; margin-bottom: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.2s; }
+        .join-btn:hover { background: #353b48; border-color: var(--primary); }
+        .join-btn i { color: #0088cc; font-size: 1.2rem; }
+        .verify-btn { width: 100%; padding: 15px; background: var(--success); color: white; border: none; border-radius: 12px; font-weight: 800; cursor: pointer; margin-top: 15px; box-shadow: 0 5px 15px rgba(76, 209, 55, 0.4); font-size: 1rem; transition: 0.3s; }
+        .verify-btn.error { background: var(--danger); animation: shake 0.4s; }
+        
+        @keyframes shake { 0% { transform: translateX(0); } 25% { transform: translateX(-10px); } 50% { transform: translateX(10px); } 75% { transform: translateX(-10px); } 100% { transform: translateX(0); } }
+        .shake-error { animation: shake 0.4s ease-in-out; border-color: var(--danger) !important; box-shadow: 0 0 20px var(--danger) !important; }
 
         /* NAV */
-        .nav { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 400px; background: #2d3436; display: flex; justify-content: space-around; padding: 15px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); z-index: 100; }
-        .nav i { font-size: 1.4rem; color: rgba(255,255,255,0.4); cursor: pointer; transition: 0.3s; }
-        .nav i.active { color: white; transform: translateY(-5px); text-shadow: 0 0 15px white; }
-        .toast { position: fixed; top: 40px; left: 50%; transform: translateX(-50%); background: #2d3436; color: white; padding: 12px 25px; border-radius: 30px; font-size: 0.9rem; opacity: 0; transition: 0.3s; z-index: 10000; font-weight: 600; pointer-events: none; }
+        .nav { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 400px; background: rgba(30, 30, 30, 0.95); display: flex; justify-content: space-around; padding: 18px; border-radius: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.6); z-index: 100; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05); }
+        .nav i { font-size: 1.5rem; color: rgba(255,255,255,0.3); cursor: pointer; transition: 0.3s; }
+        .nav i.active { color: var(--primary); transform: translateY(-5px); text-shadow: 0 0 15px var(--primary); }
+        .toast { position: fixed; top: 40px; left: 50%; transform: translateX(-50%); background: #2f3640; color: white; padding: 12px 25px; border-radius: 30px; font-size: 0.9rem; opacity: 0; transition: 0.3s; z-index: 10000; font-weight: 600; pointer-events: none; border: 1px solid var(--primary); box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
         .toast.show { opacity: 1; top: 50px; }
+        .toast.error { border-color: var(--danger); box-shadow: 0 5px 15px rgba(232, 65, 24, 0.4); }
     </style>
+<link rel="me" href="https://www.blogger.com/profile/11551086564924548821" />
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
+
+<script type="text/javascript" language="javascript">
+  // Supply ads personalization default for EEA readers
+  // See https://www.blogger.com/go/adspersonalization
+  adsbygoogle = window.adsbygoogle || [];
+  if (typeof adsbygoogle.requestNonPersonalizedAds === 'undefined') {
+    adsbygoogle.requestNonPersonalizedAds = 1;
+  }
+</script>
+
 </head>
 <body>
 
+    <div id="banned-screen">
+        <i class="fas fa-ban"></i>
+        <h1>ACCOUNT BANNED</h1>
+        <p style="color: white; margin-top: 10px;">Multiple accounts detected.</p>
+    </div>
+
     <div id="loader" class="loader-overlay">
-        <div class="liquid-container">
-            <div class="loader-blur"></div>
-            <div class="liquid-loader"></div>
-            <img src="https://i.ibb.co/C3YHGmn1/photo-2026-02-08-20-02-16.jpg" class="loader-img" alt="Logo">
+        <div class="voltage-ring"></div>
+        <p class="loader-text"><span id="prog-txt">CHECKING...</span></p>
+    </div>
+
+    <div id="join-modal" class="loader-overlay" style="display:none; background:rgba(0,0,0,0.95); z-index:99999;">
+        <div id="verify-box" class="box">
+            <i class="fas fa-shield-alt" style="font-size: 3.5rem; color: var(--primary); margin-bottom: 20px; filter: drop-shadow(0 0 10px rgba(108,92,231,0.5));"></i>
+            <h3 style="margin-bottom: 10px; color: var(--text); font-weight: 800;">Verification Required</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 25px; font-weight: 600;">বট ব্যবহার করতে হলে আপনাকে আগে চ্যানেলে জয়েন করতে হবে</p>
+            <button onclick="tg.openTelegramLink('https://t.me/My_Earning_Zone_In')" class="join-btn"><i class="fab fa-telegram-plane"></i> Join Promotion Channel</button>
+            <button onclick="tg.openTelegramLink('https://t.me/shiyam744')" class="join-btn"><i class="fab fa-telegram-plane"></i> Join Payment Channel</button>
+            <button id="v-btn" onclick="verifyJoin()" class="verify-btn"><i class="fas fa-check-circle"></i> I Have Joined</button>
         </div>
-        <p class="loader-text">Loading...</p>
     </div>
 
     <div id="toast" class="toast">Alert</div>
@@ -231,21 +236,31 @@
         <div id="p-home" class="page active">
             <div class="sec-head"><i class="fas fa-play-circle"></i> Daily Ads</div>
             <div id="ad-area" class="ad-grid"></div>
+
             <div class="sec-head"><i class="fas fa-tasks"></i> Tasks</div>
-            <div id="task-area" class="task-list"></div>
+            
+            <div id="onetime-task-area" class="task-list"></div>
+            
+            <div class="sub-head"><i class="fas fa-clock"></i> Daily Tasks</div>
+            <div id="daily-task-area" class="task-list"></div>
         </div>
 
-        <div class="tg-container">
-            <a href="https://t.me/My_Earning_Zone_In" target="_blank" class="telegram-btn">
-                <div class="reward-tag">JOIN</div>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
-                <span class="join-text">Join Now</span>
-            </a>
-        </div>
+        <div id="p-invite" class="page">
+            <div class="gift-container">
+                <i class="fas fa-gift gift-box"></i>
+                <h2 style="color:var(--text); margin-top:10px; font-weight: 800;">Invite Friends</h2>
+                <p id="invite-txt" style="font-size:0.9rem; color:var(--text-muted); font-weight: 600;">Refer & Earn rewards!</p>
+            </div>
 
-        <div id="p-leader" class="page">
-            <h3 style="text-align:center; margin-top:20px; color:var(--text);">Leaderboard</h3>
-            <p style="text-align:center; font-size:0.8rem; color:#aaa; margin-bottom:20px;">Top 20 Referrers</p>
+            <div class="box" style="margin-bottom: 30px;">
+                <input id="ref-link" class="inp" readonly style="text-align:center; background:#fff; color:#000; font-size: 0.85rem; margin-bottom:10px;">
+                <div class="invite-box">
+                    <button onclick="shareTg()" class="btn-share"><i class="fab fa-telegram-plane"></i> Invite Friends</button>
+                    <button onclick="copyRef()" class="btn-copy"><i class="far fa-copy"></i></button>
+                </div>
+            </div>
+
+            <div class="sec-head"><i class="fas fa-trophy"></i> Top Referrers</div>
             <div id="podium-area" class="podium"></div>
             <div id="lb-area" class="lb-list"></div>
         </div>
@@ -253,195 +268,204 @@
         <div id="p-profile" class="page">
             <div class="sec-head"><i class="fas fa-wallet"></i> Withdraw</div>
             <div class="box">
-                <p id="w-msg" style="color:var(--danger); font-size:0.8rem; display:none; margin-bottom:10px;"></p>
-                
-                <div class="method-grid" id="method-container">
-                    <div class="method-card" id="m-bkash" onclick="selectMethod('Bkash', this)">
-                        <img src="https://freelogopng.com/images/all_img/1656234745bkash-app-logo-png.png" alt="Bkash">
-                        <p>Bkash</p>
-                        <span id="bkash-limit" class="limit-tag">Min: 25 TK</span>
-                    </div>
-                    <div class="method-card" id="m-nagad" onclick="selectMethod('Nagad', this)">
-                        <img src="https://freelogopng.com/images/all_img/1679248787Nagad-Logo.png" alt="Nagad">
-                        <p>Nagad</p>
-                        <span id="nagad-limit" class="limit-tag">Min: 1000 TK</span>
-                    </div>
-                </div>
-
-                <input type="hidden" id="w-method-val">
-
-                <div class="input-wrap"><i class="fas fa-id-card"></i><input id="w-acc" class="inp" placeholder="Account Number"></div>
-                <div class="input-wrap"><i class="fas fa-coins"></i><input id="w-amt" class="inp" type="number" placeholder="Amount" oninput="calculateWithdrawFee()"></div>
-                
-                <div id="fee-box" class="fee-preview">
-                    <div><span>Fee (<span id="calc-fee-percent">0</span>%):</span> <span id="calc-fee">0.00</span></div>
-                    <div class="net-amt"><span>Total Receive:</span> <span id="calc-net">0.00 TK</span></div>
-                </div>
-
+                <p id="w-msg" style="color:var(--danger); font-size:0.8rem; display:none; margin-bottom:10px; font-weight:700;"></p>
+                <div class="input-wrap"><i class="fas fa-university"></i><select id="w-method" class="inp" onchange="updateMinMsg()"></select></div>
+                <p id="min-msg" style="font-size:0.75rem; color:var(--primary); margin:-15px 0 15px 15px; font-weight:700;">Min: ...</p>
+                <div class="input-wrap"><i class="fas fa-id-card"></i><input id="w-acc" class="inp" placeholder="@username"></div>
+                <div class="input-wrap"><i class="fas fa-coins"></i><input id="w-amt" class="inp" type="number" placeholder="Amount"></div>
                 <button onclick="withdraw()" class="btn-main">Request Withdraw</button>
             </div>
-            
             <div class="sec-head"><i class="fas fa-history"></i> Last Transactions</div>
             <div id="hist-area" class="task-list"></div>
-            
-            <div class="sec-head"><i class="fas fa-user-plus"></i> Invite</div>
-            <div class="box">
-                <input id="ref-link" class="inp" readonly style="text-align:center; background:#fff;">
-                <div class="invite-box">
-                    <button onclick="shareTg()" class="btn-share"><i class="fab fa-telegram-plane"></i> Share</button>
-                    <button onclick="copyRef()" class="btn-copy"><i class="far fa-copy"></i></button>
-                </div>
-            </div>
         </div>
     </div>
 
     <div class="nav">
         <i class="fas fa-home active" onclick="nav('p-home', this)"></i>
-        <i class="fas fa-trophy" onclick="nav('p-leader', this)"></i>
-        <i class="fas fa-user" onclick="nav('p-profile', this)"></i>
+        <i class="fas fa-gift" onclick="nav('p-invite', this)"></i>
+        <i class="fas fa-wallet" onclick="nav('p-profile', this)"></i>
     </div>
 
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <script>
-        const API_URL = "https://cold-dewm.mdashrafaliakib.workers.dev/"; 
+        // CONFIG
+        const API_URL = "https://cold-dewm.mdashrafaliakib.workers.dev"; 
+        const BOT_TOKEN = "8471826069:AAFve1yjguXFIaBYfzlkds-gebQbKR6t3MI";
+        const CHANNELS = [
+             { id: "-1002804377252" },
+            { id: "-1003060675460" } 
+        ];
 
         const tg = window.Telegram.WebApp;
         tg.ready(); tg.expand();
+        tg.setHeaderColor('#121212'); 
 
-        let appState = { 
-            user: { balance: 0, totalEarned: 0, referrals: 0, dailyAds: {}, taskHistory: {} },
-            config: { 
-                minWithdrawBkash: 25, 
-                minWithdrawNagad: 1000, 
-                withdrawFee: 3, 
-                currencySymbol: "TK" 
-            }, 
-            leaderboard: [], 
-            history: [] 
-        };
+        let appState = { user: { balance: 0, totalEarned: 0, referrals: 0, dailyAds: {}, taskHistory: {} }, config: {}, leaderboard: [], history: [] };
+        let countdownInterval = null;
 
-        function selectMethod(name, el) {
-            document.querySelectorAll('.method-card').forEach(c => c.classList.remove('selected'));
-            el.classList.add('selected');
-            document.getElementById('w-method-val').value = name;
-            tg.HapticFeedback.impactOccurred('light');
-            calculateWithdrawFee();
+        const tgUser = tg.initDataUnsafe.user || { id: "test_user", first_name: "Test" };
+        
+        // 1. HARD ANTI-CHEAT CHECK
+        const storedDevice = localStorage.getItem('unique_device_id');
+        if(storedDevice && storedDevice != tgUser.id) {
+            document.getElementById('banned-screen').style.display = 'flex';
+            document.getElementById('loader').style.display = 'none';
+            throw new Error("Banned");
+        } else {
+            localStorage.setItem('unique_device_id', tgUser.id);
         }
 
-        function calculateWithdrawFee() {
-            const amtInput = document.getElementById('w-amt').value;
-            const feeBox = document.getElementById('fee-box');
-            const feeEl = document.getElementById('calc-fee');
-            const percentEl = document.getElementById('calc-fee-percent');
-            const netEl = document.getElementById('calc-net');
+        // 2. UPDATED STARTUP: CHECK JOIN STATUS FIRST
+        window.onload = async () => {
+            const loader = document.getElementById('loader');
+            const txt = document.getElementById('prog-txt');
+            loader.style.display = 'flex';
+            txt.innerText = 'VERIFYING...';
             
-            if (!amtInput || amtInput <= 0) {
-                feeBox.style.display = 'none';
-                return;
+            // Check membership BEFORE loading app
+            checkMembershipOnLoad();
+        };
+
+        async function checkMembershipOnLoad() {
+            const isJoined = await checkChannels();
+            if (isJoined) {
+                // User is joined, start the app loader -> referral count happens in initializeApp
+                startLoadingBar();
+            } else {
+                // User not joined, hide voltage loader, show join modal
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('join-modal').style.display = 'flex';
             }
+        }
 
-            const amt = parseFloat(amtInput);
-            const feePercent = appState.config.withdrawFee || 0;
-            const feeAmount = (amt * feePercent) / 100;
-            const finalAmount = amt - feeAmount;
+        // 3. ACTUAL VERIFICATION LOGIC
+        async function checkChannels() {
+            try {
+                for (const ch of CHANNELS) {
+                    const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getChatMember?chat_id=${ch.id}&user_id=${tgUser.id}`);
+                    const data = await res.json();
+                    if (!data.ok || ['left', 'kicked'].includes(data.result.status)) {
+                        return false;
+                    }
+                }
+                return true;
+            } catch (e) {
+                // If network error, default to strict (false) or lenient (true). Strict requested.
+                console.error("Join Check Error", e);
+                return false;
+            }
+        }
 
-            feeBox.style.display = 'block';
-            percentEl.innerText = feePercent;
-            feeEl.innerText = feeAmount.toFixed(2);
-            netEl.innerText = finalAmount.toFixed(2) + " " + (appState.config.currencySymbol || "TK");
+        // 4. BUTTON CLICK VERIFY (STRICT)
+        async function verifyJoin() {
+            const btn = document.getElementById('v-btn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Checking...';
+            
+            const isJoined = await checkChannels();
+            
+            if (isJoined) {
+                // SUCCESS
+                tg.HapticFeedback.notificationOccurred('success');
+                btn.style.background = '#4cd137'; // Green
+                btn.innerHTML = '<i class="fas fa-check"></i> Verified!';
+                
+                setTimeout(() => {
+                    document.getElementById('join-modal').style.display = 'none';
+                    startLoadingBar(); // This triggers app load and referral counting
+                }, 500);
+            } else {
+                // FAIL
+                tg.HapticFeedback.notificationOccurred('error'); // Vibrate Error
+                btn.classList.add('error'); // Red Shake Animation
+                btn.innerHTML = '<i class="fas fa-times-circle"></i> Not Joined!';
+                toastError("Please join all channels!");
+                
+                setTimeout(() => {
+                    btn.classList.remove('error');
+                    btn.innerHTML = originalText;
+                }, 1500);
+            }
+        }
+
+        // 5. APP LOADING (REFERRAL COUNT HAPPENS HERE INSIDE initializeApp)
+        function startLoadingBar() {
+            const loader = document.getElementById('loader');
+            loader.style.display = 'flex'; 
+            const txt = document.getElementById('prog-txt');
+            
+            let width = 0;
+            const interval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    loader.style.display = 'none';
+                    document.getElementById('app').style.display = 'block';
+                    initializeApp(tgUser); // REFERRAL COUNT TRIGGERED HERE
+                    toast("Welcome Back!");
+                } else {
+                    width += 2; 
+                    txt.innerText = width + '%';
+                }
+            }, 30);
         }
 
         async function api(action, method = 'GET', body = null) {
             try {
                 let url = `${API_URL}?action=${action}`;
-                if (method === 'GET' && body) {
-                    Object.keys(body).forEach(k => url += `&${k}=${body[k]}`);
-                }
+                if (method === 'GET' && body) Object.keys(body).forEach(k => url += `&${k}=${body[k]}`);
                 const opts = { method: method };
                 if (method !== 'GET' && body) opts.body = JSON.stringify(body);
                 const res = await fetch(url, opts);
                 return await res.json();
-            } catch (e) {
-                console.error("API Error", e);
-                return null;
-            }
+            } catch (e) { return null; }
         }
 
-        window.onload = async () => {
-            const tgUser = tg.initDataUnsafe.user;
-            if(!tgUser) return;
+        async function initializeApp(u) {
+            document.getElementById('u-name').innerText = u.first_name;
+            document.getElementById('u-id').innerText = `ID: ${u.id}`;
+            if(u.photo_url) document.getElementById('u-img').src = u.photo_url;
 
-            document.getElementById('u-name').innerText = tgUser.first_name;
-            document.getElementById('u-id').innerText = `ID: ${tgUser.id}`;
-            if(tgUser.photo_url) document.getElementById('u-img').src = tgUser.photo_url;
-
-            const cached = localStorage.getItem(`app_${tgUser.id}`);
-            if(cached) {
-                appState = JSON.parse(cached);
-                renderAll(); 
-            } else {
-                appState.user.id = tgUser.id;
-            }
+            const cached = localStorage.getItem(`app_${u.id}`);
+            if(cached) { appState = JSON.parse(cached); renderAll(); } 
+            else { appState.user.id = u.id; }
 
             try {
                 const [config, user] = await Promise.all([
                     api('getConfig'),
-                    api('login', 'POST', {
-                        id: tgUser.id,
-                        firstName: tgUser.first_name,
-                        photoUrl: tgUser.photo_url || '',
-                        refId: tg.initDataUnsafe.start_param
-                    })
+                    // REFERRAL ID PROCESSED HERE ON SERVER
+                    api('login', 'POST', { id: u.id, firstName: u.first_name, photoUrl: u.photo_url||'', refId: tg.initDataUnsafe.start_param })
                 ]);
 
-                if(config) appState.config = {...appState.config, ...config};
-                if(user) {
-                    appState.user = { ...appState.user, ...user };
-                    if(!appState.user.dailyAds) appState.user.dailyAds = {};
-                    if(!appState.user.taskHistory) appState.user.taskHistory = {};
-                }
-
+                if(config) appState.config = config;
+                if(user) appState.user = { ...appState.user, ...user };
+                
                 const lb = await api('getLeaderboard');
                 if(lb) appState.leaderboard = lb;
-
-                const hist = await api('getHistory', 'GET', { id: tgUser.id });
+                
+                const hist = await api('getHistory', 'GET', { id: u.id });
                 if(hist) appState.history = hist;
 
-                saveLocal();
-                renderAll();
-                
-                setTimeout(() => {
-                    document.getElementById('loader').style.display = 'none';
-                    document.getElementById('app').style.display = 'block';
-                }, 2000);
-
-            } catch (e) {
-                console.error(e);
-                document.getElementById('loader').style.display = 'none';
-                document.getElementById('app').style.display = 'block';
-                toast("Offline / API Error");
-            }
-        };
-
-        function saveLocal() {
-            localStorage.setItem(`app_${appState.user.id}`, JSON.stringify(appState));
+                saveLocal(); renderAll();
+            } catch (e) {}
         }
+
+        function saveLocal() { localStorage.setItem(`app_${appState.user.id}`, JSON.stringify(appState)); }
 
         function renderAll() {
             const sym = appState.config.currencySymbol || "TK";
             document.querySelectorAll('.currency').forEach(e => e.innerText = sym);
-            
             const u = appState.user;
             document.getElementById('u-bal').innerText = (u.balance||0).toFixed(2);
             document.getElementById('u-earn').innerText = (u.totalEarned||0).toFixed(2);
             document.getElementById('u-ref').innerText = u.referrals || 0;
-            document.getElementById('ref-link').value = `https://t.me/${appState.config.botUsername}?startapp=${u.id}`;
+            
+            document.getElementById('ref-link').value = `https://t.me/${appState.config.botUsername}/app?startapp=${u.id}`;
+            
+            const refAmt = appState.config.referralBonus || 0;
+            if(refAmt > 0) document.getElementById('invite-txt').innerText = `Refer & Earn ${refAmt} ${sym} per Friend!`;
 
-            document.getElementById('bkash-limit').innerText = `Min: ${appState.config.minWithdrawBkash || 10} ${sym}`;
-            document.getElementById('nagad-limit').innerText = `Min: ${appState.config.minWithdrawNagad || 10} ${sym}`;
-
-            renderAds(); renderTasks(); renderLeaderboard(); renderHistory(); loadAdScripts();
+            renderAds(); renderTasks(); renderLeaderboard(); renderHistory(); renderMethods(); loadAdScripts();
         }
 
         function loadAdScripts() {
@@ -462,96 +486,86 @@
                 const limit = appState.config.dailyAdLimit || 10;
                 const done = (appState.user.dailyAds && appState.user.dailyAds[s.id]) || 0;
                 const max = done >= limit;
-                el.innerHTML += `<div id="ad-card-${s.id}" class="ad-card ${max?'disabled':''}" onclick="${max?'':`watchAd('${s.id}','${s.network}')`}">
-                    <i class="fas fa-play"></i>
-                    <h4>Ad Slot ${i+1}</h4>
-                    <span id="ad-status-${s.id}">${done}/${limit} Watched</span>
-                </div>`;
+                el.innerHTML += `<div class="ad-card ${max?'disabled':''}" onclick="${max?'':`watchAd('${s.id}','${s.network}')`}"><i class="fas fa-play"></i><h4>Ad Slot ${i+1}</h4><span>${done}/${limit} Watched</span></div>`;
             });
         }
-
-        // --- মূল অ্যাড লজিক ---
-        let isAdTimerRunning = false;
-        let adStartTime = 0;
-
         function watchAd(id, net) {
-            if(isAdTimerRunning) return; // টাইমার চললে দ্বিতীয়বার ক্লিক বন্ধ
-
-            toast("Loading Ad..."); 
-            tg.HapticFeedback.impactOccurred('light');
-
+            toast("Loading..."); tg.HapticFeedback.impactOccurred('light');
             let p;
             if(net==='monetag' && window[`show_${id}`]) p = window[`show_${id}`]();
             else if(net==='gigapub' && window.showGiga) p = window.showGiga();
             else { toast("Not Ready"); return; }
-
-            // অ্যাড ওপেন হওয়ার সময়
-            adStartTime = Date.now();
-            isAdTimerRunning = true;
-
             p.then(async () => {
-                // অ্যাড দেখা শেষ হলে এখানে আসবে
-                const timeSpent = (Date.now() - adStartTime) / 1000;
-                isAdTimerRunning = false;
-
-                if(timeSpent >= 15) {
-                    // ১৫ সেকেন্ড সফলভাবে দেখেছে
-                    const userGets = appState.config.adReward || 0.5;
-                    const refCommission = userGets * 0.10; 
-
-                    appState.user.balance += userGets;
-                    appState.user.totalEarned += userGets;
-                    if(!appState.user.dailyAds) appState.user.dailyAds = {};
-                    appState.user.dailyAds[id] = (appState.user.dailyAds[id]||0) + 1;
-                    
-                    saveLocal(); renderAll(); 
-                    toast(`Success! +${userGets.toFixed(2)} Added`);
-                    tg.HapticFeedback.notificationOccurred('success');
-
-                    await api('updateBalance', 'POST', { 
-                        id: appState.user.id, 
-                        amount: userGets,
-                        commission: refCommission 
-                    });
-                } else {
-                    // ১৫ সেকেন্ডের আগে বের হয়ে গেছে
-                    toast(`Closed Early! Minimum 15s Required.`);
-                    tg.HapticFeedback.notificationOccurred('error');
-                }
-
-            }).catch(() => {
-                isAdTimerRunning = false;
-                toast("Ad Failed or Closed Early");
-            });
+                const r = appState.config.adReward || 0.5;
+                appState.user.balance += r; appState.user.totalEarned += r;
+                if(!appState.user.dailyAds) appState.user.dailyAds = {};
+                appState.user.dailyAds[id] = (appState.user.dailyAds[id]||0) + 1;
+                saveLocal(); renderAll(); toast(`Success! +${r}`);
+                tg.HapticFeedback.notificationOccurred('success');
+                await api('updateBalance', 'POST', { id: appState.user.id, amount: r });
+            }).catch(() => toast("Failed/Closed"));
         }
 
         function renderTasks() {
-            const el = document.getElementById('task-area'); el.innerHTML = '';
+            const oneTimeEl = document.getElementById('onetime-task-area');
+            const dailyEl = document.getElementById('daily-task-area');
+            oneTimeEl.innerHTML = ''; dailyEl.innerHTML = '';
+            
             const tasks = appState.config.webTasks || {};
             const sym = appState.config.currencySymbol || "TK";
             const now = Date.now();
-            let pending=[], completed=[];
+            
+            if(countdownInterval) clearInterval(countdownInterval);
+            let countdowns = [];
 
             Object.keys(tasks).forEach(k => {
                 const t = tasks[k];
                 const h = (appState.user.taskHistory && appState.user.taskHistory[k]) || {};
-                if(t.type === 'onetime' && h.ts) return; 
-                let isDone = false;
-                let btnHtml = '';
-                if(t.type === 'daily') {
+                
+                if(t.type === 'onetime') {
+                    if(h.ts) return; 
+                    const html = `<div class="task-item"><div class="task-left"><img src="${t.icon||'https://via.placeholder.com/40'}" class="task-icon"><div class="task-info"><h4>${t.name}</h4><small>+${t.reward} ${sym}</small></div></div><button id="btn-${k}" class="btn-act btn-start" onclick="runTask('${k}')">Start</button></div>`;
+                    oneTimeEl.innerHTML += html;
+                } 
+                else if (t.type === 'daily') {
+                    let isWait = false;
+                    let left = 0;
                     if (h.ts && (now - h.ts) < 86400000) { 
-                        isDone = true;
-                        const left = 86400000 - (now - h.ts);
-                        const hrs = Math.floor((left / (1000 * 60 * 60)) % 24);
-                        const mins = Math.floor((left / (1000 * 60)) % 60);
-                        btnHtml = `<button class="btn-act btn-wait" disabled>Wait ${hrs}h ${mins}m</button>`;
+                        isWait = true;
+                        left = 86400000 - (now - h.ts);
                     }
+
+                    let btnHtml = '';
+                    if(isWait) {
+                        btnHtml = `<button id="timer-${k}" class="btn-act btn-wait" disabled>...</button>`;
+                        countdowns.push({ id: `timer-${k}`, endTime: now + left });
+                    } else {
+                        btnHtml = `<button id="btn-${k}" class="btn-act btn-start" onclick="runTask('${k}')">Start</button>`;
+                    }
+
+                    const html = `<div class="task-item" style="opacity:${isWait?0.7:1}"><div class="task-left"><img src="${t.icon||'https://via.placeholder.com/40'}" class="task-icon"><div class="task-info"><h4>${t.name}</h4><small>+${t.reward} ${sym}</small></div></div>${btnHtml}</div>`;
+                    dailyEl.innerHTML += html;
                 }
-                if(!isDone) btnHtml = `<button id="btn-${k}" class="btn-act btn-start" onclick="runTask('${k}')">Start</button>`;
-                const html = `<div class="task-item" style="opacity:${isDone?0.6:1}"><div class="task-left"><img src="${t.icon||'https://via.placeholder.com/40'}" class="task-icon"><div class="task-info"><h4>${t.name}</h4><small>+${t.reward} ${sym}</small></div></div>${btnHtml}</div>`;
-                if(isDone) completed.push(html); else pending.push(html);
             });
-            el.innerHTML = pending.join('') + completed.join('');
+
+            if(countdowns.length > 0) {
+                countdownInterval = setInterval(() => {
+                    const curr = Date.now();
+                    countdowns.forEach(c => {
+                        const el = document.getElementById(c.id);
+                        if(!el) return;
+                        const diff = c.endTime - curr;
+                        if(diff <= 0) {
+                            el.className = 'btn-act btn-start'; el.disabled = false; el.innerText = 'Start'; el.onclick = () => renderAll();
+                        } else {
+                            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                            const m = Math.floor((diff / (1000 * 60)) % 60);
+                            const s = Math.floor((diff / 1000) % 60);
+                            el.innerText = `${h}h ${m}m ${s}s`;
+                        }
+                    });
+                }, 1000);
+            }
         }
 
         function runTask(id) {
@@ -566,97 +580,101 @@
         }
 
         async function claimTask(id, t) {
-            const userGets = t.reward;
-            const refCommission = userGets * 0.10; 
-            appState.user.balance += userGets;
-            appState.user.totalEarned += userGets;
+            toast("Verifying...");
+            let isJoined = await checkChannels();
+
+            if (!isJoined) {
+                toastError("Join All Channels First!");
+                const btn = document.getElementById(`btn-${id}`);
+                btn.className = 'btn-act btn-start';
+                btn.innerText = 'Start';
+                btn.disabled = false;
+                btn.onclick = () => runTask(id);
+                tg.HapticFeedback.notificationOccurred('error');
+                return;
+            }
+
+            appState.user.balance += t.reward; appState.user.totalEarned += t.reward;
             if(!appState.user.taskHistory) appState.user.taskHistory = {};
             appState.user.taskHistory[id] = { ts: Date.now() };
-            saveLocal(); renderAll(); toast(`Claimed! +${userGets.toFixed(2)}`); tg.HapticFeedback.notificationOccurred('success');
-            await api('updateBalance', 'POST', { id: appState.user.id, amount: userGets, commission: refCommission });
+            saveLocal(); renderAll(); toast("Claimed!"); tg.HapticFeedback.notificationOccurred('success');
+            await api('updateBalance', 'POST', { id: appState.user.id, amount: t.reward });
+        }
+
+        function updateMinMsg() {
+            const mName = document.getElementById('w-method').value;
+            const methods = appState.config.withdrawMethods || [];
+            const method = methods.find(m => m.name === mName);
+            if(method) document.getElementById('min-msg').innerText = `Min Withdraw: ${method.min} ${appState.config.currencySymbol}`;
         }
 
         async function withdraw() {
-            const method = document.getElementById('w-method-val').value;
-            if(!method) { toast("Select Bkash or Nagad!"); return; }
+            const minRef = appState.config.minWithdrawReferrals || 0;
+            if(appState.user.referrals < minRef) { document.getElementById('w-msg').style.display='block'; document.getElementById('w-msg').innerText=`Need ${minRef} Referrals!`; return; }
             
-            const minRefs = appState.config.minWithdrawReferrals || 0;
-            if(appState.user.referrals < minRefs) { 
-                document.getElementById('w-msg').style.display='block'; 
-                document.getElementById('w-msg').innerText=`Need ${minRefs} Referrals!`; 
-                return; 
-            }
-
             const amt = parseFloat(document.getElementById('w-amt').value);
-            const sym = appState.config.currencySymbol || "TK";
+            const mName = document.getElementById('w-method').value;
+            const methods = appState.config.withdrawMethods || [];
+            const method = methods.find(m => m.name === mName);
+            const minLimit = method ? method.min : 10;
 
-            let minLimit = 10;
-            if(method === 'Bkash') minLimit = appState.config.minWithdrawBkash || 10;
-            else if(method === 'Nagad') minLimit = appState.config.minWithdrawNagad || 10;
-
-            if(!amt || amt < minLimit) { toast(`Min ${minLimit} ${sym}`); return; }
+            if(!amt || amt < minLimit) { toast(`Minimum ${minLimit} TK`); return; }
             if(amt > appState.user.balance) { toast("Insufficient Balance"); return; }
             
             toast("Connecting...");
-            const res = await api('withdraw', 'POST', {
-                userId: appState.user.id, 
-                userName: appState.user.firstName, 
-                amount: amt, 
-                method: method, 
-                account: document.getElementById('w-acc').value,
-                fee: appState.config.withdrawFee || 0
-            });
-
+            const res = await api('withdraw', 'POST', { userId: appState.user.id, userName: appState.user.firstName, amount: amt, method: mName, account: document.getElementById('w-acc').value });
             if(res && res.success) {
-                appState.user.balance -= amt;
-                document.getElementById('w-amt').value = '';
-                document.getElementById('fee-box').style.display = 'none';
-                saveLocal(); 
+                appState.user.balance -= amt; saveLocal(); 
                 const hist = await api('getHistory', 'GET', { id: appState.user.id });
                 if(hist) appState.history = hist;
-                renderAll();
-                toast("Submitted!"); tg.HapticFeedback.notificationOccurred('success');
+                renderAll(); toast("Submitted!"); tg.HapticFeedback.notificationOccurred('success');
             } else { toast(res.message || "Network Error"); }
         }
 
         function renderLeaderboard() {
             const p = document.getElementById('podium-area'); const l = document.getElementById('lb-area');
-            p.innerHTML = ''; l.innerHTML = '';
-            const top = appState.leaderboard;
+            p.innerHTML = ''; l.innerHTML = ''; const top = appState.leaderboard;
             if(top.length === 0) { p.innerHTML='<p style="text-align:center">No Data</p>'; return; }
-            if(top[1]) p.innerHTML += getPodium(top[1], 2);
-            if(top[0]) p.innerHTML += getPodium(top[0], 1);
-            if(top[2]) p.innerHTML += getPodium(top[2], 3);
-            for(let i=3; i<top.length; i++) {
-                l.innerHTML += `<div class="lb-item"><span class="lb-rank">#${i+1}</span><img src="${top[i].photoUrl||'https://via.placeholder.com/40'}" class="lb-img"><div class="lb-name">${top[i].firstName}</div><div class="lb-val">${top[i].referrals}</div></div>`;
-            }
+            if(top[1]) p.innerHTML += getPodium(top[1], 2); if(top[0]) p.innerHTML += getPodium(top[0], 1); if(top[2]) p.innerHTML += getPodium(top[2], 3);
+            for(let i=3; i<top.length; i++) l.innerHTML += `<div class="lb-item"><span class="lb-rank">#${i+1}</span><img src="${top[i].photoUrl||'https://via.placeholder.com/40'}" class="lb-img"><div class="lb-name">${top[i].firstName}</div><div class="lb-val">${top[i].referrals}</div></div>`;
         }
         function getPodium(u, r) { return `<div class="podium-item rank-${r}"><div class="crown"><i class="fas fa-crown"></i></div><img src="${u.photoUrl||'https://via.placeholder.com/60'}" class="podium-img"><div class="podium-name">${u.firstName}</div><div class="podium-score">${u.referrals} Refs</div></div>`; }
+        
         function renderHistory() {
-            const el = document.getElementById('hist-area'); el.innerHTML = '';
-            const sym = appState.config.currencySymbol || "TK";
-            if(appState.history.length === 0) { el.innerHTML='<p style="text-align:center;color:#aaa">No History</p>'; return; }
-            appState.history.forEach(x => {
-                el.innerHTML += `<div class="hist-item ${x.status}"><div class="hist-info"><h4>${x.method} - ${x.amount} ${sym}</h4><small>${new Date(x.timestamp).toLocaleDateString()}</small></div><span class="status-badge">${x.status}</span></div>`;
-            });
+            const el = document.getElementById('hist-area'); el.innerHTML = ''; const sym = appState.config.currencySymbol || "TK";
+            if(appState.history.length === 0) { el.innerHTML='<p style="text-align:center;color:#666">No History</p>'; return; }
+            appState.history.forEach(x => el.innerHTML += `<div class="hist-item ${x.status}"><div class="hist-info"><h4>${x.method} - ${x.amount} ${sym}</h4><small>${new Date(x.timestamp).toLocaleDateString()}</small></div><span class="status-badge">${x.status}</span></div>`);
+        }
+        function renderMethods() {
+            const s = document.getElementById('w-method'); if(s.children.length > 0) return;
+            (appState.config.withdrawMethods||[]).forEach(m => s.innerHTML+=`<option value="${m.name}">${m.name}</option>`);
+            updateMinMsg();
         }
         function nav(p, e) {
-            document.querySelectorAll('.page').forEach(x => x.classList.remove('active'));
-            document.getElementById(p).classList.add('active');
-            document.querySelectorAll('.nav i').forEach(x => x.classList.remove('active'));
-            e.classList.add('active');
-            if(p==='p-profile') { 
-                api('getHistory', 'GET', { id: appState.user.id }).then(hist => {
-                    if(hist) { appState.history = hist; saveLocal(); renderAll(); }
-                });
-            }
+            document.querySelectorAll('.page').forEach(x => x.classList.remove('active')); document.getElementById(p).classList.add('active');
+            document.querySelectorAll('.nav i').forEach(x => x.classList.remove('active')); e.classList.add('active');
+            if(p==='p-profile') { api('getHistory', 'GET', { id: appState.user.id }).then(hist => { if(hist) { appState.history = hist; saveLocal(); renderAll(); } }); }
             tg.HapticFeedback.impactOccurred('light');
         }
         function copyRef() { const e = document.getElementById('ref-link'); e.select(); document.execCommand('copy'); toast("Copied!"); }
         function shareTg() { const link = document.getElementById('ref-link').value; tg.openTelegramLink(`https://t.me/share/url?url=${link}&text=Join and Earn!`); }
         function openSupport() { if(appState.config.supportLink) tg.openLink(appState.config.supportLink); else toast("No Support Link"); }
-        function toast(m) { const t = document.getElementById('toast'); t.innerText=m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3000); }
+        function toast(m) { const t = document.getElementById('toast'); t.innerText=m; t.classList.remove('error'); t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3000); }
+        function toastError(m) { const t = document.getElementById('toast'); t.innerText=m; t.classList.add('error'); t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3000); }
     </script>
+
+
+<!-- 'Il est de votre ressort d\x27informer les visiteurs à propos des cookies utilisés et des données collectées sur votre blog. Blogger met à votre disposition une notification standard que vous pouvez personnaliser, remplacer ou afficher telle quelle sur votre blog. Rendez-vous sur http://www.blogger.com/go/cookiechoices pour obtenir de plus amples informations.' -->
+<script src="/js/cookienotice.js" defer></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function(event) {
+    window.cookieChoices && cookieChoices.showCookieConsentBar && cookieChoices.showCookieConsentBar(
+        (window.cookieOptions && cookieOptions.msg) || 'Ce site utilise des cookies provenant de Google pour fournir ses services et analyser le trafic. Votre adresse IP et votre user-agent, ainsi que des statistiques relatives aux performances et à la sécurité, sont transmis à Google afin d\x27assurer un service de qualité, de générer des statistiques d\x27utilisation, et de détecter et de résoudre les problèmes d\x27abus.',
+        (window.cookieOptions && cookieOptions.close) || 'OK !',
+        (window.cookieOptions && cookieOptions.learn) || 'En savoir plus',
+        (window.cookieOptions && cookieOptions.link) || 'https://www.blogger.com/go/blogspot-cookies');
+  });
+</script>
 
 </body>
 </html>
