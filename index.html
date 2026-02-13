@@ -8,20 +8,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <style>
         /* CSS (Dark Smooth & Bold Theme - UNCHANGED) */
-        :root { 
-            --primary: #8c7ae6; 
-            --secondary: #9c88ff; 
-            --bg: #121212; 
-            --surface: #1e1e1e; 
-            --text: #f5f6fa; 
-            --text-muted: #dcdde1;
-            --gold: #f1c40f; 
-            --silver: #bdc3c7; 
-            --bronze: #e67e22; 
-            --danger: #e84118; 
-            --success: #4cd137; 
-            --input-bg: #2f3640;
+         :root {
+            /* ** DEFAULT: LIGHT MODE (New Standard Theme) ** */
+            --primary: #4834d4;         /* Main Blue/Purple */
+            --secondary: #3b3b98;       /* Deep Blue */
+            --bg: #f5f6fa;              /* Light Background */
+            --surface: #ffffff;         /* Card / Box White */
+            --text: #2c3e50;            /* Dark Text */
+            --gold: #f1c40f;
+            --silver: #7f8c8d;
+            --bronze: #e17055;
+            --danger: #ff0000;          /* Alert Red */
+            --success: #00d084;         /* Success Green */
+            --shadow-light: rgba(108, 92, 231, 0.4);
+            --shadow-surface: rgba(0,0,0,0.06);
+            --border-color: #f1f2f6;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background-color: var(--bg); color: var(--text); padding-bottom: 100px; -webkit-tap-highlight-color: transparent; }
         #app { max-width: 480px; margin: 0 auto; min-height: 100vh; position: relative; display: none; }
@@ -271,7 +274,7 @@
                 <p id="w-msg" style="color:var(--danger); font-size:0.8rem; display:none; margin-bottom:10px; font-weight:700;"></p>
                 <div class="input-wrap"><i class="fas fa-university"></i><select id="w-method" class="inp" onchange="updateMinMsg()"></select></div>
                 <p id="min-msg" style="font-size:0.75rem; color:var(--primary); margin:-15px 0 15px 15px; font-weight:700;">Min: ...</p>
-                <div class="input-wrap"><i class="fas fa-id-card"></i><input id="w-acc" class="inp" placeholder="@username"></div>
+                <div class="input-wrap"><i class="fas fa-id-card"></i><input id="w-acc" class="inp" placeholder="Acound Number"></div>
                 <div class="input-wrap"><i class="fas fa-coins"></i><input id="w-amt" class="inp" type="number" placeholder="Amount"></div>
                 <button onclick="withdraw()" class="btn-main">Request Withdraw</button>
             </div>
