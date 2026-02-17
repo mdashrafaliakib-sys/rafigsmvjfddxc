@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -8,105 +9,125 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <style>
         /* 🎨 MFS THEME - bKash, Nagad, Rocket Combined */
-        :root { 
-            --bkash: #E2136E;           /* bKash Red */
+        :root {
+            --bkash: #E2136E;
+            /* bKash Red */
             --bkash-light: #FF4D9E;
             --bkash-gradient: linear-gradient(135deg, #E2136E, #FF4D9E);
-            
-            --nagad: #ED1C24;            /* Nagad Red */
+
+            --nagad: #ED1C24;
+            /* Nagad Red */
             --nagad-light: #FF4D4D;
             --nagad-gradient: linear-gradient(135deg, #ED1C24, #FF4D4D);
-            
-            --rocket: #F5821F;            /* Rocket Orange */
-            --rocket-light: #FFA64D;
-            --rocket-gradient: linear-gradient(135deg, #F5821F, #FFA64D);
-            
+
+
+
             --primary: var(--bkash);
             --primary-gradient: var(--bkash-gradient);
             --secondary: #6B7280;
-            
-            --bg: #F0F2F5;                /* Light Gray Background */
-            --surface: #FFFFFF;             /* White Surface */
-            --surface-light: #F9FAFB;       /* Light Surface */
-            
-            --text: #1F2937;                /* Dark Gray Text */
-            --text-muted: #6B7280;           /* Medium Gray Text */
-            --text-light: #9CA3AF;            /* Light Gray Text */
-            
+
+            --bg: #F0F2F5;
+            /* Light Gray Background */
+            --surface: #FFFFFF;
+            /* White Surface */
+            --surface-light: #F9FAFB;
+            /* Light Surface */
+
+            --text: #1F2937;
+            /* Dark Gray Text */
+            --text-muted: #6B7280;
+            /* Medium Gray Text */
+            --text-light: #9CA3AF;
+            /* Light Gray Text */
+
             --gold: #F59E0B;
             --gold-light: #FEF3C7;
             --silver: #9CA3AF;
             --silver-light: #F3F4F6;
             --bronze: #B45309;
             --bronze-light: #FEEBC8;
-            
+
             --danger: #DC2626;
             --danger-light: #FEE2E2;
             --success: #059669;
             --success-light: #D1FAE5;
             --warning: #D97706;
             --warning-light: #FEF3C7;
-            
+
             --input-bg: #F9FAFB;
             --input-border: #E5E7EB;
             --input-focus: #E2136E;
-            
+
             --nav-bg: rgba(255, 255, 255, 0.95);
             --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        
-        body { 
-            background: var(--bg); 
-            color: var(--text); 
-            padding-bottom: 100px; 
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            padding-bottom: 100px;
             -webkit-tap-highlight-color: transparent;
         }
-        
-        #app { 
-            max-width: 480px; 
-            margin: 0 auto; 
-            min-height: 100vh; 
-            position: relative; 
-            display: none; 
+
+        #app {
+            max-width: 480px;
+            margin: 0 auto;
+            min-height: 100vh;
+            position: relative;
+            display: none;
         }
 
         /* BANNED SCREEN */
-        #banned-screen { 
-            position: fixed; inset: 0; 
-            background: var(--bg); 
-            z-index: 999999; 
-            display: none; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            text-align: center; 
-            color: var(--danger); 
-        }
-        #banned-screen i { 
-            font-size: 4rem; 
-            margin-bottom: 20px; 
+        #banned-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            z-index: 999999;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
             color: var(--danger);
-            animation: shake 0.5s infinite; 
         }
-        #banned-screen h1 { color: var(--danger); }
-        #banned-screen p { color: var(--text-muted); }
+
+        #banned-screen i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--danger);
+            animation: shake 0.5s infinite;
+        }
+
+        #banned-screen h1 {
+            color: var(--danger);
+        }
+
+        #banned-screen p {
+            color: var(--text-muted);
+        }
 
         /* VOLTAGE LOADER - Original Style */
-        .loader-overlay { 
-            position: fixed; inset: 0; 
+        .loader-overlay {
+            position: fixed;
+            inset: 0;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            z-index: 9999; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            flex-direction: column; 
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
-        
+
         .voltage-ring {
             width: 100px;
             height: 100px;
@@ -121,22 +142,22 @@
             margin-bottom: 30px;
             position: relative;
         }
-        
+
         .voltage-ring::before {
-            content: ''; 
-            position: absolute; 
-            top: 15px; 
-            left: 15px; 
-            right: 15px; 
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
             bottom: 15px;
-            border-radius: 50%; 
+            border-radius: 50%;
             border: 3px solid transparent;
             border-left-color: #ffffff;
             border-right-color: #ffffff;
-            opacity: 0.8; 
+            opacity: 0.8;
             animation: voltageSpin 1.5s linear infinite reverse;
         }
-        
+
         .voltage-ring::after {
             content: '⚡';
             position: absolute;
@@ -150,35 +171,51 @@
         }
 
         @keyframes voltageSpin {
-            0% { transform: rotate(0deg); filter: hue-rotate(0deg); }
-            100% { transform: rotate(360deg); filter: hue-rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+                filter: hue-rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+                filter: hue-rotate(360deg);
+            }
         }
 
         @keyframes pulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.8;
+            }
         }
 
-        .loader-text { 
-            color: white; 
-            font-weight: 800; 
-            letter-spacing: 3px; 
-            font-size: 1.3rem; 
-            text-transform: uppercase; 
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8); 
+        .loader-text {
+            color: white;
+            font-weight: 800;
+            letter-spacing: 3px;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
         }
-        
+
         /* HEADER & BALANCE - Gradient Mix */
-        .header { 
+        .header {
             background: linear-gradient(135deg, #E2136E 0%, #ED1C24 50%, #F5821F 100%);
-            padding: 85px 25px 90px; 
-            border-radius: 0 0 40px 40px; 
-            color: white; 
-            box-shadow: var(--shadow-lg); 
-            position: relative; 
+            padding: 85px 25px 90px;
+            border-radius: 0 0 40px 40px;
+            color: white;
+            box-shadow: var(--shadow-lg);
+            position: relative;
             overflow: hidden;
         }
-        
+
         .header::before {
             content: '';
             position: absolute;
@@ -189,127 +226,131 @@
             background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="white" opacity="0.2"/></svg>');
             opacity: 0.3;
         }
-        
-        .top-bar { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            position: relative; 
-            z-index: 2; 
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
         }
-        
-        .user-pill { 
-            display: flex; 
-            align-items: center; 
-            gap: 12px; 
-            background: rgba(255, 255, 255, 0.2); 
-            padding: 6px 15px 6px 6px; 
-            border-radius: 50px; 
-            backdrop-filter: blur(10px); 
-            border: 1px solid rgba(255, 255, 255, 0.3); 
+
+        .user-pill {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 15px 6px 6px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
-        
-        .user-pill img { 
-            width: 42px; 
-            height: 42px; 
-            border-radius: 50%; 
-            border: 2px solid white; 
-            object-fit: cover; 
+
+        .user-pill img {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid white;
+            object-fit: cover;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
-        
-        .user-info h3 { 
-            font-size: 0.95rem; 
-            font-weight: 700; 
-            line-height: 1.2; 
-            color: white; 
+
+        .user-info h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: white;
         }
-        
-        .user-info p { 
-            font-size: 0.7rem; 
-            opacity: 0.9; 
-            font-weight: 500; 
+
+        .user-info p {
+            font-size: 0.7rem;
+            opacity: 0.9;
+            font-weight: 500;
         }
-        
-        .support-btn { 
-            background: rgba(255, 255, 255, 0.2); 
-            color: white; 
-            width: 42px; 
-            height: 42px; 
-            border-radius: 50%; 
-            border: 1px solid rgba(255, 255, 255, 0.3); 
-            font-size: 1.2rem; 
-            cursor: pointer; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
+
+        .support-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             backdrop-filter: blur(5px);
             transition: 0.3s;
         }
-        .support-btn:active { background: rgba(255, 255, 255, 0.3); }
 
-        .balance-card { 
-            background: white; 
-            width: 92%; 
-            margin: -75px auto 25px; 
-            padding: 25px 20px; 
-            border-radius: 30px; 
-            box-shadow: var(--shadow-lg); 
-            text-align: center; 
-            position: relative; 
-            z-index: 10; 
-            border: 1px solid rgba(226, 19, 110, 0.2); 
+        .support-btn:active {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .balance-card {
+            background: white;
+            width: 92%;
+            margin: -75px auto 25px;
+            padding: 25px 20px;
+            border-radius: 30px;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            border: 1px solid rgba(226, 19, 110, 0.2);
             backdrop-filter: blur(10px);
         }
-        
-        .bal-title { 
-            font-size: 0.8rem; 
-            text-transform: uppercase; 
-            color: var(--text-muted); 
-            letter-spacing: 2px; 
-            font-weight: 600; 
+
+        .bal-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            font-weight: 600;
         }
-        
-        .bal-amt { 
-            font-size: 2.8rem; 
-            font-weight: 800; 
+
+        .bal-amt {
+            font-size: 2.8rem;
+            font-weight: 800;
             background: linear-gradient(135deg, #E2136E, #ED1C24, #F5821F);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin: 8px 0; 
+            margin: 8px 0;
             line-height: 1.2;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
-        
-        .currency { 
-            color: var(--text-muted); 
-            font-size: 1rem; 
-            font-weight: 600; 
+
+        .currency {
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 600;
         }
-        
-        .stats { 
-            display: flex; 
-            justify-content: space-around; 
-            margin-top: 20px; 
-            padding-top: 20px; 
-            border-top: 2px dashed #E5E7EB; 
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px dashed #E5E7EB;
         }
-        
-        .stat-box { 
+
+        .stat-box {
             text-align: center;
             flex: 1;
         }
-        
-        .stat-box h4 { 
-            font-size: 1.2rem; 
-            color: var(--bkash); 
-            margin-bottom: 4px; 
-            font-weight: 700; 
-        } 
-        .stat-box p { 
-            font-size: 0.75rem; 
-            color: var(--text-muted); 
-            font-weight: 500; 
+
+        .stat-box h4 {
+            font-size: 1.2rem;
+            color: var(--bkash);
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+
+        .stat-box p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
         }
 
         /* MFS Logos Section */
@@ -324,14 +365,14 @@
             border-radius: 50px;
             box-shadow: var(--shadow);
         }
-        
+
         .mfs-item {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 5px;
         }
-        
+
         .mfs-icon {
             width: 40px;
             height: 40px;
@@ -342,55 +383,77 @@
             font-size: 1.5rem;
             transition: 0.3s;
         }
-        
+
         .mfs-item.bkash .mfs-icon {
             background: #E2136E;
             color: white;
             box-shadow: 0 4px 12px rgba(226, 19, 110, 0.3);
         }
-        
+
         .mfs-item.nagad .mfs-icon {
             background: #ED1C24;
             color: white;
             box-shadow: 0 4px 12px rgba(237, 28, 36, 0.3);
         }
-        
+
         .mfs-item.rocket .mfs-icon {
             background: #F5821F;
             color: white;
             box-shadow: 0 4px 12px rgba(245, 130, 31, 0.3);
         }
-        
+
         .mfs-label {
             font-size: 0.7rem;
             font-weight: 600;
             color: var(--text-muted);
         }
-        
-        .mfs-item.bkash .mfs-label { color: #E2136E; }
-        .mfs-item.nagad .mfs-label { color: #ED1C24; }
-        .mfs-item.rocket .mfs-label { color: #F5821F; }
+
+        .mfs-item.bkash .mfs-label {
+            color: #E2136E;
+        }
+
+        .mfs-item.nagad .mfs-label {
+            color: #ED1C24;
+        }
+
+        .mfs-item.rocket .mfs-label {
+            color: #F5821F;
+        }
 
         /* SECTIONS */
-        .page { display: none; padding: 0 20px; animation: slideUp 0.4s; }
-        .page.active { display: block; }
-        
-        @keyframes slideUp { 
-            from { opacity: 0; transform: translateY(30px); } 
-            to { opacity: 1; transform: translateY(0); } 
+        .page {
+            display: none;
+            padding: 0 20px;
+            animation: slideUp 0.4s;
         }
-        
-        .sec-head { 
-            font-size: 1.2rem; 
-            font-weight: 700; 
-            margin: 30px 0 15px; 
-            color: var(--text); 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .sec-head {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 30px 0 15px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
             position: relative;
         }
-        
+
         .sec-head::after {
             content: '';
             position: absolute;
@@ -401,51 +464,51 @@
             background: linear-gradient(90deg, #E2136E, #ED1C24, #F5821F);
             border-radius: 3px;
         }
-        
-        .sec-head i { 
+
+        .sec-head i {
             background: linear-gradient(135deg, #E2136E, #ED1C24, #F5821F);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-size: 1.3rem; 
+            font-size: 1.3rem;
         }
-        
-        .sub-head { 
-            font-size: 0.9rem; 
-            color: var(--text-muted); 
-            font-weight: 600; 
-            margin: 20px 0 10px; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
+
+        .sub-head {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin: 20px 0 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
-        
+
         .sub-head i {
             color: var(--bkash);
             font-size: 1rem;
         }
 
         /* ADS & TASKS */
-        .ad-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 15px; 
+        .ad-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
         }
-        
-        .ad-card { 
-            background: white; 
-            padding: 20px 15px; 
-            border-radius: 25px; 
-            text-align: center; 
-            box-shadow: var(--shadow); 
-            cursor: pointer; 
-            transition: 0.3s; 
-            border: 1px solid rgba(226, 19, 110, 0.1); 
+
+        .ad-card {
+            background: white;
+            padding: 20px 15px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: 0.3s;
+            border: 1px solid rgba(226, 19, 110, 0.1);
             position: relative;
             overflow: hidden;
         }
-        
+
         .ad-card::before {
             content: '';
             position: absolute;
@@ -455,291 +518,315 @@
             height: 4px;
             background: linear-gradient(90deg, #E2136E, #ED1C24, #F5821F);
         }
-        
-        .ad-card:active { 
-            transform: scale(0.97); 
-            background: #F9FAFB; 
-        } 
-        
-        .ad-card.disabled { 
-            opacity: 0.5; 
-            filter: grayscale(1); 
-            pointer-events: none; 
+
+        .ad-card:active {
+            transform: scale(0.97);
+            background: #F9FAFB;
         }
-        
-        .ad-card i { 
-            font-size: 2.2rem; 
+
+        .ad-card.disabled {
+            opacity: 0.5;
+            filter: grayscale(1);
+            pointer-events: none;
+        }
+
+        .ad-card i {
+            font-size: 2.2rem;
             background: linear-gradient(135deg, #E2136E, #ED1C24, #F5821F);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 10px; 
-            display: block; 
+            margin-bottom: 10px;
+            display: block;
         }
-        
-        .ad-card h4 { 
-            font-size: 0.95rem; 
-            font-weight: 600; 
-            margin-bottom: 8px; 
-            color: var(--text); 
+
+        .ad-card h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text);
         }
-        
-        .ad-card span { 
-            font-size: 0.75rem; 
-            color: var(--bkash); 
-            background: #FEF2F6; 
-            padding: 4px 12px; 
-            border-radius: 30px; 
-            font-weight: 600; 
+
+        .ad-card span {
+            font-size: 0.75rem;
+            color: var(--bkash);
+            background: #FEF2F6;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-weight: 600;
             display: inline-block;
         }
 
-        .task-list { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 15px; 
+        .task-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
-        
-        .task-item { 
-            background: white; 
-            padding: 16px; 
-            border-radius: 25px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            box-shadow: var(--shadow); 
-            border: 1px solid rgba(226, 19, 110, 0.1); 
+
+        .task-item {
+            background: white;
+            padding: 16px;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(226, 19, 110, 0.1);
             transition: 0.3s;
         }
-        
+
         .task-item:hover {
             border-color: var(--bkash);
             transform: translateY(-2px);
         }
-        
-        .task-left { 
-            display: flex; 
-            align-items: center; 
-            gap: 15px; 
+
+        .task-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
-        
-        .task-icon { 
-            width: 50px; 
-            height: 50px; 
-            border-radius: 15px; 
-            object-fit: cover; 
+
+        .task-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            object-fit: cover;
             border: 2px solid transparent;
             background: linear-gradient(135deg, #E2136E, #ED1C24, #F5821F);
             padding: 2px;
         }
-        
+
         .task-icon img {
             width: 100%;
             height: 100%;
             border-radius: 13px;
             object-fit: cover;
         }
-        
-        .task-info h4 { 
-            font-size: 1rem; 
-            font-weight: 600; 
-            line-height: 1.3; 
-            color: var(--text); 
+
+        .task-info h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.3;
+            color: var(--text);
         }
-        
-        .task-info small { 
-            color: var(--success); 
-            font-weight: 600; 
-            font-size: 0.85rem; 
+
+        .task-info small {
+            color: var(--success);
+            font-weight: 600;
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
             gap: 4px;
             margin-top: 4px;
         }
-        
-        .btn-act { 
-            padding: 10px 20px; 
-            border-radius: 40px; 
-            border: none; 
-            font-weight: 600; 
-            font-size: 0.85rem; 
-            cursor: pointer; 
-            min-width: 90px; 
-            transition: 0.3s; 
+
+        .btn-act {
+            padding: 10px 20px;
+            border-radius: 40px;
+            border: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            min-width: 90px;
+            transition: 0.3s;
         }
-        
-        .btn-start { 
+
+        .btn-start {
             background: linear-gradient(135deg, #E2136E, #ED1C24, #F5821F);
-            color: white; 
+            color: white;
             box-shadow: 0 4px 12px rgba(226, 19, 110, 0.3);
         }
-        .btn-start:active { transform: scale(0.95); }
-        
-        .btn-wait { 
-            background: #F3F4F6; 
-            color: var(--text-muted); 
-            cursor: not-allowed; 
-            border: 1px solid #E5E7EB; 
+
+        .btn-start:active {
+            transform: scale(0.95);
         }
-        
-        .btn-claim { 
+
+        .btn-wait {
+            background: #F3F4F6;
+            color: var(--text-muted);
+            cursor: not-allowed;
+            border: 1px solid #E5E7EB;
+        }
+
+        .btn-claim {
             background: linear-gradient(135deg, #059669, #10B981);
-            color: white; 
-            animation: pulse 1s infinite; 
+            color: white;
+            animation: pulse 1s infinite;
             box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
         }
-        
-        @keyframes pulse { 
-            50% { transform: scale(1.03); } 
+
+        @keyframes pulse {
+            50% {
+                transform: scale(1.03);
+            }
         }
 
         /* GIFT BOX */
-        .gift-container { 
-            text-align: center; 
-            margin: 20px 0; 
+        .gift-container {
+            text-align: center;
+            margin: 20px 0;
             background: linear-gradient(135deg, #FEF2F6, #FFF3E0, #FFF0F0);
             padding: 30px;
             border-radius: 40px;
         }
-        
-        .gift-box { 
-            font-size: 4.5rem; 
+
+        .gift-box {
+            font-size: 4.5rem;
             background: linear-gradient(135deg, #E2136E, #ED1C24, #F5821F);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: bounce 2s infinite; 
+            animation: bounce 2s infinite;
             filter: drop-shadow(0 10px 20px rgba(226, 19, 110, 0.2));
         }
-        
-        @keyframes bounce { 
-            0%, 100% { transform: translateY(0); } 
-            50% { transform: translateY(-15px); } 
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
         }
-        
+
         /* LEADERBOARD */
-        .podium { 
-            display: flex; 
-            justify-content: center; 
-            align-items: flex-end; 
-            gap: 15px; 
-            margin: 30px 0 40px; 
-            padding: 0 10px; 
+        .podium {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 15px;
+            margin: 30px 0 40px;
+            padding: 0 10px;
         }
-        
-        .podium-item { 
-            text-align: center; 
-            position: relative; 
-            width: 33%; 
+
+        .podium-item {
+            text-align: center;
+            position: relative;
+            width: 33%;
         }
-        
-        .rank-1 { 
-            order: 2; 
-            transform: scale(1.15); 
-            z-index: 2; 
-            margin-bottom: 15px; 
+
+        .rank-1 {
+            order: 2;
+            transform: scale(1.15);
+            z-index: 2;
+            margin-bottom: 15px;
         }
-        
-        .rank-1 .podium-img { 
-            border: 4px solid var(--gold); 
-            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4); 
-        } 
-        .rank-1 .crown { 
-            color: var(--gold); 
-            top: -45px; 
-            font-size: 2.5rem; 
+
+        .rank-1 .podium-img {
+            border: 4px solid var(--gold);
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
+        }
+
+        .rank-1 .crown {
+            color: var(--gold);
+            top: -45px;
+            font-size: 2.5rem;
             text-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
         }
-        
-        .rank-2 { order: 1; } 
-        .rank-2 .podium-img { 
-            border: 3px solid var(--silver); 
-            box-shadow: 0 8px 20px rgba(156, 163, 175, 0.3); 
-        } 
-        .rank-2 .crown { 
-            color: var(--silver); 
-            top: -35px; 
-            font-size: 2rem; 
+
+        .rank-2 {
+            order: 1;
         }
-        
-        .rank-3 { order: 3; } 
-        .rank-3 .podium-img { 
-            border: 3px solid var(--bronze); 
-            box-shadow: 0 8px 20px rgba(180, 83, 9, 0.3); 
-        } 
-        .rank-3 .crown { 
-            color: var(--bronze); 
-            top: -35px; 
-            font-size: 2rem; 
+
+        .rank-2 .podium-img {
+            border: 3px solid var(--silver);
+            box-shadow: 0 8px 20px rgba(156, 163, 175, 0.3);
         }
-        
-        .podium-img { 
-            width: 70px; 
-            height: 70px; 
-            border-radius: 50%; 
-            object-fit: cover; 
-            background: #F3F4F6; 
+
+        .rank-2 .crown {
+            color: var(--silver);
+            top: -35px;
+            font-size: 2rem;
+        }
+
+        .rank-3 {
+            order: 3;
+        }
+
+        .rank-3 .podium-img {
+            border: 3px solid var(--bronze);
+            box-shadow: 0 8px 20px rgba(180, 83, 9, 0.3);
+        }
+
+        .rank-3 .crown {
+            color: var(--bronze);
+            top: -35px;
+            font-size: 2rem;
+        }
+
+        .podium-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #F3F4F6;
             box-shadow: var(--shadow);
         }
-        
-        .crown { 
-            position: absolute; 
-            left: 50%; 
-            transform: translateX(-50%); 
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); 
+
+        .crown {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
         }
-        
-        .podium-name { 
-            font-size: 0.85rem; 
-            font-weight: 600; 
-            margin-top: 10px; 
-            color: var(--text); 
+
+        .podium-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 10px;
+            color: var(--text);
         }
-        
-        .podium-score { 
-            font-size: 0.75rem; 
-            color: white; 
-            font-weight: 600; 
+
+        .podium-score {
+            font-size: 0.75rem;
+            color: white;
+            font-weight: 600;
             background: linear-gradient(135deg, #E2136E, #ED1C24, #F5821F);
-            padding: 4px 12px; 
-            border-radius: 30px; 
-            display: inline-block; 
-            margin-top: 5px; 
+            padding: 4px 12px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-top: 5px;
             box-shadow: 0 4px 8px rgba(226, 19, 110, 0.2);
         }
-        
-        .lb-list { 
-            background: white; 
-            border-radius: 25px; 
-            padding: 10px 20px; 
-            box-shadow: var(--shadow); 
+
+        .lb-list {
+            background: white;
+            border-radius: 25px;
+            padding: 10px 20px;
+            box-shadow: var(--shadow);
         }
-        
-        .lb-item { 
-            display: flex; 
-            align-items: center; 
-            padding: 15px 0; 
-            border-bottom: 1px solid #F3F4F6; 
+
+        .lb-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #F3F4F6;
         }
-        .lb-item:last-child { border-bottom: none; }
-        
-        .lb-rank { 
-            font-weight: 700; 
-            width: 40px; 
-            color: var(--bkash); 
-            font-size: 1rem; 
+
+        .lb-item:last-child {
+            border-bottom: none;
         }
-        
-        .lb-img { 
-            width: 40px; 
-            height: 40px; 
-            border-radius: 50%; 
-            margin-right: 15px; 
-            object-fit: cover; 
-            background: #F3F4F6; 
+
+        .lb-rank {
+            font-weight: 700;
+            width: 40px;
+            color: var(--bkash);
+            font-size: 1rem;
+        }
+
+        .lb-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+            background: #F3F4F6;
             border: 2px solid transparent;
             background: linear-gradient(135deg, #E2136E, #ED1C24, #F5821F);
             padding: 2px;
         }
-        
+
         .lb-img-inner {
             width: 100%;
             height: 100%;
@@ -747,17 +834,17 @@
             object-fit: cover;
             border: 2px solid white;
         }
-        
-        .lb-name { 
-            font-weight: 500; 
-            font-size: 0.95rem; 
-            flex: 1; 
-            color: var(--text); 
+
+        .lb-name {
+            font-weight: 500;
+            font-size: 0.95rem;
+            flex: 1;
+            color: var(--text);
         }
-        
-        .lb-val { 
-            font-weight: 600; 
-            color: var(--bkash); 
+
+        .lb-val {
+            font-weight: 600;
+            color: var(--bkash);
             background: #FEF2F6;
             padding: 4px 12px;
             border-radius: 30px;
@@ -765,272 +852,308 @@
         }
 
         /* PROFILE & INPUTS */
-        .box { 
-            background: white; 
-            padding: 30px 25px; 
-            border-radius: 30px; 
-            box-shadow: var(--shadow); 
-            border: 1px solid rgba(226, 19, 110, 0.1); 
+        .box {
+            background: white;
+            padding: 30px 25px;
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(226, 19, 110, 0.1);
         }
-        
-        .input-wrap { 
-            position: relative; 
-            margin-bottom: 20px; 
+
+        .input-wrap {
+            position: relative;
+            margin-bottom: 20px;
         }
-        
-        .input-wrap i { 
-            position: absolute; 
-            top: 50%; 
-            transform: translateY(-50%); 
-            left: 18px; 
-            color: var(--bkash); 
+
+        .input-wrap i {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 18px;
+            color: var(--bkash);
             font-size: 1.1rem;
         }
-        
-        .inp { 
-            width: 100%; 
-            padding: 16px 16px 16px 50px; 
-            border: 2px solid var(--input-border); 
-            border-radius: 20px; 
-            outline: none; 
-            font-weight: 500; 
-            background: var(--input-bg); 
-            color: var(--text); 
-            transition: 0.3s; 
+
+        .inp {
+            width: 100%;
+            padding: 16px 16px 16px 50px;
+            border: 2px solid var(--input-border);
+            border-radius: 20px;
+            outline: none;
+            font-weight: 500;
+            background: var(--input-bg);
+            color: var(--text);
+            transition: 0.3s;
             font-size: 0.95rem;
         }
-        
-        .inp:focus { 
-            border-color: var(--bkash); 
-            background: white; 
+
+        .inp:focus {
+            border-color: var(--bkash);
+            background: white;
             box-shadow: 0 0 0 4px rgba(226, 19, 110, 0.1);
         }
-        
-        .btn-main { 
-            width: 100%; 
-            padding: 18px; 
+
+        .btn-main {
+            width: 100%;
+            padding: 18px;
             background: linear-gradient(135deg, #E2136E, #ED1C24, #F5821F);
-            color: white; 
-            border: none; 
-            border-radius: 25px; 
-            font-weight: 700; 
-            cursor: pointer; 
-            font-size: 1.1rem; 
-            box-shadow: 0 8px 20px rgba(226, 19, 110, 0.3); 
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 20px rgba(226, 19, 110, 0.3);
             transition: 0.3s;
         }
-        .btn-main:active { transform: scale(0.97); }
-        
-        .hist-item { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 18px; 
-            background: white; 
-            border-radius: 20px; 
-            margin-bottom: 12px; 
-            border-left: 6px solid var(--bkash); 
-            box-shadow: var(--shadow); 
+
+        .btn-main:active {
+            transform: scale(0.97);
         }
-        
-        .hist-info h4 { 
-            font-weight: 600; 
-            color: var(--text); 
-            font-size: 0.95rem; 
+
+        .hist-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px;
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            border-left: 6px solid var(--bkash);
+            box-shadow: var(--shadow);
+        }
+
+        .hist-info h4 {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.95rem;
             margin-bottom: 4px;
         }
-        
-        .hist-info small { 
-            color: var(--text-muted); 
-            font-size: 0.75rem; 
+
+        .hist-info small {
+            color: var(--text-muted);
+            font-size: 0.75rem;
         }
-        
-        .hist-item.pending { border-color: var(--warning); } 
-        .hist-item.completed { border-color: var(--success); } 
-        .hist-item.rejected { border-color: var(--danger); }
-        
-        .status-badge { 
-            font-size:0.75rem; 
-            padding:5px 12px; 
-            border-radius:30px; 
-            font-weight:600; 
-            text-transform:capitalize; 
+
+        .hist-item.pending {
+            border-color: var(--warning);
         }
-        
-        .pending .status-badge { 
-            color: var(--warning); 
-            background: var(--warning-light); 
+
+        .hist-item.completed {
+            border-color: var(--success);
         }
-        .completed .status-badge { 
-            color: var(--success); 
-            background: var(--success-light); 
+
+        .hist-item.rejected {
+            border-color: var(--danger);
         }
-        .rejected .status-badge { 
-            color: var(--danger); 
-            background: var(--danger-light); 
+
+        .status-badge {
+            font-size: 0.75rem;
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: capitalize;
         }
-        
-        .invite-box { 
-            display: flex; 
-            gap: 12px; 
-            margin-top: 15px; 
+
+        .pending .status-badge {
+            color: var(--warning);
+            background: var(--warning-light);
         }
-        
-        .btn-share { 
+
+        .completed .status-badge {
+            color: var(--success);
+            background: var(--success-light);
+        }
+
+        .rejected .status-badge {
+            color: var(--danger);
+            background: var(--danger-light);
+        }
+
+        .invite-box {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .btn-share {
             background: linear-gradient(135deg, #0088CC, #00A8FF);
-            color: white; 
-            flex: 1; 
-            border: none; 
-            padding: 16px; 
-            border-radius: 25px; 
-            font-weight: 600; 
-            cursor: pointer; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 10px; 
-            box-shadow: 0 8px 20px rgba(0, 136, 204, 0.3); 
+            color: white;
+            flex: 1;
+            border: none;
+            padding: 16px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 8px 20px rgba(0, 136, 204, 0.3);
             transition: 0.3s;
         }
-        .btn-share:active { transform: scale(0.97); }
-        
-        .btn-copy { 
-            background: var(--bkash); 
-            color: white; 
-            width: 60px; 
-            border: none; 
-            border-radius: 25px; 
-            cursor: pointer; 
-            font-size: 1.3rem; 
-            transition: 0.3s; 
+
+        .btn-share:active {
+            transform: scale(0.97);
+        }
+
+        .btn-copy {
+            background: var(--bkash);
+            color: white;
+            width: 60px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.3rem;
+            transition: 0.3s;
             box-shadow: 0 4px 12px rgba(226, 19, 110, 0.3);
         }
-        .btn-copy:active { background: #B30E5A; }
+
+        .btn-copy:active {
+            background: #B30E5A;
+        }
 
         /* JOIN MODAL */
-        #verify-box { 
-            width: 90%; 
-            max-width: 360px; 
-            text-align: center; 
-            background: white; 
-            padding: 40px 25px; 
-            border-radius: 40px; 
-            box-shadow: var(--shadow-lg); 
+        #verify-box {
+            width: 90%;
+            max-width: 360px;
+            text-align: center;
+            background: white;
+            padding: 40px 25px;
+            border-radius: 40px;
+            box-shadow: var(--shadow-lg);
             border: 1px solid rgba(226, 19, 110, 0.2);
         }
-        
-        .join-btn { 
-            width: 100%; 
-            padding: 16px; 
-            background: #F9FAFB; 
-            color: var(--text); 
-            border: 2px solid #E5E7EB; 
-            border-radius: 30px; 
-            margin-bottom: 12px; 
-            font-weight: 600; 
-            cursor: pointer; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 10px; 
-            transition: 0.3s; 
+
+        .join-btn {
+            width: 100%;
+            padding: 16px;
+            background: #F9FAFB;
+            color: var(--text);
+            border: 2px solid #E5E7EB;
+            border-radius: 30px;
+            margin-bottom: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.3s;
         }
-        .join-btn:hover { 
-            border-color: var(--bkash); 
-            background: #FEF2F6; 
+
+        .join-btn:hover {
+            border-color: var(--bkash);
+            background: #FEF2F6;
         }
-        
-        .join-btn i { 
+
+        .join-btn i {
             background: linear-gradient(135deg, #0088CC, #00A8FF);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-size: 1.2rem; 
+            font-size: 1.2rem;
         }
-        
-        .verify-btn { 
-            width: 100%; 
-            padding: 18px; 
+
+        .verify-btn {
+            width: 100%;
+            padding: 18px;
             background: linear-gradient(135deg, #059669, #10B981);
-            color: white; 
-            border: none; 
-            border-radius: 30px; 
-            font-weight: 700; 
-            cursor: pointer; 
-            margin-top: 20px; 
-            box-shadow: 0 8px 20px rgba(5, 150, 105, 0.3); 
-            font-size: 1rem; 
-            transition: 0.3s; 
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 8px 20px rgba(5, 150, 105, 0.3);
+            font-size: 1rem;
+            transition: 0.3s;
         }
-        .verify-btn.error { 
-            background: linear-gradient(135deg, #DC2626, #EF4444); 
-            animation: shake 0.5s; 
+
+        .verify-btn.error {
+            background: linear-gradient(135deg, #DC2626, #EF4444);
+            animation: shake 0.5s;
         }
-        
-        @keyframes shake { 
-            0%, 100% { transform: translateX(0); } 
-            20%, 60% { transform: translateX(-8px); } 
-            40%, 80% { transform: translateX(8px); } 
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            20%,
+            60% {
+                transform: translateX(-8px);
+            }
+
+            40%,
+            80% {
+                transform: translateX(8px);
+            }
         }
 
         /* NAV */
-        .nav { 
-            position: fixed; 
-            bottom: 25px; 
-            left: 50%; 
-            transform: translateX(-50%); 
-            width: 90%; 
-            max-width: 400px; 
-            background: var(--nav-bg); 
-            display: flex; 
-            justify-content: space-around; 
-            padding: 18px; 
-            border-radius: 50px; 
-            box-shadow: var(--shadow-lg); 
-            z-index: 100; 
-            backdrop-filter: blur(10px); 
-            border: 1px solid rgba(226, 19, 110, 0.2); 
+        .nav {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 400px;
+            background: var(--nav-bg);
+            display: flex;
+            justify-content: space-around;
+            padding: 18px;
+            border-radius: 50px;
+            box-shadow: var(--shadow-lg);
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 19, 110, 0.2);
         }
-        
-        .nav i { 
-            font-size: 1.5rem; 
-            color: var(--text-light); 
-            cursor: pointer; 
-            transition: 0.3s; 
+
+        .nav i {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: 0.3s;
         }
-        
-        .nav i.active { 
+
+        .nav i.active {
             background: linear-gradient(135deg, #E2136E, #ED1C24, #F5821F);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            transform: translateY(-5px); 
+            transform: translateY(-5px);
             filter: drop-shadow(0 4px 8px rgba(226, 19, 110, 0.4));
         }
-        
-        .toast { 
-            position: fixed; 
-            top: 40px; 
-            left: 50%; 
-            transform: translateX(-50%); 
-            background: var(--text); 
-            color: white; 
-            padding: 14px 28px; 
-            border-radius: 50px; 
-            font-size: 0.95rem; 
-            opacity: 0; 
-            transition: 0.3s; 
-            z-index: 10000; 
-            font-weight: 500; 
-            pointer-events: none; 
-            box-shadow: var(--shadow-lg); 
-            border: 1px solid rgba(255,255,255,0.2);
+
+        .toast {
+            position: fixed;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--text);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            opacity: 0;
+            transition: 0.3s;
+            z-index: 10000;
+            font-weight: 500;
+            pointer-events: none;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
-        .toast.show { opacity: 1; top: 60px; }
-        
-        .toast.error { 
-            background: var(--danger); 
+
+        .toast.show {
+            opacity: 1;
+            top: 60px;
         }
-        
+
+        .toast.error {
+            background: var(--danger);
+        }
+
         /* Select Styles */
         select.inp {
             appearance: none;
@@ -1040,7 +1163,7 @@
             background-size: 18px;
             padding-right: 50px;
         }
-        
+
         /* Withdraw Method Icons */
         .method-icon {
             width: 24px;
@@ -1049,12 +1172,23 @@
             display: inline-block;
             margin-right: 8px;
         }
-        
+
+        .method-bkash {
+            background: #E2136E;
+        }
+
+        .method-nagad {
+            background: #ED1C24;
+        }
+
+        .method-rocket {
+            background: #F5821F;
+        }
     </style>
-    
+
     <link rel="me" href="https://www.blogger.com/profile/11551086564924548821" />
-    <meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
-    <meta name='google-adsense-platform-domain' content='blogspot.com'/>
+    <meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109' />
+    <meta name='google-adsense-platform-domain' content='blogspot.com' />
 
     <script type="text/javascript" language="javascript">
         adsbygoogle = window.adsbygoogle || [];
@@ -1063,6 +1197,7 @@
         }
     </script>
 </head>
+
 <body>
 
     <div id="banned-screen">
@@ -1078,12 +1213,17 @@
 
     <div id="join-modal" class="loader-overlay" style="display:none; background:rgba(255,255,255,0.98); z-index:99999;">
         <div id="verify-box">
-            <i class="fas fa-shield-alt" style="font-size: 3.5rem; background: linear-gradient(135deg, #E2136E, #ED1C24, #F5821F); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px;"></i>
+            <i class="fas fa-shield-alt"
+                style="font-size: 3.5rem; background: linear-gradient(135deg, #E2136E, #ED1C24, #F5821F); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px;"></i>
             <h3 style="margin-bottom: 10px; color: var(--text); font-weight: 700;">Verification Required</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 25px; font-weight: 500;">বট ব্যবহার করতে হলে আপনাকে আগে চ্যানেলে জয়েন করতে হবে</p>
-            <button onclick="tg.openTelegramLink('https://t.me/My_Earning_Zone_In')" class="join-btn"><i class="fab fa-telegram-plane"></i> Join Promotion Channel</button>
-            <button onclick="tg.openTelegramLink('https://t.me/EARN_MONEY_V2_BO')" class="join-btn"><i class="fab fa-telegram-plane"></i> Join Payment Channel</button>
-            <button id="v-btn" onclick="verifyJoin()" class="verify-btn"><i class="fas fa-check-circle"></i> I Have Joined</button>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 25px; font-weight: 500;">বট ব্যবহার
+                করতে হলে আপনাকে আগে চ্যানেলে জয়েন করতে হবে</p>
+            <button onclick="tg.openTelegramLink('https://t.me/My_Earning_Zone_In')" class="join-btn"><i
+                    class="fab fa-telegram-plane"></i> Join Promotion Channel</button>
+            <button onclick="tg.openTelegramLink('https://t.me/shiyam744')" class="join-btn"><i
+                    class="fab fa-telegram-plane"></i> Join Payment Channel</button>
+            <button id="v-btn" onclick="verifyJoin()" class="verify-btn"><i class="fas fa-check-circle"></i> I Have
+                Joined</button>
         </div>
     </div>
 
@@ -1094,7 +1234,10 @@
             <div class="top-bar">
                 <div class="user-pill">
                     <img id="u-img" src="">
-                    <div class="user-info"><h3 id="u-name">...</h3><p id="u-id">...</p></div>
+                    <div class="user-info">
+                        <h3 id="u-name">...</h3>
+                        <p id="u-id">...</p>
+                    </div>
                 </div>
                 <button class="support-btn" onclick="openSupport()"><i class="fas fa-headset"></i></button>
             </div>
@@ -1104,10 +1247,19 @@
             <div class="bal-title">Total Balance</div>
             <div class="bal-amt"><span id="u-bal">0.00</span> <span id="cur-sym" class="currency">TK</span></div>
             <div class="stats">
-                <div class="stat-box"><h4 id="u-earn">0.00</h4><p>Earned</p></div>
-                <div class="stat-box"><h4 id="u-ref">0</h4><p>Referrals</p></div>
+                <div class="stat-box">
+                    <h4 id="u-earn">0.00</h4>
+                    <p>Earned</p>
+                </div>
+                <div class="stat-box">
+                    <h4 id="u-ref">0</h4>
+                    <p>Referrals</p>
+                </div>
             </div>
         </div>
+
+        <!-- MFS Logos Section -->
+
 
         <div id="p-home" class="page active">
             <div class="sec-head"><i class="fas fa-play-circle"></i> Daily Ads</div>
@@ -1115,7 +1267,7 @@
 
             <div class="sec-head"><i class="fas fa-tasks"></i> Tasks</div>
             <div id="onetime-task-area" class="task-list"></div>
-            
+
             <div class="sub-head"><i class="fas fa-clock"></i> Daily Tasks</div>
             <div id="daily-task-area" class="task-list"></div>
         </div>
@@ -1124,11 +1276,13 @@
             <div class="gift-container">
                 <i class="fas fa-gift gift-box"></i>
                 <h2 style="color:var(--text); margin-top:15px; font-weight: 700;">Invite Friends</h2>
-                <p id="invite-txt" style="font-size:0.9rem; color:var(--text-muted); font-weight: 500; margin-top:5px;">Refer & Earn rewards!</p>
+                <p id="invite-txt" style="font-size:0.9rem; color:var(--text-muted); font-weight: 500; margin-top:5px;">
+                    Refer & Earn rewards!</p>
             </div>
 
             <div class="box" style="margin-bottom: 30px;">
-                <input id="ref-link" class="inp" readonly style="text-align:center; background:var(--input-bg); color:var(--bkash); font-size: 0.9rem; margin-bottom:10px; font-weight:600; border:2px solid var(--bkash);">
+                <input id="ref-link" class="inp" readonly
+                    style="text-align:center; background:var(--input-bg); color:var(--bkash); font-size: 0.9rem; margin-bottom:10px; font-weight:600; border:2px solid var(--bkash);">
                 <div class="invite-box">
                     <button onclick="shareTg()" class="btn-share"><i class="fab fa-telegram-plane"></i> Invite</button>
                     <button onclick="copyRef()" class="btn-copy"><i class="far fa-copy"></i></button>
@@ -1143,11 +1297,18 @@
         <div id="p-profile" class="page">
             <div class="sec-head"><i class="fas fa-wallet"></i> Withdraw</div>
             <div class="box">
-                <p id="w-msg" style="color:var(--danger); font-size:0.85rem; display:none; margin-bottom:10px; font-weight:600;"></p>
-                <div class="input-wrap"><i class="fas fa-university"></i><select id="w-method" class="inp" onchange="updateMinMsg()"></select></div>
-                <p id="min-msg" style="font-size:0.8rem; color:var(--bkash); margin:-15px 0 20px 15px; font-weight:600;">Min: ...</p>
-                <div class="input-wrap"><i class="fas fa-id-card"></i><input id="w-acc" class="inp" placeholder="Account Number"></div>
-                <div class="input-wrap"><i class="fas fa-coins"></i><input id="w-amt" class="inp" type="number" placeholder="Amount"></div>
+                <p id="w-msg"
+                    style="color:var(--danger); font-size:0.85rem; display:none; margin-bottom:10px; font-weight:600;">
+                </p>
+                <div class="input-wrap"><i class="fas fa-university"></i><select id="w-method" class="inp"
+                        onchange="updateMinMsg()"></select></div>
+                <p id="min-msg"
+                    style="font-size:0.8rem; color:var(--bkash); margin:-15px 0 20px 15px; font-weight:600;">Min: ...
+                </p>
+                <div class="input-wrap"><i class="fas fa-id-card"></i><input id="w-acc" class="inp"
+                        placeholder="Account Number"></div>
+                <div class="input-wrap"><i class="fas fa-coins"></i><input id="w-amt" class="inp" type="number"
+                        placeholder="Amount"></div>
                 <button onclick="withdraw()" class="btn-main">Request Withdraw</button>
             </div>
             <div class="sec-head"><i class="fas fa-history"></i> Last Transactions</div>
@@ -1166,24 +1327,24 @@
     <script>
         // CONFIG - All your original JavaScript remains exactly the same
         const API_URL = "https://cold-dewm.mdashrafaliakib.workers.dev";
-        const BOT_TOKEN = "8252453072:AAFkC4hqO6o7pT5apVpieU7-0K4xULo1ke0";
+        const BOT_TOKEN = "8471826069:AAFve1yjguXFIaBYfzlkds-gebQbKR6t3MI";
         const CHANNELS = [
             { id: "-1003032580624" },
-            { id: "-1003875952190" }
+            { id: "-1003149748948" }
         ];
 
         const tg = window.Telegram.WebApp;
         tg.ready(); tg.expand();
-        tg.setHeaderColor('#E2136E'); 
+        tg.setHeaderColor('#E2136E');
 
         let appState = { user: { balance: 0, totalEarned: 0, referrals: 0, dailyAds: {}, taskHistory: {} }, config: {}, leaderboard: [], history: [] };
         let countdownInterval = null;
 
         const tgUser = tg.initDataUnsafe.user || { id: "test_user", first_name: "Test" };
-        
+
         // 1. HARD ANTI-CHEAT CHECK
         const storedDevice = localStorage.getItem('unique_device_id');
-        if(storedDevice && storedDevice != tgUser.id) {
+        if (storedDevice && storedDevice != tgUser.id) {
             document.getElementById('banned-screen').style.display = 'flex';
             document.getElementById('loader').style.display = 'none';
             throw new Error("Banned");
@@ -1197,7 +1358,7 @@
             const txt = document.getElementById('prog-txt');
             loader.style.display = 'flex';
             txt.innerText = 'VERIFYING...';
-            
+
             checkMembershipOnLoad();
         };
 
@@ -1233,14 +1394,14 @@
             const btn = document.getElementById('v-btn');
             const originalText = btn.innerHTML;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Checking...';
-            
+
             const isJoined = await checkChannels();
-            
+
             if (isJoined) {
                 tg.HapticFeedback.notificationOccurred('success');
                 btn.style.background = 'linear-gradient(135deg, #059669, #10B981)';
                 btn.innerHTML = '<i class="fas fa-check"></i> Verified!';
-                
+
                 setTimeout(() => {
                     document.getElementById('join-modal').style.display = 'none';
                     startLoadingBar();
@@ -1250,7 +1411,7 @@
                 btn.classList.add('error');
                 btn.innerHTML = '<i class="fas fa-times-circle"></i> Not Joined!';
                 toastError("Please join all channels!");
-                
+
                 setTimeout(() => {
                     btn.classList.remove('error');
                     btn.innerHTML = originalText;
@@ -1261,9 +1422,9 @@
         // 5. APP LOADING
         function startLoadingBar() {
             const loader = document.getElementById('loader');
-            loader.style.display = 'flex'; 
+            loader.style.display = 'flex';
             const txt = document.getElementById('prog-txt');
-            
+
             let width = 0;
             const interval = setInterval(() => {
                 if (width >= 100) {
@@ -1273,7 +1434,7 @@
                     initializeApp(tgUser);
                     toast("Welcome Back!");
                 } else {
-                    width += 2; 
+                    width += 2;
                     txt.innerText = width + '%';
                 }
             }, 30);
@@ -1293,29 +1454,29 @@
         async function initializeApp(u) {
             document.getElementById('u-name').innerText = u.first_name;
             document.getElementById('u-id').innerText = `ID: ${u.id}`;
-            if(u.photo_url) document.getElementById('u-img').src = u.photo_url;
+            if (u.photo_url) document.getElementById('u-img').src = u.photo_url;
 
             const cached = localStorage.getItem(`app_${u.id}`);
-            if(cached) { appState = JSON.parse(cached); renderAll(); } 
+            if (cached) { appState = JSON.parse(cached); renderAll(); }
             else { appState.user.id = u.id; }
 
             try {
                 const [config, user] = await Promise.all([
                     api('getConfig'),
-                    api('login', 'POST', { id: u.id, firstName: u.first_name, photoUrl: u.photo_url||'', refId: tg.initDataUnsafe.start_param })
+                    api('login', 'POST', { id: u.id, firstName: u.first_name, photoUrl: u.photo_url || '', refId: tg.initDataUnsafe.start_param })
                 ]);
 
-                if(config) appState.config = config;
-                if(user) appState.user = { ...appState.user, ...user };
-                
+                if (config) appState.config = config;
+                if (user) appState.user = { ...appState.user, ...user };
+
                 const lb = await api('getLeaderboard');
-                if(lb) appState.leaderboard = lb;
-                
+                if (lb) appState.leaderboard = lb;
+
                 const hist = await api('getHistory', 'GET', { id: u.id });
-                if(hist) appState.history = hist;
+                if (hist) appState.history = hist;
 
                 saveLocal(); renderAll();
-            } catch (e) {}
+            } catch (e) { }
         }
 
         function saveLocal() { localStorage.setItem(`app_${appState.user.id}`, JSON.stringify(appState)); }
@@ -1324,51 +1485,51 @@
             const sym = appState.config.currencySymbol || "TK";
             document.querySelectorAll('.currency').forEach(e => e.innerText = sym);
             const u = appState.user;
-            document.getElementById('u-bal').innerText = (u.balance||0).toFixed(2);
-            document.getElementById('u-earn').innerText = (u.totalEarned||0).toFixed(2);
+            document.getElementById('u-bal').innerText = (u.balance || 0).toFixed(2);
+            document.getElementById('u-earn').innerText = (u.totalEarned || 0).toFixed(2);
             document.getElementById('u-ref').innerText = u.referrals || 0;
-            
+
             document.getElementById('ref-link').value = `https://t.me/${appState.config.botUsername}/app?startapp=${u.id}`;
-            
+
             const refAmt = appState.config.referralBonus || 0;
-            if(refAmt > 0) document.getElementById('invite-txt').innerText = `Refer & Earn ${refAmt} ${sym} per Friend!`;
+            if (refAmt > 0) document.getElementById('invite-txt').innerText = `Refer & Earn ${refAmt} ${sym} per Friend!`;
 
             renderAds(); renderTasks(); renderLeaderboard(); renderHistory(); renderMethods(); loadAdScripts();
         }
 
         function loadAdScripts() {
-            (appState.config.adSlots||[]).forEach(s => {
-                if(s.network==='monetag' && !document.querySelector(`script[data-zone="${s.id}"]`)) {
-                    let sc=document.createElement('script'); sc.src='//libtl.com/sdk.js'; sc.dataset.zone=s.id; sc.dataset.sdk=`show_${s.id}`; document.body.appendChild(sc);
-                } else if(s.network==='gigapub') {
-                    let sc=document.createElement('script'); sc.src=`https://ad.gigapub.tech/script?id=${s.id}`; document.body.appendChild(sc);
+            (appState.config.adSlots || []).forEach(s => {
+                if (s.network === 'monetag' && !document.querySelector(`script[data-zone="${s.id}"]`)) {
+                    let sc = document.createElement('script'); sc.src = '//libtl.com/sdk.js'; sc.dataset.zone = s.id; sc.dataset.sdk = `show_${s.id}`; document.body.appendChild(sc);
+                } else if (s.network === 'gigapub') {
+                    let sc = document.createElement('script'); sc.src = `https://ad.gigapub.tech/script?id=${s.id}`; document.body.appendChild(sc);
                 }
             });
         }
 
         function renderAds() {
             const el = document.getElementById('ad-area'); el.innerHTML = '';
-            const today = new Date().toISOString().slice(0,10);
-            if(appState.user.lastActive !== today) { appState.user.dailyAds = {}; appState.user.lastActive = today; saveLocal(); }
-            (appState.config.adSlots||[]).forEach((s, i) => {
+            const today = new Date().toISOString().slice(0, 10);
+            if (appState.user.lastActive !== today) { appState.user.dailyAds = {}; appState.user.lastActive = today; saveLocal(); }
+            (appState.config.adSlots || []).forEach((s, i) => {
                 const limit = appState.config.dailyAdLimit || 10;
                 const done = (appState.user.dailyAds && appState.user.dailyAds[s.id]) || 0;
                 const max = done >= limit;
-                el.innerHTML += `<div class="ad-card ${max?'disabled':''}" onclick="${max?'':`watchAd('${s.id}','${s.network}')`}"><i class="fas fa-play"></i><h4>Ad Slot ${i+1}</h4><span>${done}/${limit} Watched</span></div>`;
+                el.innerHTML += `<div class="ad-card ${max ? 'disabled' : ''}" onclick="${max ? '' : `watchAd('${s.id}','${s.network}')`}"><i class="fas fa-play"></i><h4>Ad Slot ${i + 1}</h4><span>${done}/${limit} Watched</span></div>`;
             });
         }
-        
+
         function watchAd(id, net) {
             toast("Loading..."); tg.HapticFeedback.impactOccurred('light');
             let p;
-            if(net==='monetag' && window[`show_${id}`]) p = window[`show_${id}`]();
-            else if(net==='gigapub' && window.showGiga) p = window.showGiga();
+            if (net === 'monetag' && window[`show_${id}`]) p = window[`show_${id}`]();
+            else if (net === 'gigapub' && window.showGiga) p = window.showGiga();
             else { toast("Not Ready"); return; }
             p.then(async () => {
                 const r = appState.config.adReward || 0.5;
                 appState.user.balance += r; appState.user.totalEarned += r;
-                if(!appState.user.dailyAds) appState.user.dailyAds = {};
-                appState.user.dailyAds[id] = (appState.user.dailyAds[id]||0) + 1;
+                if (!appState.user.dailyAds) appState.user.dailyAds = {};
+                appState.user.dailyAds[id] = (appState.user.dailyAds[id] || 0) + 1;
                 saveLocal(); renderAll(); toast(`Success! +${r}`);
                 tg.HapticFeedback.notificationOccurred('success');
                 await api('updateBalance', 'POST', { id: appState.user.id, amount: r });
@@ -1379,52 +1540,52 @@
             const oneTimeEl = document.getElementById('onetime-task-area');
             const dailyEl = document.getElementById('daily-task-area');
             oneTimeEl.innerHTML = ''; dailyEl.innerHTML = '';
-            
+
             const tasks = appState.config.webTasks || {};
             const sym = appState.config.currencySymbol || "TK";
             const now = Date.now();
-            
-            if(countdownInterval) clearInterval(countdownInterval);
+
+            if (countdownInterval) clearInterval(countdownInterval);
             let countdowns = [];
 
             Object.keys(tasks).forEach(k => {
                 const t = tasks[k];
                 const h = (appState.user.taskHistory && appState.user.taskHistory[k]) || {};
-                
-                if(t.type === 'onetime') {
-                    if(h.ts) return; 
-                    const html = `<div class="task-item"><div class="task-left"><div class="task-icon"><img src="${t.icon||'https://via.placeholder.com/40'}"></div><div class="task-info"><h4>${t.name}</h4><small><i class="fas fa-coins"></i> +${t.reward} ${sym}</small></div></div><button id="btn-${k}" class="btn-act btn-start" onclick="runTask('${k}')">Start</button></div>`;
+
+                if (t.type === 'onetime') {
+                    if (h.ts) return;
+                    const html = `<div class="task-item"><div class="task-left"><div class="task-icon"><img src="${t.icon || 'https://via.placeholder.com/40'}"></div><div class="task-info"><h4>${t.name}</h4><small><i class="fas fa-coins"></i> +${t.reward} ${sym}</small></div></div><button id="btn-${k}" class="btn-act btn-start" onclick="runTask('${k}')">Start</button></div>`;
                     oneTimeEl.innerHTML += html;
-                } 
+                }
                 else if (t.type === 'daily') {
                     let isWait = false;
                     let left = 0;
-                    if (h.ts && (now - h.ts) < 86400000) { 
+                    if (h.ts && (now - h.ts) < 86400000) {
                         isWait = true;
                         left = 86400000 - (now - h.ts);
                     }
 
                     let btnHtml = '';
-                    if(isWait) {
+                    if (isWait) {
                         btnHtml = `<button id="timer-${k}" class="btn-act btn-wait" disabled>...</button>`;
                         countdowns.push({ id: `timer-${k}`, endTime: now + left });
                     } else {
                         btnHtml = `<button id="btn-${k}" class="btn-act btn-start" onclick="runTask('${k}')">Start</button>`;
                     }
 
-                    const html = `<div class="task-item" style="opacity:${isWait?0.7:1}"><div class="task-left"><div class="task-icon"><img src="${t.icon||'https://via.placeholder.com/40'}"></div><div class="task-info"><h4>${t.name}</h4><small><i class="fas fa-coins"></i> +${t.reward} ${sym}</small></div></div>${btnHtml}</div>`;
+                    const html = `<div class="task-item" style="opacity:${isWait ? 0.7 : 1}"><div class="task-left"><div class="task-icon"><img src="${t.icon || 'https://via.placeholder.com/40'}"></div><div class="task-info"><h4>${t.name}</h4><small><i class="fas fa-coins"></i> +${t.reward} ${sym}</small></div></div>${btnHtml}</div>`;
                     dailyEl.innerHTML += html;
                 }
             });
 
-            if(countdowns.length > 0) {
+            if (countdowns.length > 0) {
                 countdownInterval = setInterval(() => {
                     const curr = Date.now();
                     countdowns.forEach(c => {
                         const el = document.getElementById(c.id);
-                        if(!el) return;
+                        if (!el) return;
                         const diff = c.endTime - curr;
-                        if(diff <= 0) {
+                        if (diff <= 0) {
                             el.className = 'btn-act btn-start'; el.disabled = false; el.innerText = 'Start'; el.onclick = () => renderAll();
                         } else {
                             const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
@@ -1444,7 +1605,7 @@
             let s = 15; btn.className = 'btn-act btn-wait'; btn.disabled = true;
             const i = setInterval(() => {
                 btn.innerText = `${s}s`; s--;
-                if(s < 0) { clearInterval(i); btn.className = 'btn-act btn-claim'; btn.innerText = 'Claim'; btn.disabled = false; btn.onclick = () => claimTask(id, t); }
+                if (s < 0) { clearInterval(i); btn.className = 'btn-act btn-claim'; btn.innerText = 'Claim'; btn.disabled = false; btn.onclick = () => claimTask(id, t); }
             }, 1000);
         }
 
@@ -1464,7 +1625,7 @@
             }
 
             appState.user.balance += t.reward; appState.user.totalEarned += t.reward;
-            if(!appState.user.taskHistory) appState.user.taskHistory = {};
+            if (!appState.user.taskHistory) appState.user.taskHistory = {};
             appState.user.taskHistory[id] = { ts: Date.now() };
             saveLocal(); renderAll(); toast("Claimed!"); tg.HapticFeedback.notificationOccurred('success');
             await api('updateBalance', 'POST', { id: appState.user.id, amount: t.reward });
@@ -1474,107 +1635,130 @@
             const mName = document.getElementById('w-method').value;
             const methods = appState.config.withdrawMethods || [];
             const method = methods.find(m => m.name === mName);
-            if(method) document.getElementById('min-msg').innerText = `Min Withdraw: ${method.min} ${appState.config.currencySymbol}`;
+            if (method) document.getElementById('min-msg').innerText = `Min Withdraw: ${method.min} ${appState.config.currencySymbol}`;
         }
 
         async function withdraw() {
-            const minRef = appState.config.minWithdrawReferrals || 0;
-            if(appState.user.referrals < minRef) { document.getElementById('w-msg').style.display='block'; document.getElementById('w-msg').innerText=`Need ${minRef} Referrals!`; return; }
-            
+            const minRef = appState.config.minWithdrawReferrals || 1;
+            if (appState.user.referrals < minRef) {
+                document.getElementById('w-msg').style.display = 'block';
+                document.getElementById('w-msg').innerText = `Need ${minRef} Referrals!`;
+                return;
+            }
+
             const amt = parseFloat(document.getElementById('w-amt').value);
             const mName = document.getElementById('w-method').value;
             const methods = appState.config.withdrawMethods || [];
             const method = methods.find(m => m.name === mName);
-            const minLimit = method ? method.min : 10;
 
-            if(!amt || amt < minLimit) { toast(`Minimum ${minLimit} TK`); return; }
-            if(amt > appState.user.balance) { toast("Insufficient Balance"); return; }
-            
+            const minLimit = method ? method.min : 10;
+            const maxLimit = method ? method.max : 50;
+
+            if (!amt || amt < minLimit) { toast(`Minimum ${minLimit} TK`); return; }
+
+            if (maxLimit > 0 && amt > maxLimit) {
+                toast(`Maximum Withdraw: ${maxLimit} TK`);
+                return;
+            }
+            if (amt > appState.user.balance) { toast("Insufficient Balance"); return; }
+
             toast("Connecting...");
-            const res = await api('withdraw', 'POST', { userId: appState.user.id, userName: appState.user.firstName, amount: amt, method: mName, account: document.getElementById('w-acc').value });
-            if(res && res.success) {
-                appState.user.balance -= amt; saveLocal(); 
+            const res = await api('withdraw', 'POST', {
+                userId: appState.user.id,
+                userName: appState.user.firstName,
+                amount: amt,
+                method: mName,
+                account: document.getElementById('w-acc').value
+            });
+
+            if (res && res.success) {
+                appState.user.balance -= amt;
+                saveLocal();
                 const hist = await api('getHistory', 'GET', { id: appState.user.id });
-                if(hist) appState.history = hist;
-                renderAll(); toast("Submitted!"); tg.HapticFeedback.notificationOccurred('success');
-            } else { toast(res.message || "Network Error"); }
+                if (hist) appState.history = hist;
+                renderAll();
+                toast("Submitted!");
+                tg.HapticFeedback.notificationOccurred('success');
+            } else {
+                toast(res.message || "Network Error");
+            }
         }
 
         function renderLeaderboard() {
             const p = document.getElementById('podium-area'); const l = document.getElementById('lb-area');
             p.innerHTML = ''; l.innerHTML = ''; const top = appState.leaderboard;
-            if(top.length === 0) { p.innerHTML='<p style="text-align:center; color:var(--text-muted);">No Data</p>'; return; }
-            if(top[1]) p.innerHTML += getPodium(top[1], 2); if(top[0]) p.innerHTML += getPodium(top[0], 1); if(top[2]) p.innerHTML += getPodium(top[2], 3);
-            for(let i=3; i<top.length; i++) l.innerHTML += `<div class="lb-item"><span class="lb-rank">#${i+1}</span><div class="lb-img"><img src="${top[i].photoUrl||'https://via.placeholder.com/40'}" class="lb-img-inner"></div><div class="lb-name">${top[i].firstName}</div><div class="lb-val">${top[i].referrals}</div></div>`;
+            if (top.length === 0) { p.innerHTML = '<p style="text-align:center; color:var(--text-muted);">No Data</p>'; return; }
+            if (top[1]) p.innerHTML += getPodium(top[1], 2); if (top[0]) p.innerHTML += getPodium(top[0], 1); if (top[2]) p.innerHTML += getPodium(top[2], 3);
+            for (let i = 3; i < top.length; i++) l.innerHTML += `<div class="lb-item"><span class="lb-rank">#${i + 1}</span><div class="lb-img"><img src="${top[i].photoUrl || 'https://via.placeholder.com/40'}" class="lb-img-inner"></div><div class="lb-name">${top[i].firstName}</div><div class="lb-val">${top[i].referrals}</div></div>`;
         }
-        
-        function getPodium(u, r) { 
-            return `<div class="podium-item rank-${r}"><div class="crown"><i class="fas fa-crown"></i></div><img src="${u.photoUrl||'https://via.placeholder.com/70'}" class="podium-img"><div class="podium-name">${u.firstName}</div><div class="podium-score">${u.referrals} Refs</div></div>`; 
+
+        function getPodium(u, r) {
+            return `<div class="podium-item rank-${r}"><div class="crown"><i class="fas fa-crown"></i></div><img src="${u.photoUrl || 'https://via.placeholder.com/70'}" class="podium-img"><div class="podium-name">${u.firstName}</div><div class="podium-score">${u.referrals} Refs</div></div>`;
         }
-        
+
         function renderHistory() {
             const el = document.getElementById('hist-area'); el.innerHTML = ''; const sym = appState.config.currencySymbol || "TK";
-            if(appState.history.length === 0) { el.innerHTML='<p style="text-align:center;color:var(--text-muted);">No History</p>'; return; }
+            if (appState.history.length === 0) { el.innerHTML = '<p style="text-align:center;color:var(--text-muted);">No History</p>'; return; }
             appState.history.forEach(x => el.innerHTML += `<div class="hist-item ${x.status}"><div class="hist-info"><h4>${x.method} - ${x.amount} ${sym}</h4><small>${new Date(x.timestamp).toLocaleDateString()}</small></div><span class="status-badge">${x.status}</span></div>`);
         }
-        
+
         function renderMethods() {
-            const s = document.getElementById('w-method'); if(s.children.length > 0) return;
-            (appState.config.withdrawMethods||[]).forEach(m => {
+            const s = document.getElementById('w-method'); if (s.children.length > 0) return;
+            (appState.config.withdrawMethods || []).forEach(m => {
                 let icon = '';
-                if(m.name.toLowerCase().includes('bkash')) icon = '<span class="method-icon method-bkash"></span>';
-                else if(m.name.toLowerCase().includes('nagad')) icon = '<span class="method-icon method-nagad"></span>';
-                else if(m.name.toLowerCase().includes('rocket')) icon = '<span class="method-icon method-rocket"></span>';
+                if (m.name.toLowerCase().includes('bkash')) icon = '<span class="method-icon method-bkash"></span>';
+                else if (m.name.toLowerCase().includes('nagad')) icon = '<span class="method-icon method-nagad"></span>';
+                else if (m.name.toLowerCase().includes('rocket')) icon = '<span class="method-icon method-rocket"></span>';
                 s.innerHTML += `<option value="${m.name}">${icon} ${m.name}</option>`;
             });
             updateMinMsg();
         }
-        
+
         function nav(p, e) {
             document.querySelectorAll('.page').forEach(x => x.classList.remove('active')); document.getElementById(p).classList.add('active');
             document.querySelectorAll('.nav i').forEach(x => x.classList.remove('active')); e.classList.add('active');
-            if(p==='p-profile') { api('getHistory', 'GET', { id: appState.user.id }).then(hist => { if(hist) { appState.history = hist; saveLocal(); renderAll(); } }); }
+            if (p === 'p-profile') { api('getHistory', 'GET', { id: appState.user.id }).then(hist => { if (hist) { appState.history = hist; saveLocal(); renderAll(); } }); }
             tg.HapticFeedback.impactOccurred('light');
         }
-        
-        function copyRef() { 
-            const e = document.getElementById('ref-link'); 
-            e.select(); 
-            document.execCommand('copy'); 
-            toast("Copied!"); 
+
+        function copyRef() {
+            const e = document.getElementById('ref-link');
+            e.select();
+            document.execCommand('copy');
+            toast("Copied!");
         }
-        
-        function shareTg() { 
-            const link = document.getElementById('ref-link').value; 
-            tg.openTelegramLink(`https://t.me/share/url?url=${link}&text=Join and Earn!`); 
+
+        function shareTg() {
+            const link = document.getElementById('ref-link').value;
+            tg.openTelegramLink(`https://t.me/share/url?url=${link}&text=Join and Earn!`);
         }
-        
-        function openSupport() { 
-            if(appState.config.supportLink) tg.openLink(appState.config.supportLink); 
-            else toast("No Support Link"); 
+
+        function openSupport() {
+            if (appState.config.supportLink) tg.openLink(appState.config.supportLink);
+            else toast("No Support Link");
         }
-        
-        function toast(m) { 
-            const t = document.getElementById('toast'); 
-            t.innerText=m; 
-            t.classList.remove('error'); 
-            t.classList.add('show'); 
-            setTimeout(()=>t.classList.remove('show'),3000); 
+
+        function toast(m) {
+            const t = document.getElementById('toast');
+            t.innerText = m;
+            t.classList.remove('error');
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 3000);
         }
-        
-        function toastError(m) { 
-            const t = document.getElementById('toast'); 
-            t.innerText=m; 
-            t.classList.add('error'); 
-            t.classList.add('show'); 
-            setTimeout(()=>t.classList.remove('show'),3000); 
+
+        function toastError(m) {
+            const t = document.getElementById('toast');
+            t.innerText = m;
+            t.classList.add('error');
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 3000);
         }
     </script>
 
     <!-- Cookie Notice -->
     <script src="/js/cookienotice.js" defer></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function(event) {
+        document.addEventListener('DOMContentLoaded', function (event) {
             window.cookieChoices && cookieChoices.showCookieConsentBar && cookieChoices.showCookieConsentBar(
                 (window.cookieOptions && cookieOptions.msg) || 'Ce site utilise des cookies provenant de Google pour fournir ses services et analyser le trafic. Votre adresse IP et votre user-agent, ainsi que des statistiques relatives aux performances et à la sécurité, sont transmis à Google afin d\x27assurer un service de qualité, de générer des statistiques d\x27utilisation, et de détecter et de résoudre les problèmes d\x27abus.',
                 (window.cookieOptions && cookieOptions.close) || 'OK !',
