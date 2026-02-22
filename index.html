@@ -7,8 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <style>
-        /* 🎨 NEW COLORFUL THEME - NO BLACK COLORS */
-       :root { 
+        /* CSS (Dark Smooth & Extra Bold - Compact Version) */
+        :root { 
     --primary: #f1c40f;
     --primary-light: #ff6b6b;
     --primary-gradient: linear-gradient(135deg, #f1c40f 0%, #f39c12 50%, #e67e22 100%);
@@ -39,616 +39,230 @@
     
     --nav-bg: rgba(20, 20, 20, 0.95);
 }
-        
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background: var(--bg); color: var(--text); padding-bottom: 100px; -webkit-tap-highlight-color: transparent; }
+        
+        /* ব্যাকগ্রাউন্ড এনিমেশন (Deep Breathing) */
+        body { 
+            background-color: var(--bg); 
+            color: var(--text); 
+            padding-bottom: 90px; 
+            -webkit-tap-highlight-color: transparent; 
+            animation: darkBreath 6s infinite alternate ease-in-out;
+        }
+        @keyframes darkBreath {
+            0% { background-color: #121212; }
+            100% { background-color: #191919; }
+        }
+
         #app { max-width: 480px; margin: 0 auto; min-height: 100vh; position: relative; display: none; }
 
         /* BANNED SCREEN */
-        #banned-screen { 
-            position: fixed; inset: 0; 
-            background: var(--bg); 
-            z-index: 999999; 
-            display: none; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            text-align: center; 
-            color: var(--danger); 
-        }
+        #banned-screen { position: fixed; inset: 0; background: #000; z-index: 999999; display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--danger); }
         #banned-screen i { font-size: 4rem; margin-bottom: 20px; animation: shake 0.5s infinite; }
 
-        /* LOADER - COLORFUL RING */
-        .loader-overlay { 
-            position: fixed; inset: 0; 
-            background: var(--bg); 
-            z-index: 9999; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            flex-direction: column; 
-        }
+        /* VOLTAGE LOADER */
+        .loader-overlay { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; justify-content: center; align-items: center; flex-direction: column; }
+        .voltage-ring { width: 70px; height: 70px; border-radius: 50%; border: 4px solid transparent; border-top-color: #ff0033; border-bottom-color: #00ccff; box-shadow: 0 0 25px rgba(255, 0, 51, 0.6), 0 0 25px rgba(0, 204, 255, 0.6); animation: voltageSpin 1s linear infinite; margin-bottom: 20px; position: relative; }
+        .voltage-ring::before { content: ''; position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px; border-radius: 50%; border: 2px solid transparent; border-left-color: #fff; border-right-color: #fff; opacity: 0.5; animation: voltageSpin 2s linear infinite reverse; }
+        @keyframes voltageSpin { 0% { transform: rotate(0deg); filter: hue-rotate(0deg); } 100% { transform: rotate(360deg); filter: hue-rotate(360deg); } }
+        .loader-text { color: var(--text); font-weight: 900; letter-spacing: 2px; font-size: 1rem; text-transform: uppercase; text-shadow: 0 0 10px var(--primary); }
         
-        .voltage-ring {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            border: 4px solid transparent;
-            border-top-color: #ff6b6b;
-            border-bottom-color: #6c5ce7;
-            border-left-color: #00cec9;
-            border-right-color: #fcc419;
-            box-shadow: 0 0 30px #ff6b6b, 0 0 30px #6c5ce7;
-            animation: voltageSpin 1s linear infinite;
-            margin-bottom: 20px;
-            position: relative;
-        }
-        .voltage-ring::before {
-            content: ''; position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px;
-            border-radius: 50%; border: 2px solid transparent;
-            border-top-color: #fff;
-            border-bottom-color: #a29bfe;
-            opacity: 0.8; animation: voltageSpin 2s linear infinite reverse;
-        }
-
-        @keyframes voltageSpin {
-            0% { transform: rotate(0deg); filter: hue-rotate(0deg); }
-            100% { transform: rotate(360deg); filter: hue-rotate(360deg); }
-        }
-
-        .loader-text { color: var(--text); font-weight: 800; letter-spacing: 2px; font-size: 1.1rem; text-transform: uppercase; text-shadow: 0 0 15px var(--primary); }
-        
-        /* HEADER & BALANCE - GRADIENT */
-        .header { 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-            padding: 85px 25px 90px; 
-            border-radius: 0 0 45px 45px; 
-            color: white; 
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3); 
-            position: relative; 
-        }
+        /* HEADER & BALANCE (Compact) */
+        .header { background: linear-gradient(160deg, #192a56, #273c75); padding: 40px 20px 70px; border-radius: 0 0 35px 35px; color: white; box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; }
         .top-bar { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; }
-        .user-pill { 
-            display: flex; align-items: center; gap: 12px; 
-            background: rgba(255, 255, 255, 0.15); 
-            padding: 8px 15px 8px 8px; 
-            border-radius: 50px; 
-            backdrop-filter: blur(10px); 
-            border: 1px solid rgba(255, 255, 255, 0.2); 
-        }
-        .user-pill img { 
-            width: 45px; height: 45px; 
-            border-radius: 50%; 
-            border: 3px solid var(--primary-light); 
-            object-fit: cover; 
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-        }
-        .user-info h3 { font-size: 1rem; font-weight: 800; line-height: 1.1; color: #fff; }
-        .user-info p { font-size: 0.75rem; opacity: 0.9; font-weight: 600; }
-        .support-btn { 
-            background: rgba(255, 255, 255, 0.2); 
-            color: white; 
-            width: 42px; height: 42px; 
-            border-radius: 50%; 
-            border: none; 
-            font-size: 1.2rem; 
-            cursor: pointer; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            backdrop-filter: blur(5px);
-            transition: 0.3s;
-        }
-        .support-btn:hover { background: rgba(255, 255, 255, 0.3); transform: scale(1.1); }
+        .user-pill { display: flex; align-items: center; gap: 10px; background: rgba(0,0,0,0.4); padding: 5px 15px 5px 5px; border-radius: 50px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+        .user-pill img { width: 35px; height: 35px; border-radius: 50%; border: 2px solid var(--primary); object-fit: cover; }
+        .user-info h3 { font-size: 0.85rem; font-weight: 800; line-height: 1.1; color: #fff; }
+        .user-info p { font-size: 0.65rem; opacity: 0.8; font-weight: 700; }
+        .support-btn { background: rgba(255,255,255,0.1); color: white; width: 35px; height: 35px; border-radius: 50%; border: none; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
 
-        .balance-card { 
-            background: var(--surface); 
-            width: 88%; 
-            margin: -75px auto 25px; 
-            padding: 25px; 
-            border-radius: 25px; 
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); 
-            text-align: center; 
-            position: relative; 
-            z-index: 10; 
-            border: 2px solid rgba(255, 255, 255, 0.1); 
-        }
-        .bal-title { 
-            font-size: 0.8rem; 
-            text-transform: uppercase; 
-            color: var(--text-muted); 
-            letter-spacing: 2px; 
-            font-weight: 800; 
-        }
-        .bal-amt { 
-            font-size: 2.8rem; 
-            font-weight: 800; 
-            color: var(--text); 
-            margin: 5px 0; 
-            text-shadow: 0 0 30px rgba(108, 92, 231, 0.5); 
-        }
-        .currency { color: var(--secondary); font-size: 1.2rem; }
-        .stats { 
-            display: flex; 
-            justify-content: space-between; 
-            margin-top: 20px; 
-            padding-top: 20px; 
-            border-top: 2px dashed rgba(255, 255, 255, 0.2); 
-        }
-        .stat-box h4 { 
-            font-size: 1.2rem; 
-            color: var(--secondary); 
-            margin-bottom: 2px; 
-            font-weight: 800; 
-        } 
-        .stat-box p { 
-            font-size: 0.8rem; 
-            color: var(--text-muted); 
-            font-weight: 600; 
-        }
+        .balance-card { background: var(--surface); width: 92%; margin: -60px auto 20px; padding: 15px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: center; position: relative; z-index: 10; border: 1px solid rgba(255,255,255,0.05); }
+        .bal-title { font-size: 0.7rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1.5px; font-weight: 800; }
+        .bal-amt { font-size: 2.2rem; font-weight: 900; color: var(--text); margin: 2px 0; text-shadow: 0 0 20px rgba(140, 122, 230, 0.3); }
+        .currency { color: var(--primary); font-size: 1rem; font-weight: 800; }
+        .stats { display: flex; justify-content: space-between; margin-top: 12px; padding-top: 12px; border-top: 2px dashed rgba(255,255,255,0.1); }
+        .stat-box h4 { font-size: 1rem; color: var(--text); margin-bottom: 2px; font-weight: 900; } .stat-box p { font-size: 0.7rem; color: var(--text-muted); font-weight: 700; }
 
         /* SECTIONS */
-        .page { display: none; padding: 0 20px; animation: slideUp 0.4s; }
+        .page { display: none; padding: 0 15px; animation: slideUp 0.3s; }
         .page.active { display: block; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .sec-head { 
-            font-size: 1.2rem; 
-            font-weight: 800; 
-            margin: 30px 0 15px; 
-            color: var(--text); 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
-            text-transform: capitalize;
-            text-shadow: 0 0 10px var(--primary);
-        }
-        .sec-head i { color: var(--secondary); font-size: 1.3rem; }
-        .sub-head { 
-            font-size: 0.9rem; 
-            color: var(--text-muted); 
-            font-weight: 700; 
-            margin: 15px 0 10px; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-        }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .sec-head { font-size: 1rem; font-weight: 900; margin: 20px 0 10px; color: var(--text); display: flex; align-items: center; gap: 8px; text-transform: capitalize; }
+        .sec-head i { color: var(--primary); font-size: 1.1rem; }
+        .sub-head { font-size: 0.8rem; color: var(--text-muted); font-weight: 800; margin: 15px 0 8px; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* ADS & TASKS */
-        .ad-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .ad-card { 
-            background: var(--surface-light); 
-            padding: 20px; 
-            border-radius: 20px; 
-            text-align: center; 
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
-            cursor: pointer; 
-            transition: 0.3s; 
-            border: 2px solid rgba(255, 255, 255, 0.1); 
-        }
-        .ad-card:active { transform: scale(0.96); background: #4a4a8a; } 
-        .ad-card.disabled { opacity: 0.4; filter: grayscale(1); pointer-events: none; }
-        .ad-card i { 
-            font-size: 2.2rem; 
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 12px; 
-            display: block; 
-            filter: drop-shadow(0 0 15px rgba(108, 92, 231, 0.5)); 
-        }
-        .ad-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; color: var(--text); }
-        .ad-card span { 
-            font-size: 0.8rem; 
-            color: var(--text); 
-            background: rgba(255, 255, 255, 0.1); 
-            padding: 4px 10px; 
-            border-radius: 6px; 
-            font-weight: 600; 
-        }
+        /* ADS & TASKS (Compact) */
+        .ad-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .ad-card { background: var(--surface); padding: 15px; border-radius: 16px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.2); cursor: pointer; transition: 0.2s; border: 1px solid rgba(255,255,255,0.05); }
+        .ad-card:active { transform: scale(0.96); background: #252525; } .ad-card.disabled { opacity: 0.4; filter: grayscale(1); pointer-events: none; }
+        .ad-card i { font-size: 1.8rem; color: var(--secondary); margin-bottom: 8px; display: block; filter: drop-shadow(0 0 10px rgba(156, 136, 255, 0.4)); }
+        .ad-card h4 { font-size: 0.85rem; font-weight: 800; margin-bottom: 4px; color: var(--text); }
+        .ad-card span { font-size: 0.7rem; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 3px 6px; border-radius: 5px; font-weight: 700; }
 
-        .task-list { display: flex; flex-direction: column; gap: 12px; }
-        .task-item { 
-            background: var(--surface); 
-            padding: 15px; 
-            border-radius: 18px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
-            border: 2px solid rgba(255, 255, 255, 0.1); 
-            transition: 0.3s;
-        }
-        .task-item:hover { border-color: var(--primary); }
-        .task-left { display: flex; align-items: center; gap: 15px; }
-        .task-icon { 
-            width: 45px; height: 45px; 
-            border-radius: 12px; 
-            object-fit: cover; 
-            border: 2px solid var(--secondary); 
-            box-shadow: 0 0 15px var(--secondary-glow);
-        }
-        .task-info h4 { font-size: 1rem; font-weight: 700; line-height: 1.2; color: var(--text); }
-        .task-info small { color: var(--success); font-weight: 700; font-size: 0.85rem; }
-        .btn-act { 
-            padding: 8px 16px; 
-            border-radius: 50px; 
-            border: none; 
-            font-weight: 700; 
-            font-size: 0.8rem; 
-            cursor: pointer; 
-            min-width: 90px; 
-            transition: 0.3s; 
-        }
-        .btn-start { 
-            background: var(--secondary-gradient); 
-            color: white; 
-        }
-        .btn-start:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--secondary); }
+        .task-list { display: flex; flex-direction: column; gap: 8px; }
+        .task-item { background: var(--surface); padding: 10px 12px; border-radius: 14px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 12px rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.05); transition: transform 0.2s; }
+        .task-item:active { transform: scale(0.98); }
+        .task-left { display: flex; align-items: center; gap: 10px; }
+        .task-icon { width: 38px; height: 38px; border-radius: 10px; object-fit: cover; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; }
+        .task-info h4 { font-size: 0.9rem; font-weight: 800; line-height: 1.2; color: var(--text); }
+        .task-info small { color: var(--text-muted); font-weight: 700; font-size: 0.75rem; }
+        
+        .btn-act { padding: 6px 12px; border-radius: 50px; border: none; font-weight: 800; font-size: 0.7rem; cursor: pointer; min-width: 70px; transition: 0.2s; }
+        .btn-start { background: var(--text); color: var(--bg); }
+        .btn-start:hover { background: var(--primary); color: white; }
+        
+        /* BOLD SMALL TIMER STYLE (UPDATED) */
         .btn-wait { 
-            background: #4a4a6a; 
-            color: #ffa502; 
+            background: #2f3542; 
+            color: #ff4757; 
             cursor: not-allowed; 
-            font-family: monospace; 
-            letter-spacing: -0.5px; 
-            border: 1px solid #ffa502; 
+            font-family: 'Poppins', sans-serif; 
+            border: 1px solid #ff4757; 
+            font-weight: 900 !important; /* Extra Bold */
+            font-size: 0.85rem !important; /* Small */
+            padding: 5px 10px;
+            min-width: 50px;
         }
-        .btn-claim { 
-            background: var(--primary-gradient); 
-            color: white; 
-            animation: pulse 1s infinite; 
-            box-shadow: 0 0 20px var(--primary); 
-        }
-        @keyframes pulse { 50% { transform: scale(1.05); box-shadow: 0 0 30px var(--primary); } }
+        
+        .btn-claim { background: var(--primary); color: white; animation: pulse 1s infinite; box-shadow: 0 0 10px var(--primary); }
+        @keyframes pulse { 50% { transform: scale(1.05); box-shadow: 0 0 20px var(--primary); } }
 
         /* GIFT BOX ANIMATION */
-        .gift-container { text-align: center; margin: 20px 0; }
-        .gift-box { 
-            font-size: 4.5rem; 
-            background: linear-gradient(135deg, #ff6b6b, #fcc419);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: bounce 2s infinite; 
-            filter: drop-shadow(0 0 30px rgba(255, 107, 107, 0.5)); 
-        }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px) rotate(5deg); } }
+        .gift-container { text-align: center; margin: 15px 0; }
+        .gift-box { font-size: 3.5rem; color: var(--primary); animation: bounce 2s infinite; filter: drop-shadow(0 0 20px rgba(140, 122, 230, 0.6)); }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px) rotate(5deg); } }
         
-        /* LEADERBOARD */
-        .podium { display: flex; justify-content: center; align-items: flex-end; gap: 10px; margin: 30px 0 40px; padding: 0 10px; }
+        /* LEADERBOARD (Compact) */
+        .podium { display: flex; justify-content: center; align-items: flex-end; gap: 8px; margin: 20px 0 30px; padding: 0 10px; }
         .podium-item { text-align: center; position: relative; width: 33%; }
-        .rank-1 { order: 2; transform: scale(1.15); z-index: 2; margin-bottom: 10px; }
-        .rank-1 img { 
-            border-color: var(--gold); 
-            box-shadow: 0 0 30px var(--gold-glow); 
-        } 
-        .rank-1 .crown { color: var(--gold); top: -40px; font-size: 2.2rem; text-shadow: 0 0 20px var(--gold); }
-        .rank-2 { order: 1; } .rank-2 img { border-color: var(--silver); box-shadow: 0 0 30px rgba(189, 195, 199, 0.5); } 
-        .rank-2 .crown { color: var(--silver); text-shadow: 0 0 20px var(--silver); }
-        .rank-3 { order: 3; } .rank-3 img { border-color: var(--bronze); box-shadow: 0 0 30px rgba(230, 126, 34, 0.5); } 
-        .rank-3 .crown { color: var(--bronze); text-shadow: 0 0 20px var(--bronze); }
-        .podium-img { 
-            width: 60px; height: 60px; 
-            border-radius: 50%; 
-            border: 3px solid var(--surface); 
-            object-fit: cover; 
-            background: var(--surface-light); 
-        }
-        .crown { 
-            position: absolute; 
-            top: -30px; 
-            left: 50%; 
-            transform: translateX(-50%); 
-            font-size: 1.5rem; 
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); 
-        }
-        .podium-name { 
-            font-size: 0.8rem; 
-            font-weight: 700; 
-            margin-top: 8px; 
-            white-space: nowrap; 
-            overflow: hidden; 
-            text-overflow: ellipsis; 
-            max-width: 100%; 
-            display: block; 
-            color: var(--text); 
-        }
-        .podium-score { 
-            font-size: 0.75rem; 
-            color: var(--surface); 
-            font-weight: 800; 
-            background: var(--secondary-gradient); 
-            padding: 3px 10px; 
-            border-radius: 10px; 
-            display: inline-block; 
-            margin-top: 4px; 
-        }
+        .rank-1 { order: 2; transform: scale(1.1); z-index: 2; margin-bottom: 8px; }
+        .rank-1 img { border-color: var(--gold); box-shadow: 0 0 20px rgba(255, 215, 0, 0.4); } .rank-1 .crown { color: var(--gold); top: -30px; font-size: 1.8rem; }
+        .rank-2 { order: 1; } .rank-2 img { border-color: var(--silver); } .rank-2 .crown { color: var(--silver); }
+        .rank-3 { order: 3; } .rank-3 img { border-color: var(--bronze); } .rank-3 .crown { color: var(--bronze); }
+        .podium-img { width: 45px; height: 45px; border-radius: 50%; border: 3px solid var(--surface); object-fit: cover; background: #2f3640; }
+        .crown { position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-size: 1.2rem; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+        .podium-name { font-size: 0.7rem; font-weight: 800; margin-top: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; display: block; color: var(--text); }
+        .podium-score { font-size: 0.65rem; color: var(--bg); font-weight: 900; background: var(--text); padding: 2px 6px; border-radius: 6px; display: inline-block; margin-top: 3px; }
         
-        .lb-list { 
-            background: var(--surface); 
-            border-radius: 20px; 
-            padding: 10px 20px; 
-            border: 2px solid rgba(255, 255, 255, 0.1); 
-        }
-        .lb-item { 
-            display: flex; 
-            align-items: center; 
-            padding: 14px 0; 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
-        }
+        .lb-list { background: var(--surface); border-radius: 16px; padding: 8px 15px; border: 1px solid rgba(255,255,255,0.05); }
+        .lb-item { display: flex; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .lb-item:last-child { border-bottom: none; }
-        .lb-rank { 
-            font-weight: 800; 
-            width: 35px; 
-            color: var(--secondary); 
-            font-size: 1rem; 
-        }
-        .lb-img { 
-            width: 40px; height: 40px; 
-            border-radius: 50%; 
-            margin-right: 15px; 
-            object-fit: cover; 
-            background: var(--surface-light); 
-            border: 2px solid var(--primary); 
-        }
-        .lb-name { font-weight: 600; font-size: 0.95rem; flex: 1; color: var(--text); }
-        .lb-val { font-weight: 700; color: var(--secondary); }
+        .lb-rank { font-weight: 900; width: 25px; color: var(--text-muted); font-size: 0.85rem; }
+        .lb-img { width: 32px; height: 32px; border-radius: 50%; margin-right: 10px; object-fit: cover; background: #2f3640; border: 1px solid rgba(255,255,255,0.1); }
+        .lb-name { font-weight: 700; font-size: 0.85rem; flex: 1; color: var(--text); }
+        .lb-val { font-weight: 800; color: var(--primary); font-size: 0.85rem; }
 
-        /* PROFILE & INPUTS */
-        .box { 
-            background: var(--surface); 
-            padding: 25px; 
-            border-radius: 20px; 
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
-            border: 2px solid rgba(255, 255, 255, 0.1); 
-        }
-        .input-wrap { position: relative; margin-bottom: 18px; }
-        .input-wrap i { 
-            position: absolute; 
-            top: 50%; 
-            transform: translateY(-50%); 
-            left: 15px; 
-            color: var(--secondary); 
-        }
-        .inp { 
-            width: 100%; 
-            padding: 16px 16px 16px 45px; 
-            border: 2px solid transparent; 
-            border-radius: 14px; 
-            outline: none; 
-            font-weight: 600; 
-            background: var(--input-bg); 
-            color: white; 
-            transition: 0.3s; 
-        }
-        .inp:focus { 
-            border-color: var(--secondary); 
-            background: var(--input-focus); 
-            box-shadow: 0 0 20px var(--secondary-glow);
-        }
-        .btn-main { 
-            width: 100%; 
-            padding: 16px; 
-            background: var(--primary-gradient); 
-            color: white; 
-            border: none; 
-            border-radius: 14px; 
-            font-weight: 800; 
-            cursor: pointer; 
-            font-size: 1rem; 
-            box-shadow: 0 10px 20px rgba(108, 92, 231, 0.4); 
-            transition: 0.3s;
-        }
-        .btn-main:hover { transform: scale(1.02); box-shadow: 0 10px 30px rgba(108, 92, 231, 0.6); }
+        /* PROFILE & INPUTS (Compact) */
+        .box { background: var(--surface); padding: 18px; border-radius: 18px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.05); }
+        .input-wrap { position: relative; margin-bottom: 12px; }
+        .input-wrap i { position: absolute; top: 50%; transform: translateY(-50%); left: 15px; color: var(--text-muted); }
+        .inp { width: 100%; padding: 12px 12px 12px 40px; border: 2px solid transparent; border-radius: 12px; outline: none; font-weight: 700; background: var(--input-bg); color: white; transition: 0.3s; font-size: 0.85rem; }
+        .inp:focus { border-color: var(--primary); background: #383e4a; }
+        .btn-main { width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 12px; font-weight: 900; cursor: pointer; font-size: 0.9rem; box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4); }
+        .btn-main:active { transform: scale(0.98); }
         
-        .hist-item { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 15px; 
-            background: var(--surface); 
-            border-radius: 15px; 
-            margin-bottom: 12px; 
-            border-left: 5px solid var(--secondary); 
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
-        }
-        .hist-info h4 { font-weight: 700; color: var(--text); font-size: 0.95rem; }
-        .hist-info small { color: var(--text-muted); }
-        .hist-item.pending { border-color: var(--warning); } 
-        .hist-item.completed { border-color: var(--success); } 
-        .hist-item.rejected { border-color: var(--danger); }
-        .status-badge { 
-            font-size:0.75rem; 
-            padding:5px 10px; 
-            border-radius:6px; 
-            font-weight:800; 
-            text-transform:uppercase; 
-        }
-        .pending .status-badge { color:var(--warning); background:rgba(252, 196, 25, 0.15); }
-        .completed .status-badge { color:var(--success); background:rgba(81, 207, 102, 0.15); }
-        .rejected .status-badge { color:var(--danger); background:rgba(255, 107, 107, 0.15); }
+        .hist-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; background: var(--surface); border-radius: 12px; margin-bottom: 8px; border-left: 4px solid #444; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .hist-info h4 { font-weight: 800; color: var(--text); font-size: 0.85rem; }
+        .hist-info small { color: var(--text-muted); font-size: 0.7rem; }
+        .hist-item.pending { border-color: var(--gold); } .hist-item.completed { border-color: var(--success); } .hist-item.rejected { border-color: var(--danger); }
+        .status-badge { font-size:0.65rem; padding:3px 6px; border-radius:5px; font-weight:900; text-transform:uppercase; }
+        .pending .status-badge { color:var(--gold); background:rgba(241, 196, 15, 0.15); }
+        .completed .status-badge { color:var(--success); background:rgba(76, 209, 55, 0.15); }
+        .rejected .status-badge { color:var(--danger); background:rgba(232, 65, 24, 0.15); }
         
-        .invite-box { display: flex; gap: 10px; margin-top: 10px; }
-        .btn-share { 
-            background: linear-gradient(135deg, #0088cc, #00a8ff); 
-            color: white; 
-            flex: 1; 
-            border: none; 
-            padding: 14px; 
-            border-radius: 12px; 
-            font-weight: 700; 
-            cursor: pointer; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 8px; 
-            box-shadow: 0 10px 20px rgba(0, 136, 204, 0.3); 
-            transition: 0.3s;
-        }
-        .btn-share:hover { transform: scale(1.02); box-shadow: 0 10px 30px rgba(0, 136, 204, 0.5); }
-        .btn-copy { 
-            background: var(--surface-light); 
-            color: white; 
-            width: 55px; 
-            border: none; 
-            border-radius: 12px; 
-            cursor: pointer; 
-            font-size: 1.2rem; 
-            transition: 0.3s; 
-        }
+        .invite-box { display: flex; gap: 8px; margin-top: 10px; }
+        .btn-share { background: #0088cc; color: white; flex: 1; border: none; padding: 10px; border-radius: 12px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 10px rgba(0, 136, 204, 0.4); font-size: 0.85rem; }
+        .btn-copy { background: var(--input-bg); color: white; width: 45px; border: none; border-radius: 12px; cursor: pointer; font-size: 1rem; transition: 0.2s; }
         .btn-copy:active { background: var(--primary); }
 
-        /* JOIN MODAL */
-        #verify-box { 
-            width: 90%; 
-            max-width: 360px; 
-            text-align: center; 
-            border: 3px solid var(--primary); 
-            transition: 0.3s; 
-            background: var(--surface); 
-            padding: 30px 20px; 
-            border-radius: 25px; 
-            box-shadow: 0 0 50px rgba(108, 92, 231, 0.4); 
-        }
-        .join-btn { 
-            width: 100%; 
-            padding: 14px; 
-            background: var(--surface-light); 
-            color: white; 
-            border: 2px solid rgba(255, 255, 255, 0.1); 
-            border-radius: 12px; 
-            margin-bottom: 12px; 
-            font-weight: 700; 
-            cursor: pointer; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 10px; 
-            transition: 0.3s; 
-        }
-        .join-btn:hover { 
-            background: var(--input-focus); 
-            border-color: var(--secondary); 
-            transform: scale(1.02);
-        }
-        .join-btn i { color: #0088cc; font-size: 1.2rem; }
-        .verify-btn { 
-            width: 100%; 
-            padding: 15px; 
-            background: linear-gradient(135deg, #51cf66, #40c057); 
-            color: white; 
-            border: none; 
-            border-radius: 12px; 
-            font-weight: 800; 
-            cursor: pointer; 
-            margin-top: 15px; 
-            box-shadow: 0 10px 20px rgba(81, 207, 102, 0.4); 
-            font-size: 1rem; 
-            transition: 0.3s; 
-        }
-        .verify-btn:hover { transform: scale(1.02); box-shadow: 0 10px 30px rgba(81, 207, 102, 0.6); }
-        .verify-btn.error { background: linear-gradient(135deg, #ff6b6b, #fa5252); animation: shake 0.4s; }
+        /* JOIN MODAL STYLE */
+        #verify-box { width: 90%; max-width: 350px; text-align: center; border: 2px solid var(--primary); transition: 0.3s; background: var(--surface); padding: 25px 20px; border-radius: 22px; box-shadow: 0 0 30px rgba(108, 92, 231, 0.2); }
+        .join-btn { width: 100%; padding: 12px; background: #2f3640; color: white; border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; margin-bottom: 8px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.2s; font-size: 0.85rem; }
+        .join-btn:hover { background: #353b48; border-color: var(--primary); }
+        .join-btn i { color: #0088cc; font-size: 1.1rem; }
+        .verify-btn { width: 100%; padding: 12px; background: var(--success); color: white; border: none; border-radius: 12px; font-weight: 900; cursor: pointer; margin-top: 10px; box-shadow: 0 5px 15px rgba(76, 209, 55, 0.4); font-size: 0.9rem; transition: 0.3s; }
+        .verify-btn.error { background: var(--danger); animation: shake 0.4s; }
         
-        @keyframes shake { 
-            0%, 100% { transform: translateX(0); } 
-            25% { transform: translateX(-10px); } 
-            50% { transform: translateX(10px); } 
-            75% { transform: translateX(-10px); } 
+        @keyframes shake { 0% { transform: translateX(0); } 25% { transform: translateX(-10px); } 50% { transform: translateX(10px); } 75% { transform: translateX(-10px); } 100% { transform: translateX(0); } }
+        .shake-error { animation: shake 0.4s ease-in-out; border-color: var(--danger) !important; box-shadow: 0 0 20px var(--danger) !important; }
+
+        /* WELCOME MODAL ANIMATION */
+        .welcome-box {
+            animation: rgbGlow 1.5s linear infinite alternate;
+            border: 3px solid transparent;
         }
-        .shake-error { 
-            animation: shake 0.4s ease-in-out; 
-            border-color: var(--danger) !important; 
-            box-shadow: 0 0 30px var(--danger) !important; 
+        @keyframes rgbGlow {
+            0% { box-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000; border-color: #ff0000; }
+            33% { box-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00; border-color: #00ff00; }
+            66% { box-shadow: 0 0 15px #0000ff, 0 0 30px #0000ff; border-color: #0000ff; }
+            100% { box-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff; border-color: #ff00ff; }
         }
 
         /* NAV */
-        .nav { 
-            position: fixed; 
-            bottom: 25px; 
-            left: 50%; 
-            transform: translateX(-50%); 
-            width: 90%; 
-            max-width: 400px; 
-            background: var(--nav-bg); 
-            display: flex; 
-            justify-content: space-around; 
-            padding: 18px; 
-            border-radius: 30px; 
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); 
-            z-index: 100; 
-            backdrop-filter: blur(10px); 
-            border: 2px solid rgba(255, 255, 255, 0.1); 
-        }
-        .nav i { 
-            font-size: 1.5rem; 
-            color: rgba(255, 255, 255, 0.4); 
-            cursor: pointer; 
-            transition: 0.3s; 
-        }
-        .nav i.active { 
-            color: var(--secondary); 
-            transform: translateY(-5px); 
-            text-shadow: 0 0 20px var(--secondary); 
-        }
-        .toast { 
-            position: fixed; 
-            top: 40px; 
-            left: 50%; 
-            transform: translateX(-50%); 
-            background: var(--surface-light); 
-            color: white; 
-            padding: 12px 25px; 
-            border-radius: 30px; 
-            font-size: 0.9rem; 
-            opacity: 0; 
-            transition: 0.3s; 
-            z-index: 10000; 
-            font-weight: 600; 
-            pointer-events: none; 
-            border: 2px solid var(--secondary); 
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); 
-        }
-        .toast.show { opacity: 1; top: 50px; }
-        .toast.error { 
-            border-color: var(--danger); 
-            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.4); 
-        }
+        .nav { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); width: 94%; max-width: 400px; background: rgba(30, 30, 30, 0.95); display: flex; justify-content: space-between; padding: 12px 25px; border-radius: 25px; box-shadow: 0 10px 40px rgba(0,0,0,0.6); z-index: 100; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05); }
+        .nav i { font-size: 1.3rem; color: rgba(255,255,255,0.3); cursor: pointer; transition: 0.3s; }
+        .nav i.active { color: var(--primary); transform: translateY(-3px); text-shadow: 0 0 12px var(--primary); }
+        .toast { position: fixed; top: 30px; left: 50%; transform: translateX(-50%); background: #2f3640; color: white; padding: 10px 20px; border-radius: 25px; font-size: 0.8rem; opacity: 0; transition: 0.3s; z-index: 10000; font-weight: 700; pointer-events: none; border: 1px solid var(--primary); box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        .toast.show { opacity: 1; top: 40px; }
+        .toast.error { border-color: var(--danger); box-shadow: 0 5px 15px rgba(232, 65, 24, 0.4); }
     </style>
-    
-    <link rel="me" href="https://www.blogger.com/profile/11551086564924548821" />
-    <meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
-    <meta name='google-adsense-platform-domain' content='blogspot.com'/>
+<link rel="me" href="https://www.blogger.com/profile/11551086564924548821" />
+<meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+<meta name='google-adsense-platform-domain' content='blogspot.com'/>
 
-    <script type="text/javascript" language="javascript">
-        // Supply ads personalization default for EEA readers
-        adsbygoogle = window.adsbygoogle || [];
-        if (typeof adsbygoogle.requestNonPersonalizedAds === 'undefined') {
-            adsbygoogle.requestNonPersonalizedAds = 1;
-        }
-    </script>
+<script type="text/javascript" language="javascript">
+  // Supply ads personalization default for EEA readers
+  // See https://www.blogger.com/go/adspersonalization
+  adsbygoogle = window.adsbygoogle || [];
+  if (typeof adsbygoogle.requestNonPersonalizedAds === 'undefined') {
+    adsbygoogle.requestNonPersonalizedAds = 1;
+  }
+</script>
+
 </head>
 <body>
 
     <div id="banned-screen">
         <i class="fas fa-ban"></i>
-        <h1>ACCOUNT BANNED</h1>
-        <p style="color: var(--text-muted); margin-top: 10px;">Multiple accounts detected.</p>
+        <h1>অ্যাকাউন্ট নিষিদ্ধ</h1>
+        <p style="color: white; margin-top: 10px;">একাধিক অ্যাকাউন্ট শনাক্ত হয়েছে।</p>
     </div>
 
     <div id="loader" class="loader-overlay">
         <div class="voltage-ring"></div>
-        <p class="loader-text"><span id="prog-txt">CHECKING...</span></p>
+        <p class="loader-text"><span id="prog-txt">চেক করা হচ্ছে...</span></p>
     </div>
 
-    <div id="join-modal" class="loader-overlay" style="display:none; background:var(--bg); z-index:99999;">
+    <div id="join-modal" class="loader-overlay" style="display:none; background:rgba(0,0,0,0.95); z-index:99999;">
         <div id="verify-box" class="box">
-            <i class="fas fa-shield-alt" style="font-size: 3.5rem; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.5));"></i>
-            <h3 style="margin-bottom: 10px; color: var(--text); font-weight: 800;">Verification Required</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 25px; font-weight: 600;">বট ব্যবহার করতে হলে আপনাকে আগে চ্যানেলে জয়েন করতে হবে</p>
-            <button onclick="tg.openTelegramLink('https://t.me/My_Earning_Zone_In')" class="join-btn"><i class="fab fa-telegram-plane"></i> Join Promotion Channel</button>
-            <button onclick="tg.openTelegramLink('https://t.me/EARN_MONEY_V2_BO')" class="join-btn"><i class="fab fa-telegram-plane"></i> Join Payment Channel</button>
-            <button id="v-btn" onclick="verifyJoin()" class="verify-btn"><i class="fas fa-check-circle"></i> I Have Joined</button>
+            <i class="fas fa-shield-alt" style="font-size: 3rem; color: var(--primary); margin-bottom: 15px; filter: drop-shadow(0 0 10px rgba(108,92,231,0.5));"></i>
+            <h3 style="margin-bottom: 8px; color: var(--text); font-weight: 900;">যাচাইকরণ প্রয়োজন</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 20px; font-weight: 700;">বট ব্যবহার করতে হলে আপনাকে আগে চ্যানেলে জয়েন করতে হবে</p>
+            <button onclick="tg.openTelegramLink('https://t.me/My_Earning_Zone_In')" class="join-btn"><i class="fab fa-telegram-plane"></i> প্রমোশন চ্যানেলে জয়েন করুন</button>
+            <button onclick="tg.openTelegramLink('https://t.me/EARN_MONEY_V2_BO')" class="join-btn"><i class="fab fa-telegram-plane"></i> পেমেন্ট চ্যানেলে জয়েন করুন</button>
+            <button id="v-btn" onclick="verifyJoin()" class="verify-btn"><i class="fas fa-check-circle"></i> আমি জয়েন করেছি</button>
         </div>
     </div>
 
-    <div id="toast" class="toast">Alert</div>
+    <div id="welcome-modal" class="loader-overlay" style="z-index: 100001; background: rgba(0,0,0,0.85); display: flex;">
+        <div class="box welcome-box" style="width: 90%; max-width: 350px; text-align: center;">
+            <h2 style="color: var(--success); font-weight: 900; margin-bottom: 10px;">স্বাগতম 🎉</h2>
+            <p style="color: var(--text); font-size: 0.85rem; margin-bottom: 15px; line-height: 1.5; font-weight: 600;">
+                আমাদের ওয়েব বটে এখানে আপনি সম্পূর্ণ ফ্রিতে ইনকাম করতে পারবেন!💥<br>
+                এবং একমাত্র আমাদের বট দিচ্ছে অটো পেমেন্ট গেটওয়ে যা আপনি কোন বটে পাবেন না!✅
+            </p>
+            
+            <div style="background: rgba(232, 65, 24, 0.1); border: 1px solid var(--danger); padding: 10px; border-radius: 10px; margin-bottom: 15px;">
+                <h4 style="color: var(--danger); font-weight: 900; margin-bottom: 5px;">⚠️ সতর্কতা ⚠️</h4>
+                <p style="font-size: 0.75rem; color: #ff6b6b; font-weight: 700;">‼️ কাজ করার ক্ষেত্রে কোন প্রতারনা করলে আপনার পেমেন্ট রিযেক্ট হতে পারে তার জন্য আমাদের টিম কোন ভাবেই দাই থাকবে না‼️</p>
+            </div>
+            
+            <p style="color: var(--primary); font-weight: 800; margin-bottom: 15px;">ধন্যবাদ 💝</p>
+            <button onclick="document.getElementById('welcome-modal').style.display='none'" class="btn-main">শুরু করুন</button>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">সতর্কতা</div>
 
     <div id="app">
         <div class="header">
@@ -662,57 +276,94 @@
         </div>
 
         <div class="balance-card">
-            <div class="bal-title">Total Balance</div>
-            <div class="bal-amt"><span id="u-bal">0.00</span> <span id="cur-sym" class="currency">TK</span></div>
+            <div class="bal-title">মোট ব্যালেন্স</div>
+            <div class="bal-amt"><span id="u-bal">0.00</span> <span id="cur-sym" class="currency">$DOGS</span></div>
             <div class="stats">
-                <div class="stat-box"><h4 id="u-earn">0.00</h4><p>Earned</p></div>
-                <div class="stat-box"><h4 id="u-ref">0</h4><p>Referrals</p></div>
+                <div class="stat-box"><h4 id="u-earn">0.00</h4><p>উপার্জিত</p></div>
+                <div class="stat-box"><h4 id="u-ref">0</h4><p>রেফার</p></div>
             </div>
         </div>
 
         <div id="p-home" class="page active">
-            <div class="sec-head"><i class="fas fa-play-circle"></i> Daily Ads</div>
+            <div class="sec-head"><i class="fas fa-play-circle"></i> দৈনিক অ্যাডস</div>
             <div id="ad-area" class="ad-grid"></div>
 
-            <div class="sec-head"><i class="fas fa-tasks"></i> Tasks</div>
+            <div class="sec-head"><i class="fas fa-tasks"></i> কাজসমূহ</div>
             
             <div id="onetime-task-area" class="task-list"></div>
             
-            <div class="sub-head"><i class="fas fa-clock"></i> Daily Tasks</div>
+            <div class="sub-head"><i class="fas fa-clock"></i> দৈনিক কাজ</div>
             <div id="daily-task-area" class="task-list"></div>
         </div>
 
         <div id="p-invite" class="page">
             <div class="gift-container">
                 <i class="fas fa-gift gift-box"></i>
-                <h2 style="color:var(--text); margin-top:10px; font-weight: 800;">Invite Friends</h2>
-                <p id="invite-txt" style="font-size:0.9rem; color:var(--text-muted); font-weight: 600;">Refer & Earn rewards!</p>
+                <h2 style="color:var(--text); margin-top:10px; font-weight: 900;">বন্ধুদের আমন্ত্রণ</h2>
+                <p id="invite-txt" style="font-size:0.8rem; color:var(--text-muted); font-weight: 700;">রেফার করুন এবং আয় করুন!</p>
             </div>
 
-            <div class="box" style="margin-bottom: 30px;">
-                <input id="ref-link" class="inp" readonly style="text-align:center; background:var(--surface-light); color:white; font-size: 0.85rem; margin-bottom:10px; border:2px solid var(--secondary);">
+            <div class="box" style="margin-bottom: 25px;">
+                <input id="ref-link" class="inp" readonly style="text-align:center; background:#fff; color:#000; font-size: 0.75rem; margin-bottom:10px;">
                 <div class="invite-box">
-                    <button onclick="shareTg()" class="btn-share"><i class="fab fa-telegram-plane"></i> Invite Friends</button>
+                    <button onclick="shareTg()" class="btn-share"><i class="fab fa-telegram-plane"></i> বন্ধুদের আমন্ত্রণ জানান</button>
                     <button onclick="copyRef()" class="btn-copy"><i class="far fa-copy"></i></button>
                 </div>
             </div>
 
-            <div class="sec-head"><i class="fas fa-trophy"></i> Top Referrers</div>
+            <div class="sec-head"><i class="fas fa-trophy"></i> শীর্ষ রেফারকারী</div>
             <div id="podium-area" class="podium"></div>
             <div id="lb-area" class="lb-list"></div>
         </div>
 
-        <div id="p-profile" class="page">
-            <div class="sec-head"><i class="fas fa-wallet"></i> Withdraw</div>
-            <div class="box">
-                <p id="w-msg" style="color:var(--danger); font-size:0.8rem; display:none; margin-bottom:10px; font-weight:700;"></p>
-                <div class="input-wrap"><i class="fas fa-university"></i><select id="w-method" class="inp" onchange="updateMinMsg()"></select></div>
-                <p id="min-msg" style="font-size:0.75rem; color:var(--secondary); margin:-15px 0 15px 15px; font-weight:700;">Min: ...</p>
-                <div class="input-wrap"><i class="fas fa-id-card"></i><input id="w-acc" class="inp" placeholder="Account Number"></div>
-                <div class="input-wrap"><i class="fas fa-coins"></i><input id="w-amt" class="inp" type="number" placeholder="Amount"></div>
-                <button onclick="withdraw()" class="btn-main">Request Withdraw</button>
+        <div id="p-support" class="page">
+            <div class="sec-head"><i class="fas fa-life-ring"></i> হেল্প সেন্টার</div>
+            <div class="task-list">
+                <div class="task-item" onclick="tg.openTelegramLink('https://t.me/myIncometalent')">
+                    <div class="task-left">
+                        <div class="task-icon" style="background:rgba(0,168,255,0.1); color:#00a8ff; font-size:1.2rem; border:none;"><i class="fas fa-user-shield"></i></div>
+                        <div class="task-info"><h4>যে কোন ধরনের বট তৈরি করুন</h4><small>যোগাযোগ বট ডেভেলপার</small></div>
+                    </div>
+                    <i class="fas fa-chevron-right" style="color:var(--text-muted)"></i>
+                </div>
+
+                <div class="task-item" onclick="tg.openTelegramLink('https://t.me/EARN_MONEY_V2_BO')">
+                    <div class="task-left">
+                        <div class="task-icon" style="background:rgba(156,136,255,0.1); color:var(--primary); font-size:1.2rem; border:none;"><i class="fas fa-users"></i></div>
+                        <div class="task-info"><h4>Cash Earning কমিউনিটি</h4><small>আমাদের গ্রুপে জয়েন করুন</small></div>
+                    </div>
+                    <i class="fas fa-chevron-right" style="color:var(--text-muted)"></i>
+                </div>
+
+                <div class="task-item" onclick="tg.openTelegramLink('https://t.me/My_Earning_Zone_In')">
+                    <div class="task-left">
+                        <div class="task-icon" style="background:rgba(76,209,55,0.1); color:var(--success); font-size:1.2rem; border:none;"><i class="fas fa-money-check-alt"></i></div>
+                        <div class="task-info"><h4>পেমেন্ট চ্যানেল</h4><small>পেমেন্ট প্রুফ</small></div>
+                    </div>
+                    <i class="fas fa-chevron-right" style="color:var(--text-muted)"></i>
+                </div>
+
+                <div class="task-item" onclick="showComingSoon()">
+                    <div class="task-left">
+                        <div class="task-icon" style="background:rgba(232,65,24,0.1); color:var(--danger); font-size:1.2rem; border:none;"><i class="fab fa-youtube"></i></div>
+                        <div class="task-info"><h4>টিউটোরিয়াল ভিডিও</h4><small>কিভাবে কাজ করবেন শিখুন</small></div>
+                    </div>
+                    <span style="font-size:0.65rem; background:#353b48; padding:3px 8px; border-radius:5px;">শীঘ্রই আসছে</span>
+                </div>
             </div>
-            <div class="sec-head"><i class="fas fa-history"></i> Last Transactions</div>
+        </div>
+
+        <div id="p-profile" class="page">
+            <div class="sec-head"><i class="fas fa-wallet"></i> উত্তোলন</div>
+            <div class="box">
+                <p id="w-msg" style="color:var(--danger); font-size:0.75rem; display:none; margin-bottom:10px; font-weight:800;"></p>
+                <div class="input-wrap"><i class="fas fa-university"></i><select id="w-method" class="inp" onchange="updateMinMsg()"></select></div>
+                <p id="min-msg" style="font-size:0.7rem; color:var(--primary); margin:-15px 0 15px 15px; font-weight:700;">সর্বনিম্ন: ...</p>
+                <div class="input-wrap"><i class="fas fa-id-card"></i><input id="w-acc" class="inp" placeholder=" আপনার ওয়ালেট অ্যাড্রেস"></div>
+                <div class="input-wrap"><i class="fas fa-coins"></i><input id="w-amt" class="inp" type="number" placeholder="পরিমাণ"></div>
+                <button onclick="withdraw()" class="btn-main">টাকা উত্তোলনের অনুরোধ</button>
+            </div>
+            <div class="sec-head"><i class="fas fa-history"></i> সর্বশেষ লেনদেন ⏰</div>
             <div id="hist-area" class="task-list"></div>
         </div>
     </div>
@@ -721,22 +372,23 @@
         <i class="fas fa-home active" onclick="nav('p-home', this)"></i>
         <i class="fas fa-gift" onclick="nav('p-invite', this)"></i>
         <i class="fas fa-wallet" onclick="nav('p-profile', this)"></i>
+        <i class="fas fa-headset" onclick="nav('p-support', this)"></i> 
     </div>
 
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <script>
-        // CONFIG - All your original JavaScript remains exactly the same
+        // CONFIG
         const API_URL = "https://cold-dewm.mdashrafaliakib.workers.dev"; 
         const BOT_TOKEN = "8252453072:AAFkC4hqO6o7pT5apVpieU7-0K4xULo1ke0";
         const CHANNELS = [
-          { id: "-1003032580624" },
+           { id: "-1003032580624" },
             { id: "-1003875952190" }
         ];
 
         const tg = window.Telegram.WebApp;
         tg.ready(); tg.expand();
-        tg.setHeaderColor('#1a1a3a'); 
+        tg.setHeaderColor('#121212'); 
 
         let appState = { user: { balance: 0, totalEarned: 0, referrals: 0, dailyAds: {}, taskHistory: {} }, config: {}, leaderboard: [], history: [] };
         let countdownInterval = null;
@@ -753,24 +405,24 @@
             localStorage.setItem('unique_device_id', tgUser.id);
         }
 
-        // 2. UPDATED STARTUP: CHECK JOIN STATUS FIRST
+        // 2. STARTUP
         window.onload = async () => {
             const loader = document.getElementById('loader');
             const txt = document.getElementById('prog-txt');
             loader.style.display = 'flex';
-            txt.innerText = 'VERIFYING...';
+            txt.innerText = 'যাচাই করা হচ্ছে...';
             
-            // Check membership BEFORE loading app
+            // SHOW WELCOME MODAL ON LOAD
+            document.getElementById('welcome-modal').style.display = 'flex';
+            
             checkMembershipOnLoad();
         };
 
         async function checkMembershipOnLoad() {
             const isJoined = await checkChannels();
             if (isJoined) {
-                // User is joined, start the app loader -> referral count happens in initializeApp
                 startLoadingBar();
             } else {
-                // User not joined, hide voltage loader, show join modal
                 document.getElementById('loader').style.display = 'none';
                 document.getElementById('join-modal').style.display = 'flex';
             }
@@ -788,36 +440,32 @@
                 }
                 return true;
             } catch (e) {
-                // If network error, default to strict (false) or lenient (true). Strict requested.
-                console.error("Join Check Error", e);
                 return false;
             }
         }
 
-        // 4. BUTTON CLICK VERIFY (STRICT)
+        // 4. BUTTON CLICK VERIFY
         async function verifyJoin() {
             const btn = document.getElementById('v-btn');
             const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Checking...';
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> চেক করা হচ্ছে...';
             
             const isJoined = await checkChannels();
             
             if (isJoined) {
-                // SUCCESS
                 tg.HapticFeedback.notificationOccurred('success');
-                btn.style.background = 'linear-gradient(135deg, #51cf66, #40c057)';
-                btn.innerHTML = '<i class="fas fa-check"></i> Verified!';
+                btn.style.background = '#4cd137'; // Green
+                btn.innerHTML = '<i class="fas fa-check"></i> যাচাই সম্পন্ন!';
                 
                 setTimeout(() => {
                     document.getElementById('join-modal').style.display = 'none';
-                    startLoadingBar(); // This triggers app load and referral counting
+                    startLoadingBar(); 
                 }, 500);
             } else {
-                // FAIL
-                tg.HapticFeedback.notificationOccurred('error'); // Vibrate Error
-                btn.classList.add('error'); // Red Shake Animation
-                btn.innerHTML = '<i class="fas fa-times-circle"></i> Not Joined!';
-                toastError("Please join all channels!");
+                tg.HapticFeedback.notificationOccurred('error'); 
+                btn.classList.add('error'); 
+                btn.innerHTML = '<i class="fas fa-times-circle"></i> জয়েন করেননি!';
+                toastError("দয়া করে সব চ্যানেলে জয়েন করুন!");
                 
                 setTimeout(() => {
                     btn.classList.remove('error');
@@ -826,7 +474,7 @@
             }
         }
 
-        // 5. APP LOADING (REFERRAL COUNT HAPPENS HERE INSIDE initializeApp)
+        // 5. APP LOADING
         function startLoadingBar() {
             const loader = document.getElementById('loader');
             loader.style.display = 'flex'; 
@@ -838,8 +486,8 @@
                     clearInterval(interval);
                     loader.style.display = 'none';
                     document.getElementById('app').style.display = 'block';
-                    initializeApp(tgUser); // REFERRAL COUNT TRIGGERED HERE
-                    toast("Welcome Back!");
+                    initializeApp(tgUser); 
+                    toast("স্বাগতম!");
                 } else {
                     width += 2; 
                     txt.innerText = width + '%';
@@ -849,7 +497,8 @@
 
         async function api(action, method = 'GET', body = null) {
             try {
-                let url = `${API_URL}?action=${action}`;
+                // LIVE UPDATE FIX: Added Timestamp &t=... to force fresh data
+                let url = `${API_URL}?action=${action}&t=${Date.now()}`;
                 if (method === 'GET' && body) Object.keys(body).forEach(k => url += `&${k}=${body[k]}`);
                 const opts = { method: method };
                 if (method !== 'GET' && body) opts.body = JSON.stringify(body);
@@ -870,7 +519,6 @@
             try {
                 const [config, user] = await Promise.all([
                     api('getConfig'),
-                    // REFERRAL ID PROCESSED HERE ON SERVER
                     api('login', 'POST', { id: u.id, firstName: u.first_name, photoUrl: u.photo_url||'', refId: tg.initDataUnsafe.start_param })
                 ]);
 
@@ -900,7 +548,7 @@
             document.getElementById('ref-link').value = `https://t.me/${appState.config.botUsername}/app?startapp=${u.id}`;
             
             const refAmt = appState.config.referralBonus || 0;
-            if(refAmt > 0) document.getElementById('invite-txt').innerText = `Refer & Earn ${refAmt} ${sym} per Friend!`;
+            if(refAmt > 0) document.getElementById('invite-txt').innerText = `রেফার করুন এবং ${refAmt} ${sym} আয় করুন!`;
 
             renderAds(); renderTasks(); renderLeaderboard(); renderHistory(); renderMethods(); loadAdScripts();
         }
@@ -923,25 +571,24 @@
                 const limit = appState.config.dailyAdLimit || 10;
                 const done = (appState.user.dailyAds && appState.user.dailyAds[s.id]) || 0;
                 const max = done >= limit;
-                el.innerHTML += `<div class="ad-card ${max?'disabled':''}" onclick="${max?'':`watchAd('${s.id}','${s.network}')`}"><i class="fas fa-play"></i><h4>Ad Slot ${i+1}</h4><span>${done}/${limit} Watched</span></div>`;
+                el.innerHTML += `<div class="ad-card ${max?'disabled':''}" onclick="${max?'':`watchAd('${s.id}','${s.network}')`}"><i class="fas fa-play"></i><h4>অ্যাড স্লট ${i+1}</h4><span>${done}/${limit} দেখা হয়েছে</span></div>`;
             });
         }
-        
         function watchAd(id, net) {
-            toast("Loading..."); tg.HapticFeedback.impactOccurred('light');
+            toast("লোড হচ্ছে..."); tg.HapticFeedback.impactOccurred('light');
             let p;
             if(net==='monetag' && window[`show_${id}`]) p = window[`show_${id}`]();
             else if(net==='gigapub' && window.showGiga) p = window.showGiga();
-            else { toast("Not Ready"); return; }
+            else { toast("প্রস্তুত নয়"); return; }
             p.then(async () => {
                 const r = appState.config.adReward || 0.5;
                 appState.user.balance += r; appState.user.totalEarned += r;
                 if(!appState.user.dailyAds) appState.user.dailyAds = {};
                 appState.user.dailyAds[id] = (appState.user.dailyAds[id]||0) + 1;
-                saveLocal(); renderAll(); toast(`Success! +${r}`);
+                saveLocal(); renderAll(); toast(`সফল! +${r}`);
                 tg.HapticFeedback.notificationOccurred('success');
                 await api('updateBalance', 'POST', { id: appState.user.id, amount: r });
-            }).catch(() => toast("Failed/Closed"));
+            }).catch(() => toast("ব্যর্থ/বন্ধ করা হয়েছে"));
         }
 
         function renderTasks() {
@@ -950,7 +597,7 @@
             oneTimeEl.innerHTML = ''; dailyEl.innerHTML = '';
             
             const tasks = appState.config.webTasks || {};
-            const sym = appState.config.currencySymbol || "TK";
+            const sym = appState.config.currencySymbol || "$DOGS";
             const now = Date.now();
             
             if(countdownInterval) clearInterval(countdownInterval);
@@ -962,7 +609,7 @@
                 
                 if(t.type === 'onetime') {
                     if(h.ts) return; 
-                    const html = `<div class="task-item"><div class="task-left"><img src="${t.icon||'https://via.placeholder.com/40'}" class="task-icon"><div class="task-info"><h4>${t.name}</h4><small>+${t.reward} ${sym}</small></div></div><button id="btn-${k}" class="btn-act btn-start" onclick="runTask('${k}')">Start</button></div>`;
+                    const html = `<div class="task-item"><div class="task-left"><img src="${t.icon||'https://via.placeholder.com/40'}" class="task-icon"><div class="task-info"><h4>${t.name}</h4><small style="color: var(--success); font-weight: 800; font-size: 0.85rem;">+${t.reward} ${sym}</small></div></div><button id="btn-${k}" class="btn-act btn-start" onclick="runTask('${k}')">শুরু করুন</button></div>`;
                     oneTimeEl.innerHTML += html;
                 } 
                 else if (t.type === 'daily') {
@@ -978,10 +625,10 @@
                         btnHtml = `<button id="timer-${k}" class="btn-act btn-wait" disabled>...</button>`;
                         countdowns.push({ id: `timer-${k}`, endTime: now + left });
                     } else {
-                        btnHtml = `<button id="btn-${k}" class="btn-act btn-start" onclick="runTask('${k}')">Start</button>`;
+                        btnHtml = `<button id="btn-${k}" class="btn-act btn-start" onclick="runTask('${k}')">শুরু করুন</button>`;
                     }
 
-                    const html = `<div class="task-item" style="opacity:${isWait?0.7:1}"><div class="task-left"><img src="${t.icon||'https://via.placeholder.com/40'}" class="task-icon"><div class="task-info"><h4>${t.name}</h4><small>+${t.reward} ${sym}</small></div></div>${btnHtml}</div>`;
+                    const html = `<div class="task-item" style="opacity:${isWait?0.7:1}"><div class="task-left"><img src="${t.icon||'https://via.placeholder.com/40'}" class="task-icon"><div class="task-info"><h4>${t.name}</h4><small style="color: var(--success); font-weight: 800; font-size: 0.85rem;">+${t.reward} ${sym}</small></div></div>${btnHtml}</div>`;
                     dailyEl.innerHTML += html;
                 }
             });
@@ -994,38 +641,43 @@
                         if(!el) return;
                         const diff = c.endTime - curr;
                         if(diff <= 0) {
-                            el.className = 'btn-act btn-start'; el.disabled = false; el.innerText = 'Start'; el.onclick = () => renderAll();
+                            el.className = 'btn-act btn-start'; el.disabled = false; el.innerText = 'শুরু করুন'; el.onclick = () => renderAll();
                         } else {
                             const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
                             const m = Math.floor((diff / (1000 * 60)) % 60);
                             const s = Math.floor((diff / 1000) % 60);
-                            el.innerText = `${h}h ${m}m ${s}s`;
+                            el.innerText = `${h}h ${m}m`; // Simplified long timer
                         }
                     });
                 }, 1000);
             }
         }
 
+        // --- UPDATED TIMER LOGIC HERE ---
         function runTask(id) {
             const t = appState.config.webTasks[id];
             tg.openLink(t.url); tg.HapticFeedback.impactOccurred('medium');
             const btn = document.getElementById(`btn-${id}`);
-            let s = 15; btn.className = 'btn-act btn-wait'; btn.disabled = true;
+            let s = 10; // 10 Seconds count
+            btn.className = 'btn-act btn-wait'; 
+            btn.disabled = true;
             const i = setInterval(() => {
-                btn.innerText = `${s}s`; s--;
-                if(s < 0) { clearInterval(i); btn.className = 'btn-act btn-claim'; btn.innerText = 'Claim'; btn.disabled = false; btn.onclick = () => claimTask(id, t); }
+                // FIXED: Just show number, small and bold
+                btn.innerText = s; 
+                s--;
+                if(s < 0) { clearInterval(i); btn.className = 'btn-act btn-claim'; btn.innerText = 'সংগ্রহ করুন'; btn.disabled = false; btn.onclick = () => claimTask(id, t); }
             }, 1000);
         }
 
         async function claimTask(id, t) {
-            toast("Verifying...");
+            toast("যাচাই করা হচ্ছে...");
             let isJoined = await checkChannels();
 
             if (!isJoined) {
-                toastError("Join All Channels First!");
+                toastError("আগে চ্যানেলে জয়েন করুন!");
                 const btn = document.getElementById(`btn-${id}`);
                 btn.className = 'btn-act btn-start';
-                btn.innerText = 'Start';
+                btn.innerText = 'শুরু করুন';
                 btn.disabled = false;
                 btn.onclick = () => runTask(id);
                 tg.HapticFeedback.notificationOccurred('error');
@@ -1035,7 +687,7 @@
             appState.user.balance += t.reward; appState.user.totalEarned += t.reward;
             if(!appState.user.taskHistory) appState.user.taskHistory = {};
             appState.user.taskHistory[id] = { ts: Date.now() };
-            saveLocal(); renderAll(); toast("Claimed!"); tg.HapticFeedback.notificationOccurred('success');
+            saveLocal(); renderAll(); toast("সংগ্রহ করা হয়েছে!"); tg.HapticFeedback.notificationOccurred('success');
             await api('updateBalance', 'POST', { id: appState.user.id, amount: t.reward });
         }
 
@@ -1043,12 +695,12 @@
             const mName = document.getElementById('w-method').value;
             const methods = appState.config.withdrawMethods || [];
             const method = methods.find(m => m.name === mName);
-            if(method) document.getElementById('min-msg').innerText = `Min Withdraw: ${method.min} ${appState.config.currencySymbol}`;
+            if(method) document.getElementById('min-msg').innerText = `সর্বনিম্ন উত্তোলন: ${method.min} ${appState.config.currencySymbol}`;
         }
 
         async function withdraw() {
             const minRef = appState.config.minWithdrawReferrals || 0;
-            if(appState.user.referrals < minRef) { document.getElementById('w-msg').style.display='block'; document.getElementById('w-msg').innerText=`Need ${minRef} Referrals!`; return; }
+            if(appState.user.referrals < minRef) { document.getElementById('w-msg').style.display='block'; document.getElementById('w-msg').innerText=`প্রয়োজন ${minRef} টি রেফারেল!`; return; }
             
             const amt = parseFloat(document.getElementById('w-amt').value);
             const mName = document.getElementById('w-method').value;
@@ -1056,96 +708,64 @@
             const method = methods.find(m => m.name === mName);
             const minLimit = method ? method.min : 10;
 
-            if(!amt || amt < minLimit) { toast(`Minimum ${minLimit} TK`); return; }
-            if(amt > appState.user.balance) { toast("Insufficient Balance"); return; }
+            if(!amt || amt < minLimit) { toast(`সর্বনিম্ন ${minLimit} $DOGS`); return; }
+            if(amt > appState.user.balance) { toast("অপর্যাপ্ত ব্যালেন্স"); return; }
             
-            toast("Connecting...");
+            toast("সংযোগ করা হচ্ছে...");
             const res = await api('withdraw', 'POST', { userId: appState.user.id, userName: appState.user.firstName, amount: amt, method: mName, account: document.getElementById('w-acc').value });
             if(res && res.success) {
                 appState.user.balance -= amt; saveLocal(); 
                 const hist = await api('getHistory', 'GET', { id: appState.user.id });
                 if(hist) appState.history = hist;
-                renderAll(); toast("Submitted!"); tg.HapticFeedback.notificationOccurred('success');
-            } else { toast(res.message || "Network Error"); }
+                renderAll(); toast("অনুরোধ জমা হয়েছে!"); tg.HapticFeedback.notificationOccurred('success');
+            } else { toast(res.message || "নেটওয়ার্ক ত্রুটি"); }
         }
 
         function renderLeaderboard() {
             const p = document.getElementById('podium-area'); const l = document.getElementById('lb-area');
             p.innerHTML = ''; l.innerHTML = ''; const top = appState.leaderboard;
-            if(top.length === 0) { p.innerHTML='<p style="text-align:center">No Data</p>'; return; }
+            if(top.length === 0) { p.innerHTML='<p style="text-align:center">কোন তথ্য নেই</p>'; return; }
             if(top[1]) p.innerHTML += getPodium(top[1], 2); if(top[0]) p.innerHTML += getPodium(top[0], 1); if(top[2]) p.innerHTML += getPodium(top[2], 3);
             for(let i=3; i<top.length; i++) l.innerHTML += `<div class="lb-item"><span class="lb-rank">#${i+1}</span><img src="${top[i].photoUrl||'https://via.placeholder.com/40'}" class="lb-img"><div class="lb-name">${top[i].firstName}</div><div class="lb-val">${top[i].referrals}</div></div>`;
         }
-        
-        function getPodium(u, r) { 
-            return `<div class="podium-item rank-${r}"><div class="crown"><i class="fas fa-crown"></i></div><img src="${u.photoUrl||'https://via.placeholder.com/60'}" class="podium-img"><div class="podium-name">${u.firstName}</div><div class="podium-score">${u.referrals} Refs</div></div>`; 
-        }
+        function getPodium(u, r) { return `<div class="podium-item rank-${r}"><div class="crown"><i class="fas fa-crown"></i></div><img src="${u.photoUrl||'https://via.placeholder.com/60'}" class="podium-img"><div class="podium-name">${u.firstName}</div><div class="podium-score">${u.referrals} Refs</div></div>`; }
         
         function renderHistory() {
             const el = document.getElementById('hist-area'); el.innerHTML = ''; const sym = appState.config.currencySymbol || "TK";
-            if(appState.history.length === 0) { el.innerHTML='<p style="text-align:center;color:var(--text-muted)">No History</p>'; return; }
+            if(appState.history.length === 0) { el.innerHTML='<p style="text-align:center;color:#666">কোন ইতিহাস নেই</p>'; return; }
             appState.history.forEach(x => el.innerHTML += `<div class="hist-item ${x.status}"><div class="hist-info"><h4>${x.method} - ${x.amount} ${sym}</h4><small>${new Date(x.timestamp).toLocaleDateString()}</small></div><span class="status-badge">${x.status}</span></div>`);
         }
-        
         function renderMethods() {
             const s = document.getElementById('w-method'); if(s.children.length > 0) return;
             (appState.config.withdrawMethods||[]).forEach(m => s.innerHTML+=`<option value="${m.name}">${m.name}</option>`);
             updateMinMsg();
         }
-        
         function nav(p, e) {
             document.querySelectorAll('.page').forEach(x => x.classList.remove('active')); document.getElementById(p).classList.add('active');
             document.querySelectorAll('.nav i').forEach(x => x.classList.remove('active')); e.classList.add('active');
             if(p==='p-profile') { api('getHistory', 'GET', { id: appState.user.id }).then(hist => { if(hist) { appState.history = hist; saveLocal(); renderAll(); } }); }
             tg.HapticFeedback.impactOccurred('light');
         }
-        
-        function copyRef() { 
-            const e = document.getElementById('ref-link'); 
-            e.select(); 
-            document.execCommand('copy'); 
-            toast("Copied!"); 
-        }
-        
-        function shareTg() { 
-            const link = document.getElementById('ref-link').value; 
-            tg.openTelegramLink(`https://t.me/share/url?url=${link}&text=Join and Earn!`); 
-        }
-        
-        function openSupport() { 
-            if(appState.config.supportLink) tg.openLink(appState.config.supportLink); 
-            else toast("No Support Link"); 
-        }
-        
-        function toast(m) { 
-            const t = document.getElementById('toast'); 
-            t.innerText=m; 
-            t.classList.remove('error'); 
-            t.classList.add('show'); 
-            setTimeout(()=>t.classList.remove('show'),3000); 
-        }
-        
-        function toastError(m) { 
-            const t = document.getElementById('toast'); 
-            t.innerText=m; 
-            t.classList.add('error'); 
-            t.classList.add('show'); 
-            setTimeout(()=>t.classList.remove('show'),3000); 
-        }
+        function copyRef() { const e = document.getElementById('ref-link'); e.select(); document.execCommand('copy'); toast("কপি করা হয়েছে!"); }
+        function shareTg() { const link = document.getElementById('ref-link').value; tg.openTelegramLink(`https://t.me/share/url?url=${link}&text=জয়েন করুন এবং আয় করুন!`); }
+        function openSupport() { nav('p-support', document.querySelector('.nav .fa-headset')); } // Redirect header button to support page
+        function showComingSoon() { toast("শীঘ্রই আসছে!"); tg.HapticFeedback.notificationOccurred('warning'); }
+        function toast(m) { const t = document.getElementById('toast'); t.innerText=m; t.classList.remove('error'); t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3000); }
+        function toastError(m) { const t = document.getElementById('toast'); t.innerText=m; t.classList.add('error'); t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3000); }
     </script>
 
-    <!-- Cookie Notice -->
-    <script src="/js/cookienotice.js" defer></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function(event) {
-            window.cookieChoices && cookieChoices.showCookieConsentBar && cookieChoices.showCookieConsentBar(
-                (window.cookieOptions && cookieOptions.msg) || 'Ce site utilise des cookies provenant de Google pour fournir ses services et analyser le trafic. Votre adresse IP et votre user-agent, ainsi que des statistiques relatives aux performances et à la sécurité, sont transmis à Google afin d\x27assurer un service de qualité, de générer des statistiques d\x27utilisation, et de détecter et de résoudre les problèmes d\x27abus.',
-                (window.cookieOptions && cookieOptions.close) || 'OK !',
-                (window.cookieOptions && cookieOptions.learn) || 'En savoir plus',
-                (window.cookieOptions && cookieOptions.link) || 'https://www.blogger.com/go/blogspot-cookies'
-            );
-        });
-    </script>
+
+<!-- 'Il est de votre ressort d\x27informer les visiteurs à propos des cookies utilisés et des données collectées sur votre blog. Blogger met à votre disposition une notification standard que vous pouvez personnaliser, remplacer ou afficher telle quelle sur votre blog. Rendez-vous sur http://www.blogger.com/go/cookiechoices pour obtenir de plus amples informations.' -->
+<script src="/js/cookienotice.js" defer></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function(event) {
+    window.cookieChoices && cookieChoices.showCookieConsentBar && cookieChoices.showCookieConsentBar(
+        (window.cookieOptions && cookieOptions.msg) || 'Ce site utilise des cookies provenant de Google pour fournir ses services et analyser le trafic. Votre adresse IP et votre user-agent, ainsi que des statistiques relatives aux performances et à la sécurité, sont transmis à Google afin d\x27assurer un service de qualité, de générer des statistiques d\x27utilisation, et de détecter et de résoudre les problèmes d\x27abus.',
+        (window.cookieOptions && cookieOptions.close) || 'OK !',
+        (window.cookieOptions && cookieOptions.learn) || 'En savoir plus',
+        (window.cookieOptions && cookieOptions.link) || 'https://www.blogger.com/go/blogspot-cookies');
+  });
+</script>
 
 </body>
 </html>
